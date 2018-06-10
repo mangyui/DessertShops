@@ -1,0 +1,374 @@
+﻿<!DOCTYPE html>
+<!--[if IE 7]><html class="ie ie7"><![endif]-->
+<!--[if IE 8]><html class="ie ie8"><![endif]-->
+<!--[if IE 9]><html class="ie ie9"><![endif]-->
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link href="apple-touch-icon.png" rel="apple-touch-icon">
+<link href="favicon.png" rel="icon">
+<meta name="author" content="">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<title>Cart</title>
+<!-- Fonts-->
+    <link href="https://fonts.lug.ustc.edu.cn/css?family=Libre+Baskerville:400,400i,700%7CPacifico%7CVarela+Round%7CPoppins" rel="stylesheet">
+<link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css">
+<link rel="stylesheet" href="plugins/ps-icon/ps-icon.css">
+<!-- CSS Library-->
+<link rel="stylesheet" href="plugins/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="plugins/owl-carousel/assets/owl.carousel.css">
+<link rel="stylesheet" href="plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css">
+<link rel="stylesheet" href="plugins/Magnific-Popup/dist/magnific-popup.css">
+<link rel="stylesheet" href="plugins/jquery-ui/jquery-ui.min.css">
+<link rel="stylesheet" href="plugins/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" href="plugins/slick/slick/slick.css">
+<link rel="stylesheet" href="plugins/revolution/css/settings.css">
+<link rel="stylesheet" href="plugins/revolution/css/layers.css">
+<link rel="stylesheet" href="plugins/revolution/css/navigation.css">
+<!-- Custom-->
+<link rel="stylesheet" href="css/style.css">
+<!--HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+<!--WARNING: Respond.js doesn't work if you view the page via file://-->
+<!--[if lt IE 9]><script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+</head>
+<!--[if IE 7]><body class="ie7 lt-ie8 lt-ie9 lt-ie10"><![endif]-->
+<!--[if IE 8]><body class="ie8 lt-ie9 lt-ie10"><![endif]-->
+<!--[if IE 9]><body class="ie9 lt-ie10"><![endif]-->
+
+<body class="page-init">
+<div class="header--sidebar"></div>
+<header class="header header--2" data-responsive="1199">
+	<div class="header__top">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 ">
+					<p>460 West 34th Street, 15th floor, New York - Hotline: 804-377-3580 - 804-399-3580</p>
+				</div>
+				<div class="col-lg-4 col-md-5 col-sm-12 col-xs-12 "><a class="ps-search-btn" href="#"><i class="ps-icon--search"></i></a>
+					<div class="btn-group ps-dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">USD<i class="fa fa-angle-down"></i></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">USD</a></li>
+							<li><a href="#">SGD</a></li>
+							<li><a href="#">ERO</a></li>
+							<li><a href="#">JPN</a></li>
+						</ul>
+					</div>
+					<div class="btn-group ps-dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Language<i class="fa fa-angle-down"></i></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">English</a></li>
+							<li><a href="#">Japanese</a></li>
+							<li><a href="#">Chinese</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<nav class="navigation">
+		<div class="container">
+			<div class="menu-toggle"><span></span></div>
+			<div class="navigation__left">
+				<ul class="menu menu--left">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="product-listing.html">List</a></li>
+					<li><a href="cart.html">Cart</a></li>
+				</ul>
+			</div>
+			<a class="ps-logo" href="index.html"><img src="images/logo-1.png" alt=""></a>
+			<div class="navigation__right">
+				<ul class="menu menu--right">
+					<li><a href="product-grid.html">Grid</a></li>
+					<li><a href="product-detail.html">Detail</a></li>
+					<li><a href="#">Contact</a></li>
+				</ul>
+				<div class="ps-cart"><a class="ps-cart__toggle" href="cart.html"><span><i>3</i></span><i class="ps-icon--shopping-cart"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+</header>
+<div id="back2top"><i class="fa fa-angle-up"></i></div>
+<div class="loader"></div>
+<div class="page-wrap">
+	<!--section-->
+	<div class="ps-section--hero"><img src="images/hero/01.jpg" alt="">
+		<div class="ps-section__content text-center">
+			<h3 class="ps-section__title">OUR BAKERY</h3>
+			<div class="ps-breadcrumb">
+				<ol class="breadcrumb">
+					<li><a href="index.html">Home</a></li>
+					<li class="active">Cart</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+	<div class="ps-section--cart pt-100 pb-100">
+		<div class="container">
+			<div class="ps-cart-listing">
+				<p class="hidden-lg"><i>Slide right to view</i></p>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>All Products</th>
+								<th>Price</th>
+								<th>Quantity</th>
+								<th>Total</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<div class="ps-product--cart"><img src="images/cake/img-cake-12.jpg" alt=""><a href="product-detail.html">Amazin’ Glazin’</a></div>
+								</td>
+								<td>$<span id="Pprice">150.00</span></td>
+								<td>
+									<div class="form-group--number">
+										<button class="minus"><span>-</span></button>
+										<input class="form-control" type="text" value="1">
+										<button class="plus"><span>+</span></button>
+									</div>
+								</td>
+								<td><span class="total-row">150$</span></td>
+								<td>
+									<div class="ps-cart-listing__remove"></div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="ps-product--cart"><img src="images/cake/img-cake-3.jpg" alt=""><a href="product-detail.html">The Crusty Croissant</a></div>
+								</td>
+								<td>$<span id="Pprice">150.00</span></td>
+								<td>
+									<div class="form-group--number">
+										<button class="minus"><span>-</span></button>
+										<input class="form-control" type="text" value="1">
+										<button class="plus"><span>+</span></button>
+									</div>
+								</td>
+								<td><span class="total-row">150$</span></td>
+								<td>
+									<div class="ps-cart-listing__remove"></div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="ps-product--cart"><img src="images/cake/img-cake-7.jpg" alt=""><a href="product-detail.html">The Rolling Pin</a></div>
+								</td>
+								<td>$<span id="Pprice">150.00</span></td>
+								<td>
+									<div class="form-group--number">
+										<button class="minus"><span>-</span></button>
+										<input class="form-control" type="text" value="1">
+										<button class="plus"><span>+</span></button>
+									</div>
+								</td>
+								<td><span class="total-row">150$</span></td>
+								<td>
+									<div class="ps-cart-listing__remove"></div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="ps-cart__process">
+					<div class="row">
+						<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 ">
+							<div class="form-group form-group--icon ps-cart__promotion">
+								<div class="icon-wrap"><i class="fa fa-angle-right"></i>
+									<input class="form-control" type="text" placeholder="promotion code">
+								</div>
+							</div>
+							<div class="form-groupform-order">
+								<button class="ps-cart__shopping">Continue Shopping</button>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+							<div class="ps-cart__total">
+								<p>Total Price: <span>2599$</span></p>
+								<button class="ps-btn ps-btn--sm ps-btn--fullwidth">Process to checkout</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<section class="ps-section ps-section--subscribe pt-80 pb-80">
+		<div class="container">
+			<div class="ps-subscribe">
+				<div class="row">
+					<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
+						<h4>ABOUT US</h4>
+						<p>Te pri oblique ullamcorper, magna persequeris has eu. Mei prompta dolores examad debet suavitate. Pri te vocibus electram. Eu eleifend rationibus vis, at.</p>
+						<p class="text-uppercase ps-subscribe__highlight">240 CENTRAL PARK, LONDON, OR 10019</p>
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 ">
+						<a class="ps-subscribe__logo" href="index.html"><img src="images/logo-1.png" alt=""></a>
+					</div>
+					<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
+						<h4>SUBSCRIBE EMAIL</h4>
+						<p>Give us your email, and we shall send regular updates for new stuff and events.</p>
+							<input class="form-control" type="text" placeholder="Type your email...">
+							<button class="ps-btn ps-btn--sm">Subscribe</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--footer-->
+	<footer class="ps-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
+					<div class="ps-widget ps-widget--footer ps-widget--payment">
+						<div class="ps-widget__header">
+							<h3 class="ps-widget__title">PAYMENTS ACCEPTED</h3>
+						</div>
+						<div class="ps-widget__content">
+							<ul>
+								<li>
+									<a href="#"><img src="images/payment/1.png" alt=""></a>
+								</li>
+								<li>
+									<a href="#"><img src="images/payment/2.png" alt=""></a>
+								</li>
+								<li>
+									<a href="#"><img src="images/payment/3.png" alt=""></a>
+								</li>
+								<li>
+									<a href="#"><img src="images/payment/4.png" alt=""></a>
+								</li>
+								<li>
+									<a href="#"><img src="images/payment/5.png" alt=""></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
+					<div class="ps-widget ps-widget--footer ps-widget--worktime">
+						<div class="ps-widget__header">
+							<h3 class="ps-widget__title">WORK TIME</h3>
+						</div>
+						<div class="ps-widget__content">
+							<p><strong>Monday - Friday</strong> 8:00 am - 8:30 pm</p>
+							<p><strong>Satuday - Sunday</strong>10:00 am - 16:30 pm</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
+					<div class="ps-widget ps-widget--footer ps-widget--order">
+						<div class="ps-widget__header">
+							<h3 class="ps-widget__title">ORDERS AND RETURNS</h3>
+						</div>
+						<div class="ps-widget__content">
+							<ul class="ps-list--line">
+								<li><a href="#">Order</a></li>
+								<li><a href="#">Shipping</a></li>
+								<li><a href="#">Policy Return Policy</a></li>
+								<li><a href="#">Payments</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
+					<div class="ps-widget ps-widget--footer ps-widget--connect">
+						<div class="ps-widget__header">
+							<h3 class="ps-widget__title">CONNECT US</h3>
+						</div>
+						<div class="ps-widget__content">
+							<ul class="ps-widget__social">
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="#"><i class="fa fa-google"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+							</ul>
+							<a href="#"><img src="images/app.jpg" alt=""></a>
+							<p>Copyright &copy; 2017.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>
+<!-- JS Library-->
+<script type="text/javascript" src="plugins/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="plugins/owl-carousel/owl.carousel.min.js"></script>
+<script type="text/javascript" src="plugins/overflow-text.js"></script>
+<script type="text/javascript" src="plugins/masonry.pkgd.min.js"></script>
+<script type="text/javascript" src="plugins/imagesloaded.pkgd.js"></script>
+<script type="text/javascript" src="plugins/jquery-bar-rating/dist/jquery.barrating.min.js"></script>
+<script type="text/javascript" src="plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+<script type="text/javascript" src="plugins/Magnific-Popup/dist/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="plugins/moment.js"></script>
+<script type="text/javascript" src="plugins/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="plugins/slick/slick/slick.min.js"></script>
+<script type="text/javascript" src="plugins/skrollr.min.js"></script>
+<script type="text/javascript" src="plugins/gmap3.min.js"></script>
+<script type="text/javascript" src="http://ditu.google.cn/maps/api/js?key=AIzaSyAx39JFH5nhxze1ZydH-Kl8xXM3OK4fvcg&amp;region=GB"></script>
+<!-- Revolution - slider-->
+<script type="text/javascript" src="plugins/revolution/js/jquery.themepunch.tools.min.js"></script>
+<script type="text/javascript" src="plugins/revolution/js/jquery.themepunch.revolution.min.js"></script>
+<script type="text/javascript" src="plugins/revolution/js/extensions/revolution.extension.video.min.js"></script>
+<script type="text/javascript" src="plugins/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+<script type="text/javascript" src="plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script type="text/javascript" src="plugins/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+<script type="text/javascript" src="plugins/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+<script type="text/javascript" src="plugins/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+<!-- Custom scripts-->
+<script type="text/javascript" src="js/main.js"></script>
+<script>
+	$(function(){
+		mySum();
+		$("table .form-group--number .minus").click(function(){
+			$(this).next().val($(this).next().val()*1-1);
+			if($(this).next().val()==0)
+			{
+			$(this).parents("tr").fadeOut(2000,function(){
+				$(this).remove();
+			})				
+			}
+			mySum();
+		})
+		$("table .form-group--number .plus").click(function(){
+			$(this).prev().val($(this).prev().val()*1+1);
+			mySum();
+		})	
+		$(".ps-cart-listing__remove").click(function(){
+			$(this).parents("tr").fadeOut(2000,function(){
+				$(this).remove();
+				mySum();
+			})
+		})
+		function mySum(){
+			var sum=0;
+			var num=0;
+			$("tbody tr").each(function(){
+				var eachNum=$(this).find(".form-control").val()*1;
+                var eachSum=$(this).find("#Pprice").text()*1*eachNum;
+				$(this).find("span.total-row").text(eachSum+"$");
+				sum+=eachSum;
+				num+=eachNum;
+			})
+			$(".ps-cart__toggle span i").text(num);
+           $(".ps-cart__total span").text(sum+"$");
+		}
+			
+	}) 
+	</script>
+</body>
+</html>
