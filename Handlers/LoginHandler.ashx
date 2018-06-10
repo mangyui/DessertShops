@@ -11,16 +11,23 @@ public class LoginHandler : IHttpHandler,IRequiresSessionState {
 
         string tel = context.Request.Form["tel"];
         string pwd = context.Request.Form["pwd"];
-        
-        Customer Cus = CustomerFactory.GetCustomerByTelNo(tel, pwd);
-        if (Cus != null)
-        {
-            context.Session["Customer"] = Cus;
-            context.Response.Write("ok");
-        }
 
+        if (CustomerFactory.HasCustomerByTelNo(tel) == false)
+        {
+            context.Response.Write("userIdError");
+        }
         else
-            context.Response.Write("error");
+        {
+            Customer Cus = CustomerFactory.GetCustomerByTelNo(tel, pwd);
+            if (Cus != null)
+            {
+                context.Session["Customer"] = Cus;
+                context.Response.Write("ok");
+            }
+
+            else
+                context.Response.Write("userPwdError");
+        }
             
         
     }

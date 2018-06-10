@@ -48,6 +48,18 @@ public class CustomerFactory
             }
         }
         return null;
+    }
+    public static bool HasCustomerByTelNo(string telNo)
+    {
+        List<Customer> customers = CustomerFactory.GetCustomersList();
 
+        for (int i = 0; i < customers.Count; i++)
+        {
+            if (customers[i].TelNo == telNo)
+            {
+               return  true;
+            }
+        }
+        return false;
     }
 }

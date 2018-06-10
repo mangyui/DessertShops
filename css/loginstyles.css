@@ -122,7 +122,8 @@ body .login .validation {
   position: absolute;
   z-index: 1;
   right: 10px;
-  top: 14px;
+  top: 50%;
+  margin-top:-9px;
   opacity: 0;
 }
 body .login .disclaimer {
@@ -156,7 +157,7 @@ body .login_fields input[type='password'],body .login_fields input[type='text'] 
 }
 body .login_fields input[type='text'], body .login_fields input[type='password'] {
   color: #afb1be;
-  width: 190px;
+  width: 90%;
   margin-top: -2px;
   background: rgba(57, 61, 82, 0);
   left: 0;

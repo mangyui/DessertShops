@@ -124,9 +124,14 @@
                             setTimeout(function () {
                                 $('.login').removeClass('test'); //xx倾斜特效
                             }, 1500);
+                            if (data == "userIdError")
                             setTimeout(function () {
-                                message("error", "账号或密码错误", 5000);
+                                message("error", "账号错误", 5000);
                             }, 1500);
+                            else
+                                setTimeout(function () {
+                                    message("error", "密码错误", 5000);
+                                }, 1500);
                         }
                     })
 
