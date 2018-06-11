@@ -120,7 +120,7 @@
             </div>
         </div>
         <div class="header--sidebar"></div>
-        <header class="header" data-responsive="1199">
+        <header class="header" data-responsive="1183">
             <div class="header__top">
                 <div class="container">
                     <div class="row">
@@ -234,43 +234,18 @@
                     <div class="row">
                         <div class=" col-sm-12 col-xs-12 ">
                             <div class="ps-section__header">
+                                <h3 class="ps-section__title ps-section__title--left">All CAKE</h3>
                                 <h3 class="ps-section__title ps-section__title--left">New CAKE</h3>
-                            </div>
-                            <div class="ps-section__content">
-                                <asp:Repeater ID="rptProduct2" runat="server">
-                                    <ItemTemplate>
-                                        <div class="ps-product--list  Myps-product--list">
-                                            <div class="ps-product__thumbnail">
-                                                <div class="ps-badge"><span>NEW</span></div>
-                                                <%--  <div class="ps-badge  ps-badge--new"><span><%#Eval("NewPrice") %></span></div>--%>
-                                                <a class="ps-product__overlay" href="product-detail.aspx?id=<%#Eval("Id") %>"></a>
-                                                <img src="<%#Eval("ImgPath") %>" alt="">
-                                            </div>
-                                            <div class="ps-product__content">
-                                                <h4 class="ps-product__title"><a href="product-detail.aspx?id=<%#Eval("Id") %>"><%#Eval("Name") %></a></h4>
-                                                <p>Lollipop dessert donut marzipan cookie bonbon sesame snaps chocolate.</p>
-                                                <p class="ps-product__price">
-                                                    <del>£<%#Eval("OldPrice") %></del>£<%#Eval("NewPrice") %>
-                                                </p>
-                                                <a class="ps-btn ps-btn--xs" href="cart.aspx">Order now<i class="fa fa-angle-right"></i></a>
-                                                <span class="ps-btn ps-btn--xs addCart" data-pid="<%#Eval("Id") %>">Add to cart<i class="fa fa-angle-right"></i></span>
-                                            </div>
-                                        </div>
-                                    </ItemTemplate>
-                                </asp:Repeater>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-xs-12 pt-40">
-                            <div class="ps-section__header">
-                                <h3 class="ps-section__title ps-section__title--left">HOT CAKE</h3>
+                                 <h3 class="ps-section__title ps-section__title--left">HOT CAKE</h3>
+                                <h3 class="ps-section__title ps-section__title--left">specialty </h3>
                             </div>
                             <div class="ps-section__content">
                                 <asp:Repeater ID="rptProduct1" runat="server">
                                     <ItemTemplate>
-                                        <div class="ps-product--list Myps-product--list">
+                                        <div class="ps-product--list  Myps-product--list">
                                             <div class="ps-product__thumbnail">
-                                                <div class="ps-badge"><span>HOT</span></div>
-                                                <%-- <div class="ps-badge  ps-badge--new"><span><%#Eval("NewPrice") %></span></div>--%>
+                                                <div class="ps-badge"><span><%#Eval("Label") %></span></div>
+                                                <%--  <div class="ps-badge  ps-badge--new"><span><%#Eval("NewPrice") %></span></div>--%>
                                                 <a class="ps-product__overlay" href="product-detail.aspx?id=<%#Eval("Id") %>"></a>
                                                 <img src="<%#Eval("ImgPath") %>" alt="">
                                             </div>
@@ -305,7 +280,7 @@
                                     <div class="ps-product">
                                         <div class="ps-product__thumbnail pring">
                                             <div class="ps-badge ps-badge--new"><span>-20%</span></div>
-                                            <div class="ps-badge"><span>New</span></div>
+                                            <div class="ps-badge"><span><%#Eval("Label") %></span></div>
                                             <a class="ps-product__overlay" href="product-detail.aspx?id=<%#Eval("Id") %>"></a>
                                             <img src="<%#Eval("ImgPath") %>" alt="">
                                             <ul class="ps-product__action">

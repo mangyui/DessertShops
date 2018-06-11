@@ -17,6 +17,7 @@ public class Product
     public string ImgPathLarge { get; set; }
     public DateTime InDate { get; set; }
     public int Num { get; set; }
+    public string Label{ get; set; }
 
     public Product()
     {
@@ -32,15 +33,16 @@ public class Product
         this.ImgPathLarge = imgPathLarge;
         this.InDate = inDate;
     }
-    public Product(int id, string name, decimal oldprice, decimal newprice, string imgPath, string imgPathLarge, DateTime inDate,int num)
+    public Product(int id,int typeid, string name, decimal oldprice, decimal newprice, string imgPath, string imgPathLarge, DateTime inDate,string label)
     {
         this.Id = id;
+        this.TypeId = typeid;
         this.Name = name;
         this.NewPrice = newprice;
         this.OldPrice = oldprice;
         this.ImgPath = imgPath;
         this.ImgPathLarge = imgPathLarge;
         this.InDate = inDate;
-        this.Num = num;
+        this.Label = label;
     }
 }

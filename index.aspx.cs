@@ -8,8 +8,7 @@ public partial class index : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        List<Product> list1 = ProductFactory.GetProductsList(1);
-        List<Product> list2 = ProductFactory.GetProductsList(2);
+        List<Product> list1 = ProductFactory.GetProductsList();
         List<Product> list3 = ProductFactory.GetProductsList2();
 
         Customer cus = (Customer)Session["Customer"];
@@ -31,8 +30,6 @@ public partial class index : System.Web.UI.Page
         rptProduct1.DataSource = list1;
         rptProduct1.DataBind();
 
-        rptProduct2.DataSource = list2;
-        rptProduct2.DataBind();
 
         rptProduct3.DataSource = list3;
         rptProduct3.DataBind();

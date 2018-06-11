@@ -8,8 +8,8 @@ body {
   background-color:#4FA1D9;
   background-image:url(../images/banner/img-slider-1.jpg);
   background-repeat: no-repeat;
-  background-size:100%;
-  background-position-y:-150px;
+  background-size:110%;
+  background-position-x:-50px;
   /* Old browsers */
   /* FF3.6+ */
  

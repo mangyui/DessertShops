@@ -399,8 +399,8 @@
                                 <ItemTemplate>
                                     <div class="ps-product">
                                         <div class="ps-product__thumbnail pring">
-                                            <div class="ps-badge ps-badge--new"><span>New</span></div>
-                                            <div class="ps-badge"><span>-20%</span></div>
+                                            <div class="ps-badge ps-badge--new"><span>-20%</span></div>
+                                            <div class="ps-badge"><span><%#Eval("Label") %></span></div>
                                             <a class="ps-product__overlay" href="product-detail.aspx?id=<%#Eval("Id") %>"></a>
                                             <img src="<%#Eval("ImgPath") %>" alt="">
                                             <ul class="ps-product__action">
