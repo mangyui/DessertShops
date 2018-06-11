@@ -109,14 +109,14 @@ public class ProductFactory
         }
         return null;
     }
-    public static List<Product> GetProductByTypeId(int typeid)
+    public static List<Product> GetProductByTypeId(string typeid)
     {
         if (productsList1 == null)
             GetProductsList();
         List<Product> list = new List<Product>();
         foreach (Product p in productsList1)
         {
-            if (p.TypeId ==typeid )
+            if (p.TypeId.ToString() ==typeid )
             {
                 list.Add(p);
             }

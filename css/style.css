@@ -2252,7 +2252,7 @@ textarea.form-control {
 }
 
 .ps-product--list {
-  margin-bottom: 30px;
+  margin-top: 30px;
 }
 
 .ps-product--list::after {
@@ -2298,10 +2298,11 @@ textarea.form-control {
   width: calc(100% - 150px);
   padding-left: 30px;
   text-align: left;
+  height:162px;
 }
 .Myps-product--list {
   width:48%;
-  height:162px;
+  /*height:162px;*/
   float:left;
   margin-right:2%;
 }
@@ -5248,6 +5249,11 @@ textarea.form-control {
   width:24%;
 }
 
+
+.ps-section__title--left:hover:before{
+  background-color: #ff5858;
+
+}
 .ps-section__title--left:before {
   content: '';
   position: absolute;
@@ -5262,7 +5268,14 @@ textarea.form-control {
   height: 20px;
   background-color: #e9e9e9;
   z-index: -10;
+  border-radius:10px;
+  box-shadow: 0 2px 1px #626262;
 }
+.ClassActive:before {
+  background-color: #ff5858;
+}
+
+
 
 @media (max-width: 767px) {
   .ps-section__title--full:before, .ps-section__title--full:after {

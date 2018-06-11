@@ -204,6 +204,7 @@
             header.find('.menu').addClass('menu--mobile');
             $('.menu').prependTo('.header--sidebar');
             $('#Use').addClass("minUse").prependTo('.header--sidebar');
+            $(".Myps-product--list").css("margin-right","0");
         } else {
             $('.menu').find('.sub-menu').show();
             header.removeClass('header--mobile');
@@ -214,6 +215,7 @@
             $('body').removeClass('menu-sidebar--active');
             $('.header--sidebar').removeClass('active');
             $('.menu-toggle').removeClass('menu-toggle--active');
+            $(".Myps-product--list").css("margin-right","2%");
         }
     }
 

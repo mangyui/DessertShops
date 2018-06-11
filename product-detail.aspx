@@ -175,7 +175,7 @@
                     <div class="navigation__left">
                         <ul class="menu menu--left">
                             <li><a href="index.aspx">Home</a></li>
-                            <li><a href="prodeuct-listing.html">List</a></li>
+                            <li><a href="product-listing.html">List</a></li>
                             <li><a href="product-grid.html">Grid</a></li>
                              <li><a href="contact.html">Contact</a></li>
                         </ul>

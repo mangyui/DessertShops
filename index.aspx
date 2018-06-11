@@ -44,6 +44,7 @@
 
 <body class="page-init">
     <form id="form1" runat="server">
+        <!--搜索界面开始-->
         <div class="ps-searchbox">
             <div class="ps-searchbox__remove"><i class="fa fa-remove"></i></div>
             <div class="container">
@@ -119,7 +120,11 @@
                 <footer class="text-center"><a class="ps-searchbox__morelink" href="product-grid.html">VIEW ALL RESULT</a></footer>
             </div>
         </div>
+        <!--搜索界面结束-->
+        <!--滚动条开始-->
         <div class="header--sidebar"></div>
+        <!--滚动条结束-->
+        <!--导航栏开始-->
         <header class="header" data-responsive="1183">
             <div class="header__top">
                 <div class="container">
@@ -156,7 +161,7 @@
                     <div class="navigation__left">
                         <ul class="menu menu--left">
                             <li><a href="index.aspx">Home</a></li>
-                            <li><a href="prodeuct-listing.html">List</a></li>
+                            <li><a href="product-listing.html">List</a></li>
                             <li><a href="product-grid.html">Grid</a></li>
                              <li><a href="contact.html">Contact</a></li>
                         </ul>
@@ -181,7 +186,10 @@
                 </div>
             </nav>
         </header>
+        <!--导航栏结束-->
+        <!--回到顶部开始-->
         <div id="back2top"><i class="fa fa-angle-up"></i></div>
+        <!--回到顶部结束-->
         <div class="loader"></div>
         <div class="page-wrap">
             <div class="ps-banner--home-1">
@@ -234,12 +242,12 @@
                     <div class="row">
                         <div class=" col-sm-12 col-xs-12 ">
                             <div class="ps-section__header">
-                                <h3 class="ps-section__title ps-section__title--left">All CAKE</h3>
-                                <h3 class="ps-section__title ps-section__title--left">New CAKE</h3>
-                                 <h3 class="ps-section__title ps-section__title--left">HOT CAKE</h3>
-                                <h3 class="ps-section__title ps-section__title--left">specialty </h3>
+                                <a href="index.aspx"><h3 class="ps-section__title ps-section__title--left ClassActive">All CAKE</h3>
+                                <a href="index.aspx?typeid=20"><h3 class="ps-section__title ps-section__title--left">New CAKE</h3></a> 
+                                 <a href="index.aspx?typeid=10"><h3 class="ps-section__title ps-section__title--left">HOT CAKE</h3>
+                                <a href="index.aspx?typeid=30"><h3 class="ps-section__title ps-section__title--left">specialty </h3>
                             </div>
-                            <div class="ps-section__content">
+                            <div class="ps-section__content" id="ProductContent" runat="server" data-type="">
                                 <asp:Repeater ID="rptProduct1" runat="server">
                                     <ItemTemplate>
                                         <div class="ps-product--list  Myps-product--list">
@@ -255,7 +263,7 @@
                                                 <p class="ps-product__price">
                                                     <del>£<%#Eval("OldPrice") %></del>£<%#Eval("NewPrice") %>
                                                 </p>
-                                                <a class="ps-btn ps-btn--xs" href="cart.aspx">Order now<i class="fa fa-angle-right"></i></a>
+                                                <a class="ps-btn ps-btn--xs" href="product-detail.aspx?id=<%#Eval("Id") %>">Order now<i class="fa fa-angle-right"></i></a>
                                                 <span class="ps-btn ps-btn--xs addCart" data-pid="<%#Eval("Id") %>">Add to cart<i class="fa fa-angle-right"></i></span>
                                             </div>
                                         </div>
@@ -609,7 +617,7 @@
                             <div class="ps-product__shop">
                                 <div class="form-group--number">
                                     <button class="minus"><span>-</span></button>
-                                    <input class="form-control" type="text" value="1">
+                                    <input class="form-control" type="text" value="1"/>
                                     <button class="plus"><span>+</span></button>
                                 </div>
                                 <ul class="ps-product__action">
