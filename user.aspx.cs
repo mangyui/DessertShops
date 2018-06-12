@@ -9,17 +9,15 @@ public partial class user : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Customer cus = (Customer)Session["Customer"];
+        Customer cus = (Customer)Session["Customer"]; 
+        List<Customer> c=new List<Customer>();
         if (cus != null)
         {
             aName.InnerText = cus.UserName;
             aName.HRef = "user.aspx";
             aOut.InnerText = "Logout";
             aOut.HRef = "";
-            List<Customer> c=new List<Customer>();
-            c.Add(cus);
-            rptUser.DataSource = c;
-            rptUser.DataBind();
+            
         }
         else
         {
@@ -28,5 +26,8 @@ public partial class user : System.Web.UI.Page
             aOut.InnerText = "请登入";
             aOut.HRef = "login.html";
         }
+        c.Add(cus);
+        rptUser.DataSource = c;
+        rptUser.DataBind();
     }
 }

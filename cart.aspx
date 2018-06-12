@@ -43,83 +43,10 @@
 <!--[if IE 9]><body class="ie9 lt-ie10"><![endif]-->
 <body>
     <form id="form1" runat="server">
-        <div class="ps-searchbox">
-            <div class="ps-searchbox__remove"><i class="fa fa-remove"></i></div>
-            <div class="container">
-                <header>
-                    <p>Enter your keywords:</p>
-                    <input class="form-control" type="text" placeholder="" />
-                    <button><i class="ps-icon--search"></i></button>
-                </header>
-                <div class="ps-searchbox__result">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
-                            <div class="ps-product--list ps-product--list-light mt-60">
-                                <div class="ps-product__thumbnail">
-                                    <a class="ps-product__overlay" href="product-detail.html"></a>
-                                    <img src="images/cake/img-cr-1.jpg" alt="" />
-                                </div>
-                                <div class="ps-product__content">
-                                    <h4 class="ps-product__title"><a href="product-detail.html">Amazin’ Glazin’</a></h4>
-                                    <p>Lollipop dessert donut marzipan cookie bonbon sesame snaps chocolate.</p>
-                                    <p class="ps-product__price">
-                                        <del>£25.00</del>£15.00
-                                    </p>
-                                    <a class="ps-btn ps-btn--xs" href="cart.html">Order now<i class="fa fa-angle-right"></i></a>
-                                </div>
-                            </div>
-                            <div class="ps-product--list ps-product--list-light mt-60">
-                                <div class="ps-product__thumbnail">
-                                    <a class="ps-product__overlay" href="product-detail.html"></a>
-                                    <img src="images/cake/img-cr-2.jpg" alt="" />
-                                </div>
-                                <div class="ps-product__content">
-                                    <h4 class="ps-product__title"><a href="product-detail.html">The Crusty Croissant</a></h4>
-                                    <p>Lollipop dessert donut marzipan cookie bonbon sesame snaps chocolate.</p>
-                                    <p class="ps-product__price">
-                                        <del>£25.00</del>£15.00
-                                    </p>
-                                    <a class="ps-btn ps-btn--xs" href="cart.html">Order now<i class="fa fa-angle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
-                            <div class="ps-product--list ps-product--list-light mt-60">
-                                <div class="ps-product__thumbnail">
-                                    <a class="ps-product__overlay" href="product-detail.html"></a>
-                                    <img src="images/cake/img-cr-3.jpg" alt="" />
-                                </div>
-                                <div class="ps-product__content">
-                                    <h4 class="ps-product__title"><a href="product-detail.html">Amazin’ Glazin’</a></h4>
-                                    <p>Lollipop dessert donut marzipan cookie bonbon sesame snaps chocolate.</p>
-                                    <p class="ps-product__price">
-                                        <del>£25.00</del>£15.00
-                                    </p>
-                                    <a class="ps-btn ps-btn--xs" href="cart.html">Order now<i class="fa fa-angle-right"></i></a>
-                                </div>
-                            </div>
-                            <div class="ps-product--list ps-product--list-light mt-60">
-                                <div class="ps-product__thumbnail">
-                                    <a class="ps-product__overlay" href="product-detail.html"></a>
-                                    <img src="images/cake/img-cr-4.jpg" alt="">
-                                </div>
-                                <div class="ps-product__content">
-                                    <h4 class="ps-product__title"><a href="product-detail.html">The Crusty Croissant</a></h4>
-                                    <p>Lollipop dessert donut marzipan cookie bonbon sesame snaps chocolate.</p>
-                                    <p class="ps-product__price">
-                                        <del>£25.00</del>£15.00
-                                    </p>
-                                    <a class="ps-btn ps-btn--xs" href="cart.html">Order now<i class="fa fa-angle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <footer class="text-center"><a class="ps-searchbox__morelink" href="product-grid.html">VIEW ALL RESULT</a></footer>
-            </div>
-        </div>
+        <!--滚动条-->
         <div class="header--sidebar"></div>
-        <header class="header header--2" data-responsive="1199">
+        <!--导航栏开始-->        
+        <header class="header header--2" data-responsive="1183">
             <div class="header__top">
                 <div class="container">
                     <div class="row">
@@ -210,8 +137,10 @@
                 </div>
             </nav>
         </header>
+        <!--导航栏结束-->      
         <div id="back2top"><i class="fa fa-angle-up"></i></div>
         <div class="loader"></div>
+
         <div class="page-wrap">
             <!--section-->
             <div class="ps-section--hero">
@@ -226,6 +155,8 @@
                     </div>
                 </div>
             </div>
+
+            <!--购物车列表开始-->      
             <div class="ps-section--cart pt-100 pb-100">
                 <div class="container">
                     <div class="ps-cart-listing">
@@ -292,6 +223,9 @@
                     </div>
                 </div>
             </div>
+            <!--购物车列表结束-->
+                  
+            <!--关于我们开始-->      
             <section class="ps-section ps-section--subscribe pt-80 pb-80">
                 <div class="container">
                     <div class="ps-subscribe">
@@ -315,6 +249,7 @@
                     </div>
                 </div>
             </section>
+            <!--关于我们结束-->      
             <!--footer-->
             <footer class="ps-footer">
                 <div class="container">
@@ -390,7 +325,7 @@
                                     </ul>
                                     <a href="#">
                                         <img src="images/app.jpg" alt="" /></a>
-                                    <p>Copyright &copy; 2017.  By 25 余会明 else.</p>
+                                   <p>Copyright &copy;25余会明</p>
                                 </div>
                             </div>
                         </div>

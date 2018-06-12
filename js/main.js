@@ -603,7 +603,7 @@
         syncCarousel($('.ps-cake-detail'), $('.ps-cake-list'), 1000);
         magnificPopup();
         filterSlider();
-        searchToggle();
+     //   searchToggle();
         dateTimePicker();
         backToTop();
         slickConfig();

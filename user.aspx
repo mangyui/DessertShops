@@ -45,7 +45,7 @@
     <form id="form1" runat="server">
 
         <div class="header--sidebar"></div>
-        <div class="header--sidebar"></div>
+         <!--导航栏开始-->
         <header class="header header--2" data-responsive="1199">
             <div class="header__top">
                 <div class="container">
@@ -137,6 +137,7 @@
                 </div>
             </nav>
         </header>
+
         <div id="back2top"><i class="fa fa-angle-up"></i></div>
         <div class="loader"></div>
         <div class="page-wrap">
@@ -152,136 +153,140 @@
                     </div>
                 </div>
             </div>
+
+            <!--用户中心开始-->
             <div class="cuk-layout" style="max-width: 1200px;">
                 <div class="cuk-layout-aside" style="padding: 30px 0px; width: 300px; flex-basis: 300px;">
                     <asp:Repeater ID="rptUser" runat="server">
                         <ItemTemplate>
-                    <div class="section-2ZI basic-info-2Ns">
-                        <img class="cuk-avatar cuk-avatar-circle cuk-avatar-large avatar-36q" src="images/User.jpg"/>
-                        <p class="username-1y7"><%#Eval("UserName") %></p>
-                        <p class="bio-_sm"></p>
-                    </div>
-                    <div class="section-2ZI follow-info-5YF">
-                         <span class="count-3gW">账户余额</span>     
-                        <span class="divider-gPC">：</span>
-                       <span class="count-3gW"><%#Eval("Balance") %></span>
-                    </div>
-                    <ul class="section-2ZI activity-info-BDI">
-                        <li>联系方式：<%#Eval("TelNo") %></li>
-                        <li>联系地址：<%#Eval("City")+","+Eval("Province")+","+Eval("Address") %></li>
-                        <li class="clearfix"><span class="td-3ia">用户名：</span>mangyu</li>
-                    </ul>
-                    <ul class="section-2ZI profileInfo-1hl">
-                        <li>性别：<%#Eval("Sex") %></li>
-                        <li>出生日期：<%#Eval("Balance") %></li>
-                    </ul>
-                </div>
-</ItemTemplate>
-                    </asp:Repeater>
-                <aside class="cuk-layout-content">
-                    <div>
-                        <div class="cuk-tab">
-                            <div class="cuk-tab-bar-nav">
-                                <a class="cuk-tab-bar cuk-tab-bar-active" href="#">主页</a>
-                                <a href="#" class="cuk-tab-bar">个人</a>
-                                <a href="#" class="cuk-tab-bar">收藏</a>
-                                <a href="#" class="cuk-tab-bar">其他</a>
+                            <div class="section-2ZI basic-info-2Ns">
+                                <img class="cuk-avatar cuk-avatar-circle cuk-avatar-large avatar-36q" src="images/User.jpg" />
+                                <p class="username-1y7"><%#Eval("UserName") %></p>
+                                <p class="bio-_sm"></p>
                             </div>
-                            <div class="cuk-tab-panes">
-                                <div class="cuk-tab-pane">
-                                            <div class="activity-header-3gx">
-                                                <h3 class="activity-title-1mK">TA 的活跃度</h3>
-                                           </div>
+                            <div class="section-2ZI follow-info-5YF">
+                                <span class="count-3gW">账户余额</span>
+                                <span class="divider-gPC">：</span>
+                                <span class="count-3gW"><%#Eval("Balance") %></span>
+                            </div>
+                            <ul class="section-2ZI activity-info-BDI">
+                                <li>联系方式：<%#Eval("TelNo") %></li>
+                                <li>联系地址：<%#Eval("City")+","+Eval("Province")+","+Eval("Address") %></li>
+                                <li class="clearfix"><span class="td-3ia">用户名：</span>mangyu</li>
+                            </ul>
+                            <ul class="section-2ZI profileInfo-1hl">
+                                <li>性别：<%#Eval("Sex") %></li>
+                                <li>出生日期：<%#Eval("Balance") %></li>
+                            </ul>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                    <aside class="cuk-layout-content">
+                        <div>
+                            <div class="cuk-tab">
+                                <div class="cuk-tab-bar-nav">
+                                    <a class="cuk-tab-bar cuk-tab-bar-active" href="#">主页</a>
+                                    <a href="#" class="cuk-tab-bar">个人</a>
+                                    <a href="#" class="cuk-tab-bar">收藏</a>
+                                    <a href="#" class="cuk-tab-bar">其他</a>
+                                </div>
+                                <div class="cuk-tab-panes">
+                                    <div class="cuk-tab-pane">
+                                        <div class="activity-header-3gx">
+                                            <h3 class="activity-title-1mK">TA 的活跃度</h3>
+                                        </div>
                                     </div>
                                 </div>
-                        </div>
-                    </div>
-                </aside>
-            </div>
-
-            <!--footer-->
-            <footer class="ps-footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
-                            <div class="ps-widget ps-widget--footer ps-widget--payment">
-                                <div class="ps-widget__header">
-                                    <h3 class="ps-widget__title">PAYMENTS ACCEPTED</h3>
-                                </div>
-                                <div class="ps-widget__content">
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <img src="images/payment/1.png" alt=""></a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="images/payment/2.png" alt=""></a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="images/payment/3.png" alt=""></a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="images/payment/4.png" alt=""></a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="images/payment/5.png" alt=""></a>
-                                        </li>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
-                            <div class="ps-widget ps-widget--footer ps-widget--worktime">
-                                <div class="ps-widget__header">
-                                    <h3 class="ps-widget__title">WORK TIME</h3>
-                                </div>
-                                <div class="ps-widget__content">
-                                    <p><strong>Monday - Friday</strong> 8:00 am - 8:30 pm</p>
-                                    <p><strong>Satuday - Sunday</strong>10:00 am - 16:30 pm</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
-                            <div class="ps-widget ps-widget--footer ps-widget--order">
-                                <div class="ps-widget__header">
-                                    <h3 class="ps-widget__title">ORDERS AND RETURNS</h3>
-                                </div>
-                                <div class="ps-widget__content">
-                                    <ul class="ps-list--line">
-                                        <li><a href="#">Order</a></li>
-                                        <li><a href="#">Shipping</a></li>
-                                        <li><a href="#">Policy Return Policy</a></li>
-                                        <li><a href="#">Payments</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
-                            <div class="ps-widget ps-widget--footer ps-widget--connect">
-                                <div class="ps-widget__header">
-                                    <h3 class="ps-widget__title">CONNECT US</h3>
-                                </div>
-                                <div class="ps-widget__content">
-                                    <ul class="ps-widget__social">
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-google"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                    </ul>
-                                    <a href="#">
-                                        <img src="images/app.jpg" alt=""></a>
-                                    <p>Copyright &copy; 2017.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </aside>
                 </div>
-            </footer>
-        </div>
+</div>
+
+             <!--用户中心开始-->
+                <!--footer-->
+                <footer class="ps-footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
+                                <div class="ps-widget ps-widget--footer ps-widget--payment">
+                                    <div class="ps-widget__header">
+                                        <h3 class="ps-widget__title">PAYMENTS ACCEPTED</h3>
+                                    </div>
+                                    <div class="ps-widget__content">
+                                        <ul>
+                                            <li>
+                                                <a href="#">
+                                                    <img src="images/payment/1.png" alt=""></a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <img src="images/payment/2.png" alt=""></a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <img src="images/payment/3.png" alt=""></a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <img src="images/payment/4.png" alt=""></a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <img src="images/payment/5.png" alt=""></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
+                                <div class="ps-widget ps-widget--footer ps-widget--worktime">
+                                    <div class="ps-widget__header">
+                                        <h3 class="ps-widget__title">WORK TIME</h3>
+                                    </div>
+                                    <div class="ps-widget__content">
+                                        <p><strong>Monday - Friday</strong> 8:00 am - 8:30 pm</p>
+                                        <p><strong>Satuday - Sunday</strong>10:00 am - 16:30 pm</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
+                                <div class="ps-widget ps-widget--footer ps-widget--order">
+                                    <div class="ps-widget__header">
+                                        <h3 class="ps-widget__title">ORDERS AND RETURNS</h3>
+                                    </div>
+                                    <div class="ps-widget__content">
+                                        <ul class="ps-list--line">
+                                            <li><a href="#">Order</a></li>
+                                            <li><a href="#">Shipping</a></li>
+                                            <li><a href="#">Policy Return Policy</a></li>
+                                            <li><a href="#">Payments</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
+                                <div class="ps-widget ps-widget--footer ps-widget--connect">
+                                    <div class="ps-widget__header">
+                                        <h3 class="ps-widget__title">CONNECT US</h3>
+                                    </div>
+                                    <div class="ps-widget__content">
+                                        <ul class="ps-widget__social">
+                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-google"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                        </ul>
+                                        <a href="#">
+                                            <img src="images/app.jpg" alt=""></a>
+                                        <p>Copyright &copy; 2017.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
     </form>
     <!-- JS Library-->
     <script type="text/javascript" src="plugins/jquery/dist/jquery.min.js"></script>
