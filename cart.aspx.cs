@@ -14,7 +14,7 @@ public partial class cart : System.Web.UI.Page
         if (cus != null)
         {
             aName.InnerText = cus.UserName;
-            aName.HRef = "user.html";
+            aName.HRef = "user.aspx";
             aOut.InnerText = "Logout";
             aOut.HRef = "";
         }

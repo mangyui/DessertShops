@@ -5485,7 +5485,7 @@ textarea.form-control {
 
 .ps-section--hero .ps-section__content {
   position: absolute;
-  top: 60%;
+  top: 70%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);

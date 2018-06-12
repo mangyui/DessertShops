@@ -13,7 +13,7 @@ public partial class product_detail : System.Web.UI.Page
         if (cus != null)
         {
             aName.InnerText = cus.UserName;
-            aName.HRef = "user.html";
+            aName.HRef = "user.aspx";
             aOut.InnerText = "Logout";
             aOut.HRef = "";
         }

@@ -8,6 +8,8 @@ public partial class index : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+       // string typeid=ProductContent.Attributes["data-type"];
+
         string typeid = Request.QueryString["typeId"];
         List<Product> list1;
         if (string.IsNullOrEmpty(typeid))
@@ -25,7 +27,7 @@ public partial class index : System.Web.UI.Page
         if (cus != null)
         {
             aName.InnerText = cus.UserName;
-            aName.HRef = "user.html";
+            aName.HRef = "user.aspx";
             aOut.InnerText = "Logout";
             aOut.HRef = "";
         }
@@ -43,8 +45,6 @@ public partial class index : System.Web.UI.Page
 
         rptProduct3.DataSource = list3;
         rptProduct3.DataBind();
-
-
 
     }
 }

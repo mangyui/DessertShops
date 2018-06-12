@@ -192,6 +192,7 @@
         <!--回到顶部结束-->
         <div class="loader"></div>
         <div class="page-wrap">
+            <!--主题轮播图开始-->
             <div class="ps-banner--home-1">
                 <div class="rev_slider_wrapper fullscreen-container" id="revolution-slider-1" data-alias="concept121" data-source="gallery" style="background-color: #000000; padding: 0px;">
                     <div class="rev_slider fullscreenbanner" id="rev_slider_1059_1" style="display: none;" data-version="5.4.1">
@@ -216,7 +217,7 @@
                     </div>
                 </div>
             </div>
-
+            <!--主题轮播图结束-->
             <section class="ps-section ps-section--offer pt-40">
                 <div class="container">
                     <div class="ps-section__header text-center mb-30">
@@ -242,12 +243,14 @@
                     <div class="row">
                         <div class=" col-sm-12 col-xs-12 ">
                             <div class="ps-section__header">
-                                <a href="index.aspx"><h3 class="ps-section__title ps-section__title--left ClassActive">All CAKE</h3>
-                                <a href="index.aspx?typeid=20"><h3 class="ps-section__title ps-section__title--left">New CAKE</h3></a> 
-                                 <a href="index.aspx?typeid=10"><h3 class="ps-section__title ps-section__title--left">HOT CAKE</h3>
-                                <a href="index.aspx?typeid=30"><h3 class="ps-section__title ps-section__title--left">specialty </h3>
+                                <a href="index.aspx"><h3 class="ps-section__title ps-section__title--left ClassActive" data-type="">All CAKE</h3></a> 
+                                <a href="index.aspx?typeid=20"><h3 class="ps-section__title ps-section__title--left" data-type="20">New CAKE</h3></a> 
+                                <a href="index.aspx?typeid=10"><h3 class="ps-section__title ps-section__title--left" data-type="10">HOT CAKE</h3></a> 
+                                <a href="index.aspx?typeid=30"><h3 class="ps-section__title ps-section__title--left" data-type="30">specialty </h3></a> 
+                                <span id="ProductContent" data-type="10" runat="server" ></span>
                             </div>
-                            <div class="ps-section__content" id="ProductContent" runat="server" data-type="">
+                            <div class="ps-section__content"  id="PC" >
+                                <div id="PCLoad">
                                 <asp:Repeater ID="rptProduct1" runat="server">
                                     <ItemTemplate>
                                         <div class="ps-product--list  Myps-product--list">
@@ -269,7 +272,7 @@
                                         </div>
                                     </ItemTemplate>
                                 </asp:Repeater>
-                            </div>
+                            </div></div>
                         </div>
 
                     </div>
@@ -690,6 +693,13 @@
                     }
                 })
             })
+            //$(".ps-section__title--left").click(function () {
+                
+            //    $("#ProductContent").data("type",$(this).data("type"));
+            //    alert($(this).data("type"));
+            //    alert($("#ProductContent").data("type"));
+            //    $("#PC").load("index.aspx" + " #PCLoad");
+            //})
             
         })
     </script>
