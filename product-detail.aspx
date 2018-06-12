@@ -712,7 +712,7 @@
                 $(this).prev().val($(this).prev().val() * 1 + 1);
                 return false;
             })
-            $("#PaddCart").click(function () {
+            $("#PaddCart").click(function (e) {
                 $.post("Handlers/CartHandler.ashx", {
                     id: $(this).data("pid"),
                     quantity: $(".form-group--number input.form-control").val(),
@@ -721,13 +721,13 @@
                     if (data != "error") {
                         $(".ps-cart__toggle span i").text(data);
                         $("#LoadCart").load("cart.aspx" + " #LoadC");
-                        message("success", "加入购物车成功！", 2000);
+                        message("success", "加入购物车成功！", 2000,e);
                     }
                 })
 
                 return false;
             })
-            $(".addCart").css("cursor", "pointer").click(function () {
+            $(".addCart").css("cursor", "pointer").click(function (e) {
                 $.post("Handlers/CartHandler.ashx", {
                     id: $(this).data("pid"),
                     quantity: 1,
@@ -736,7 +736,7 @@
                     if (data != "error") {
                         $(".ps-cart__toggle span i").text(data);
                         $("#LoadCart").load("cart.aspx" + " #LoadC");
-                        message("success", "加入购物车成功！", 2000);
+                        message("success", "加入购物车成功！", 2000,e);
                     }
                 })
             });

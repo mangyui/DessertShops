@@ -52,7 +52,6 @@
             </div>
         </div>
     </form>
-    <div class="ivu-message" id="ShowMessage" style="top: 120px;"></div>
         <script type="text/javascript" src="plugins/jquery/dist/jquery.min.js"></script>
         <script src="js/Particleground.js" type="text/javascript"></script>
     <script src="plugins/ShowMessage/message.js"></script>
@@ -96,17 +95,18 @@
                     }, 200);
                 }
             });
-            $('#hint').click(function () {
-                message("info", "默认账号:18857518492<br/>默认密码:cool", 8000);
+            $('#hint').click(function (e) {
+                message("info", "默认账号:18857518492<br/>默认密码:cool", 6000);
+
             })
-            $('#Sub').click(function () {
+            $('#Sub').click(function (e) {
                 var login = $('input[name="login"]').val();
                 var pwd = $('input[name="pwd"]').val();
 
                 if (login == '') {
-                    message("error", "请输入您的账号", 3000);
+                    message("error", "请输入您的账号", 2000,e);
                 } else if (pwd == '') {
-                    message("error", "请输入您的密码", 3000);
+                    message("error", "请输入您的密码", 2000,e);
                 } else {
                     //认证中..
                     $('.login').addClass('test'); //倾斜特效
@@ -126,11 +126,11 @@
                             }, 1500);
                             if (data == "userIdError")
                             setTimeout(function () {
-                                message("error", "账号错误", 5000);
+                                message("error", "账号错误", 3000);
                             }, 1500);
                             else
                                 setTimeout(function () {
-                                    message("error", "密码错误", 5000);
+                                    message("error", "密码错误", 3000);
                                 }, 1500);
                         }
                     })

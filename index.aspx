@@ -668,7 +668,7 @@
     <script>
         $(function () {
             $("#LoadCart").load("cart.aspx" + " #LoadC");
-            $(".addCart").css("cursor", "pointer").click(function () {
+            $(".addCart").css("cursor", "pointer").click(function (e) {
                 $.post("Handlers/CartHandler.ashx", {
                     id: $(this).data("pid"),
                     quantity: 1,
@@ -678,9 +678,10 @@
                     {
                         $(".ps-cart__toggle span i").text(data);
                         $("#LoadCart").load("cart.aspx" + " #LoadC");
-                        message("success", "加入购物车成功！", 2000);
+                 message("success", "加入购物车成功！", 2000,e);                      
                     }                  
                 })
+
             });
             $("#aOut").click(function () {
                 $.get("Handlers/Loginout.ashx", {work:"logout"}, function (data) {
