@@ -8,28 +8,27 @@ using System.Web;
 /// </summary>
 public class CustomerFactory
 {
-    private static List<Customer> customersList;
-    public static List<Customer> GetCustomersList()
-    {
-        customersList = new List<Customer>();
-        
-        Customer c = new Customer("101","余会明","cool","男",new DateTime(1990-1-21),"绍兴文理学院","18857518492",10000M,"浙江省","绍兴市");
-        customersList.Add(c);
-        c = new Customer("102", "Tom", "123", "男", new DateTime(2006 - 5 - 22), "绍兴文理学院", "13856569696", 10000M, "浙江省", "绍兴市");
-        customersList.Add(c);
+    private static List<Customer> customersList = new List<Customer>(){new Customer("101", "余先生", "cool", "男", new DateTime(1990 - 1 - 21), "绍兴文理学院", "18857518492", 10000M, "浙江省", "绍兴市"), new Customer("102", "Tom", "123", "男", new DateTime(2006 - 5 - 22), "绍兴文理学院", "13856569696", 10000M, "浙江省", "绍兴市")};
+    
 
-        return customersList;
-    }
+    //public static List<Customer> GetCustomersList()
+    //{
+        
+    //    Customer c = new Customer("101","余先生","cool","男",new DateTime(1990-1-21),"绍兴文理学院","18857518492",10000M,"浙江省","绍兴市");
+    //    customersList.Add(c);
+    //    c = new Customer("102", "Tom", "123", "男", new DateTime(2006 - 5 - 22), "绍兴文理学院", "13856569696", 10000M, "浙江省", "绍兴市");
+    //    customersList.Add(c);
+
+    //    return customersList;
+    //}
     public static Customer GetCustomerByUserId(string id)
     {
-        List<Customer> customers = CustomerFactory.GetCustomersList();
         Customer customer = new Customer();
-        customer = null;
-        for (int i = 0; i < customers.Count; i++)
+        for (int i = 0; i < customersList.Count; i++)
         {
-            if (customers[i].UserId == id)
+            if (customersList[i].UserId == id)
             {
-                customer = customers[i];
+                customer = customersList[i];
                 break;
             }
         }
@@ -38,28 +37,54 @@ public class CustomerFactory
 
     public static Customer GetCustomerByTelNo(string telNo,string pwd)
     {
-        List<Customer> customers = CustomerFactory.GetCustomersList();
 
-        for (int i = 0; i < customers.Count; i++)
+        for (int i = 0; i < customersList.Count; i++)
         {
-            if (customers[i].TelNo == telNo && customers[i].UserPwd == pwd)
+            if (customersList[i].TelNo == telNo && customersList[i].UserPwd == pwd)
             {
-               return  customers[i];
+               return  customersList[i];
             }
         }
         return null;
     }
     public static bool HasCustomerByTelNo(string telNo)
     {
-        List<Customer> customers = CustomerFactory.GetCustomersList();
-
-        for (int i = 0; i < customers.Count; i++)
+        for (int i = 0; i < customersList.Count; i++)
         {
-            if (customers[i].TelNo == telNo)
+            if (customersList[i].TelNo == telNo)
             {
-               return  true;
+               return true;
             }
         }
         return false;
     }
+    public static Customer Recharge(string telNo,decimal num)
+    {
+
+
+        for (int i = 0; i < customersList.Count; i++)
+        {
+            if (customersList[i].TelNo == telNo)
+            {
+               customersList[i].Balance+=num;
+               return customersList[i];
+            }
+        }
+        return null;
+    }
+
+    public static Customer CustomerPay(string telNo, decimal num)
+    {
+
+        for (int i = 0; i < customersList.Count; i++)
+        {
+            if (customersList[i].TelNo == telNo)
+            {
+               customersList[i].Balance-=num;
+               return customersList[i];
+            }
+        }
+        return null;
+    }
+
 }

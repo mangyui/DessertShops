@@ -51,8 +51,10 @@ img {
 }
 #UserName a{
   text-decoration:underline;
-  color:#fff;
-
+  color:#303030;
+      font-family: "Varela Round", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
 }
 .pring img {
    padding:8px;
@@ -72,6 +74,133 @@ img {
 #ShowMessage {
     font-size:14px;
     font-weight:bolder;
+}
+#removeAll {
+    background:#ee7560;
+    color:#fff;
+    border:0;
+    cursor: pointer;
+}
+.cuk-tab-panes {
+    text-align:center;
+    padding:30px 10px;
+    height :450px;
+    overflow:auto;
+}
+.num {
+   display: inline-block;
+    padding: 11px 40px 9px;
+    margin:20px 10px 50px;
+    border: none;
+    font-family: "Varela Round", sans-serif;
+    font-size: 14px;
+    line-height: 25px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    border-radius: 50px;
+    color: #000;
+    text-transform: uppercase;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    border:1px solid #6d6d6d;
+    cursor:pointer;
+}
+.num:hover {
+ color: #fff;
+       background-color: #ee7560;
+    background-image: -webkit-linear-gradient(-360deg, #ee7560, #ff5858);
+    background-image: linear-gradient(90deg,#ee7560, #ff5858);   
+     border:1px solid #ee7560;   
+    }
+.num-active {
+    color: #fff;
+       background-color: #ee7560;
+    background-image: -webkit-linear-gradient(-360deg, #ee7560, #ff5858);
+    background-image: linear-gradient(90deg,#ee7560, #ff5858);
+         border:1px solid #ee7560;  
+}
+.dingdanli{
+    float:left;
+    width:80%;
+    border-radius:10px;
+    background-color: #ee7560;
+    background-image: -webkit-linear-gradient(-360deg, #ee7560, #ff5858);
+    background-image: linear-gradient(90deg,#ee7560, #ff5858); 
+    color:#fff;
+    padding:30px 0px;  
+    margin:10px 0; 
+}
+.DId {
+    position:relative;
+    top:-20px;
+}
+.dingdanli span {
+    margin:0 20px;
+
+  }
+
+.dingdanremove{
+  position: relative;
+  float:right;
+  margin:30px 40px 0 0;
+  display: block;
+  background-color: #f1f1f1;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+}
+.dingdanremove:before, .dingdanremove:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 2px;
+  background-color: #b1b1b1;
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  -o-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+.dingdanremove:before {
+  -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+  -moz-transform: translate(-50%, -50%) rotate(-45deg);
+  -ms-transform: translate(-50%, -50%) rotate(-45deg);
+  -o-transform: translate(-50%, -50%) rotate(-45deg);
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.dingdanremove:after {
+  -webkit-transform: translate(-50%, -50%) rotate(45deg);
+  -moz-transform: translate(-50%, -50%) rotate(45deg);
+  -ms-transform: translate(-50%, -50%) rotate(45deg);
+  -o-transform: translate(-50%, -50%) rotate(45deg);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.dingdanremove:hover {
+  background-color: #ee7560;
+}
+
+.dingdanremove:hover:before, .dingdanremove:hover:after {
+  background-color: #fff;
+}
+
+.header--2 #UserName a {
+   color:#fff;
+}
+.navigation--sticky #UserName a {
+     color:#fff;
 }
 /*
     Project: BAKERY

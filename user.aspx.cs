@@ -29,5 +29,13 @@ public partial class user : System.Web.UI.Page
         c.Add(cus);
         rptUser.DataSource = c;
         rptUser.DataBind();
+
+        if (cus != null)
+        {
+            List<DingDan> DDlist = DingDanFactory.GetDDlist();
+
+            rptDingDan.DataSource = DDlist;
+            rptDingDan.DataBind();
+        }
     }
 }

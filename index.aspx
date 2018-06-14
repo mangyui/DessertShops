@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     <title>Home</title>
     <!-- Fonts-->
-    <link href="https://fonts.lug.ustc.edu.cn/css?family=Libre+Baskerville:400,400i,700%7CPacifico%7CVarela+Round%7CPoppins" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700%7CPacifico%7CVarela+Round%7CPoppins" rel="stylesheet"/>
     <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" href="plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css" />
     <link rel="stylesheet" href="plugins/ps-icon/ps-icon.css" />
@@ -48,7 +48,7 @@
         <div class="header--sidebar"></div>
         <!--滚动条结束-->
         <!--导航栏开始-->
-        <header class="header" data-responsive="1183">
+        <header class="header header--2" data-responsive="1183">
             <div class="header__top">
                 <div class="container">
                     <div class="row">
@@ -516,6 +516,7 @@
     <script src="plugins/ShowMessage/message.js"></script>
     <script>
         $(function () {
+            $(".header").removeClass("header--2");
             $("#LoadCart").load("cart.aspx" + " #LoadC");
             $(".addCart").css("cursor", "pointer").click(function (e) {
                 $.post("Handlers/CartHandler.ashx", {

@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     <title>User</title>
     <!-- Fonts-->
-    <link href="https://fonts.lug.ustc.edu.cn/css?family=Libre+Baskerville:400,400i,700%7CPacifico%7CVarela+Round%7CPoppins" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700%7CPacifico%7CVarela+Round%7CPoppins" rel="stylesheet"/>
     <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" href="plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css" />
     <link rel="stylesheet" href="plugins/ps-icon/ps-icon.css" />
@@ -32,8 +32,9 @@
     <link rel="stylesheet" href="plugins/revolution/css/layers.css" />
     <link rel="stylesheet" href="plugins/revolution/css/navigation.css" />
     <!-- Custom-->
+    <link href="plugins/ShowMessage/iview.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/codingcss.css">
+    <link rel="stylesheet" href="css/codingcss.css"/>
     <!--HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
     <!--WARNING: Respond.js doesn't work if you view the page via file://-->
     <!--[if lt IE 9]><script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
@@ -45,7 +46,7 @@
     <form id="form1" runat="server">
 
         <div class="header--sidebar"></div>
-         <!--导航栏开始-->
+        <!--导航栏开始-->
         <header class="header header--2" data-responsive="1199">
             <div class="header__top">
                 <div class="container">
@@ -155,7 +156,7 @@
             </div>
 
             <!--用户中心开始-->
-            <div class="cuk-layout" style="max-width: 1200px;">
+            <div class="cuk-layout" >
                 <div class="cuk-layout-aside" style="padding: 30px 0px; width: 300px; flex-basis: 300px;">
                     <asp:Repeater ID="rptUser" runat="server">
                         <ItemTemplate>
@@ -167,17 +168,18 @@
                             <div class="section-2ZI follow-info-5YF">
                                 <span class="count-3gW">账户余额</span>
                                 <span class="divider-gPC">：</span>
-                                <span class="count-3gW"><%#Eval("Balance") %></span>
+                                <span class="count-3gW"><%#Eval("Balance") %>$</span>
                             </div>
                             <ul class="section-2ZI activity-info-BDI">
                                 <li>联系方式：<%#Eval("TelNo") %></li>
-                                <li>联系地址：<%#Eval("City")+","+Eval("Province")+","+Eval("Address") %></li>
-                                <li class="clearfix"><span class="td-3ia">用户名：</span>mangyu</li>
-                            </ul>
-                            <ul class="section-2ZI profileInfo-1hl">
+                                <li>联系地址：<%#Eval("City")+" "+Eval("Province")+" "+Eval("Address") %></li>
+                                <li class="clearfix"><span class="td-3ia">用户名：</span><%#Eval("UserName") %></li>
                                 <li>性别：<%#Eval("Sex") %></li>
-                                <li>出生日期：<%#Eval("Balance") %></li>
                             </ul>
+                            <ul class="section-2ZI follow-info-5YF">
+                                <a id="chonghzi" class="ps-btn ps-btn--xs" href="#">前往充值<i class="fa fa-angle-right"></i></a>
+                            </ul>
+
                             </div>
                         </ItemTemplate>
                     </asp:Repeater>
@@ -185,108 +187,131 @@
                         <div>
                             <div class="cuk-tab">
                                 <div class="cuk-tab-bar-nav">
-                                    <a class="cuk-tab-bar cuk-tab-bar-active" href="#">主页</a>
-                                    <a href="#" class="cuk-tab-bar">个人</a>
+                                    <a href="#" id="zhuye" class="cuk-tab-bar  cuk-tab-bar-active">主页</a>
+                                    <a href="#" id="geren" class="cuk-tab-bar ">充值</a>
                                     <a href="#" class="cuk-tab-bar">收藏</a>
                                     <a href="#" class="cuk-tab-bar">其他</a>
                                 </div>
-                                <div class="cuk-tab-panes">
-                                    <div class="cuk-tab-pane">
-                                        <div class="activity-header-3gx">
-                                            <h3 class="activity-title-1mK">TA 的活跃度</h3>
-                                        </div>
+                                <div id="Panes" class="cuk-tab-panes">
+                                    <div id="dingdan" class="cuk-tab-pane">
+                                        <h3 class="activity-title-1mK">TA 的订单</h3>
+                                        <ul>
+                                            <asp:Repeater ID="rptDingDan" runat="server">
+                                                <ItemTemplate>
+                                                    <div>
+                                            <li class="dingdanli">
+                                                <a class="DId">订单编号：<%#Eval("Id") %></a><br/>
+                                                <span>下单时间：<%#Eval("InDate") %></span>
+                                                <span>商品数量：<%#Eval("Num") %></span>
+                                                <span>总价：<%#Eval("Price") %>$</span>
+                                                 <span>订单状态：<%#Eval("State") %></span>
+                                            </li>
+                                                    <span class="dingdanremove" title="删除该订单" data-did="<%#Eval("Id") %>"></span>
+                                                    </div>
+                                          </ItemTemplate>
+                                            </asp:Repeater>
+                                        </ul>
+                                    </div>
+                                    <div id="Recharge" class="cuk-tab-pane">
+                                        <h3 id="RCh3" class="">*当前仅为模拟充值</h3>
+                                        <a class="num">10</a>
+                                        <a class="num">20</a>
+                                        <a class="num">30</a>
+                                        <a class="num">50</a>
+                                        <a class="num">100</a><br />
+                                        <a id="CZ" class="ps-btn ps-btn--xs">充值<i class="fa fa-angle-right"></i></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </aside>
                 </div>
-</div>
+            </div>
+            <!--用户中心结束-->
 
-             <!--用户中心开始-->
-                <!--footer-->
-                <footer class="ps-footer">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
-                                <div class="ps-widget ps-widget--footer ps-widget--payment">
-                                    <div class="ps-widget__header">
-                                        <h3 class="ps-widget__title">PAYMENTS ACCEPTED</h3>
-                                    </div>
-                                    <div class="ps-widget__content">
-                                        <ul>
-                                            <li>
-                                                <a href="#">
-                                                    <img src="images/payment/1.png" alt=""></a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img src="images/payment/2.png" alt=""></a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img src="images/payment/3.png" alt=""></a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img src="images/payment/4.png" alt=""></a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img src="images/payment/5.png" alt=""></a>
-                                            </li>
-                                        </ul>
-                                    </div>
+            <!--footer-->
+            <footer class="ps-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
+                            <div class="ps-widget ps-widget--footer ps-widget--payment">
+                                <div class="ps-widget__header">
+                                    <h3 class="ps-widget__title">PAYMENTS ACCEPTED</h3>
+                                </div>
+                                <div class="ps-widget__content">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <img src="images/payment/1.png" alt=""></a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <img src="images/payment/2.png" alt=""></a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <img src="images/payment/3.png" alt=""></a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <img src="images/payment/4.png" alt=""></a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <img src="images/payment/5.png" alt=""></a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
-                                <div class="ps-widget ps-widget--footer ps-widget--worktime">
-                                    <div class="ps-widget__header">
-                                        <h3 class="ps-widget__title">WORK TIME</h3>
-                                    </div>
-                                    <div class="ps-widget__content">
-                                        <p><strong>Monday - Friday</strong> 8:00 am - 8:30 pm</p>
-                                        <p><strong>Satuday - Sunday</strong>10:00 am - 16:30 pm</p>
-                                    </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
+                            <div class="ps-widget ps-widget--footer ps-widget--worktime">
+                                <div class="ps-widget__header">
+                                    <h3 class="ps-widget__title">WORK TIME</h3>
+                                </div>
+                                <div class="ps-widget__content">
+                                    <p><strong>Monday - Friday</strong> 8:00 am - 8:30 pm</p>
+                                    <p><strong>Satuday - Sunday</strong>10:00 am - 16:30 pm</p>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
-                                <div class="ps-widget ps-widget--footer ps-widget--order">
-                                    <div class="ps-widget__header">
-                                        <h3 class="ps-widget__title">ORDERS AND RETURNS</h3>
-                                    </div>
-                                    <div class="ps-widget__content">
-                                        <ul class="ps-list--line">
-                                            <li><a href="#">Order</a></li>
-                                            <li><a href="#">Shipping</a></li>
-                                            <li><a href="#">Policy Return Policy</a></li>
-                                            <li><a href="#">Payments</a></li>
-                                        </ul>
-                                    </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
+                            <div class="ps-widget ps-widget--footer ps-widget--order">
+                                <div class="ps-widget__header">
+                                    <h3 class="ps-widget__title">ORDERS AND RETURNS</h3>
+                                </div>
+                                <div class="ps-widget__content">
+                                    <ul class="ps-list--line">
+                                        <li><a href="#">Order</a></li>
+                                        <li><a href="#">Shipping</a></li>
+                                        <li><a href="#">Policy Return Policy</a></li>
+                                        <li><a href="#">Payments</a></li>
+                                    </ul>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
-                                <div class="ps-widget ps-widget--footer ps-widget--connect">
-                                    <div class="ps-widget__header">
-                                        <h3 class="ps-widget__title">CONNECT US</h3>
-                                    </div>
-                                    <div class="ps-widget__content">
-                                        <ul class="ps-widget__social">
-                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-google"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                        </ul>
-                                        <a href="#">
-                                            <img src="images/app.jpg" alt=""></a>
-                                        <p>Copyright &copy; 2017.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
-                                    </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
+                            <div class="ps-widget ps-widget--footer ps-widget--connect">
+                                <div class="ps-widget__header">
+                                    <h3 class="ps-widget__title">CONNECT US</h3>
+                                </div>
+                                <div class="ps-widget__content">
+                                    <ul class="ps-widget__social">
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                    </ul>
+                                    <a href="#">
+                                        <img src="images/app.jpg" alt=""></a>
+                                    <p>Copyright &copy; 2017.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </footer>
-            </div>
+                </div>
+            </footer>
+        </div>
     </form>
     <!-- JS Library-->
     <script type="text/javascript" src="plugins/jquery/dist/jquery.min.js"></script>
@@ -315,6 +340,7 @@
     <script type="text/javascript" src="plugins/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
     <script type="text/javascript" src="plugins/revolution/js/extensions/revolution.extension.actions.min.js"></script>
     <!-- Custom scripts-->
+    <script src="plugins/ShowMessage/message.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script>
         $(function () {
@@ -323,6 +349,60 @@
                 $.get("Handlers/Loginout.ashx", { work: "logout" }, function (data) {
                     if (data == "ok") {
                         $("#Use").load("user.aspx" + " #useload");
+                    }
+                })
+            })
+            $("#zhuye").click(function () {
+                $(".cuk-tab-bar").removeClass("cuk-tab-bar-active");
+                $("#zhuye").addClass("cuk-tab-bar-active");
+                //$("#Panes").load("user.aspx" + " #dingdan");
+                $("#Recharge").hide();
+                $("#dingdan").show();
+                return false;
+            })
+            $("#Recharge").hide();
+            $("#chonghzi,#geren").click(function () {
+                $(".cuk-tab-bar").removeClass("cuk-tab-bar-active");
+                $("#geren").addClass("cuk-tab-bar-active");
+                $("#dingdan").hide();
+                $("#Recharge").show();
+
+                return false;
+            })
+            $(".num").click(function () {
+                $(".num").removeClass("num-active");
+                $(this).addClass("num-active");
+
+            })
+            $("#CZ").click(function (e) {
+                var num = $(".num-active").text();
+                if (num == "")
+                    message("error", "请先选择要充值的金额", 0, e);
+                else {
+                    $.post("Handlers/ChangeMoney.ashx", { type: "+", addmoney: num }, function (data) {
+                        if (data == "ok") {
+                            message("success", "充值成功！", 2000, e);
+                            $('#CZ').attr('disabled', 'disabled')
+                            setTimeout(function () {
+                                window.location.href = "user.aspx";
+                            }, 2000);
+                        }
+                        else if (data == "errorcustomer")
+                            message("error", "请先登录", 2000, e);
+                        else
+                            message("error", "未知错误！", 2000, e);
+                    })
+                }
+            })
+            $(".dingdanremove").click(function (e) {
+                var did = $(this).data("did");
+                var $th = $(this).parent();
+                $.post("Handlers/RemoveDingDan.ashx", {did:did},function(data){
+                    if (data == "ok") {
+                        message("success", "成功删除该订单", 2000,e);
+                        $th.fadeOut(1000, function () {
+                            $th.remove();
+                        })
                     }
                 })
             })

@@ -2,13 +2,14 @@
 body{
     background: #d8dde4;
 }
+
 .cuk-layout {
     display: -ms-flexbox;
     display: -webkit-box;
     display: flex;
     padding: 80px 0;
     height: 100%;
-    max-width: 1200px;
+    width: 80%;
     margin: auto;
 }
 [class*=cuk-], [class*=cuk-] :after, [class*=cuk-] :before {

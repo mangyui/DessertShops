@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     <title>Cart</title>
     <!-- Fonts-->
-    <link href="https://fonts.lug.ustc.edu.cn/css?family=Libre+Baskerville:400,400i,700%7CPacifico%7CVarela+Round%7CPoppins" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700%7CPacifico%7CVarela+Round%7CPoppins" rel="stylesheet"/>
     <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" href="plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css" />
     <link rel="stylesheet" href="plugins/ps-icon/ps-icon.css" />
@@ -45,7 +45,7 @@
     <form id="form1" runat="server">
         <!--滚动条-->
         <div class="header--sidebar"></div>
-        <!--导航栏开始-->        
+        <!--导航栏开始-->
         <header class="header header--2" data-responsive="1183">
             <div class="header__top">
                 <div class="container">
@@ -80,26 +80,26 @@
                 <div class="container">
                     <div class="menu-toggle"><span></span></div>
                     <div class="navigation__left">
-                    <ul class="menu menu--left">
+                        <ul class="menu menu--left">
                             <li><a href="index.aspx">Home</a></li>
                             <li><a href="product-listing.html">List</a></li>
                             <li><a href="product-grid.html">Grid</a></li>
-                             <li><a href="contact.html">Contact</a></li>
+                            <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </div>
                     <a class="ps-logo" href="index.aspx">
-                        <img src="images/logo-1.png" alt=""/></a>
+                        <img src="images/logo-1.png" alt="" /></a>
                     <div class="navigation__right">
                         <ul class="menu menu--right">
                             <li><a href="about.html">About</a></li>
                         </ul>
                         <div id="Use">
-                          <div id="useload">
-                            <div class="ps-user" id="User">
+                            <div id="useload">
+                                <div class="ps-user" id="User">
+                                </div>
+                                <div id="UserName"><a href="#" id="aName" runat="server">MR YU</a>&nbsp;&nbsp;&nbsp;<a href="#" id="aOut" runat="server">Logout</a></div>
                             </div>
-                            <div id="UserName"><a href="#" id="aName" runat="server">MR YU</a>&nbsp;&nbsp;&nbsp;<a href="#" id="aOut" runat="server">Logout</a></div>
                         </div>
-                           </div>
                         <div class="ps-cart" id="LoadCart">
                             <div class="Cartbg" id="LoadC">
                                 <a class="ps-cart__toggle" href="cart.aspx"><span><i id="CCNum" runat="server">0</i></span><i class="ps-icon--shopping-cart"></i></a>
@@ -137,7 +137,7 @@
                 </div>
             </nav>
         </header>
-        <!--导航栏结束-->      
+        <!--导航栏结束-->
         <div id="back2top"><i class="fa fa-angle-up"></i></div>
         <div class="loader"></div>
 
@@ -156,7 +156,7 @@
                 </div>
             </div>
 
-            <!--购物车列表开始-->      
+            <!--购物车列表开始-->
             <div class="ps-section--cart pt-100 pb-100">
                 <div class="container">
                     <div class="ps-cart-listing">
@@ -205,7 +205,7 @@
                                     <div class="form-group form-group--icon ps-cart__promotion">
                                         <div class="icon-wrap">
                                             <i class="fa fa-angle-right"></i>
-                                             <a id="removeAll" class="ps-cart__shopping">Remove All</a>
+                                            <a id="removeAll" class="ps-cart__shopping">Remove All</a>
                                         </div>
                                     </div>
                                     <div class="form-groupform-order">
@@ -214,8 +214,8 @@
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
                                     <div class="ps-cart__total">
-                                        <p>Total Price: <span>2599$</span></p>
-                                        <a class="ps-btn ps-btn--sm ps-btn--fullwidth popup-modal" href="#quickview-modal">Process to checkout</a>
+                                        <p>Total Price: <span id="TotalM">2599$</span></p>
+                                        <a id="aPay" class="ps-btn ps-btn--sm ps-btn--fullwidth" href="#quickview-modal">Process to checkout</a>
                                     </div>
                                 </div>
                             </div>
@@ -224,8 +224,8 @@
                 </div>
             </div>
             <!--购物车列表结束-->
-                  
-            <!--关于我们开始-->      
+
+            <!--关于我们开始-->
             <section class="ps-section ps-section--subscribe pt-80 pb-80">
                 <div class="container">
                     <div class="ps-subscribe">
@@ -249,7 +249,7 @@
                     </div>
                 </div>
             </section>
-            <!--关于我们结束-->      
+            <!--关于我们结束-->
             <!--footer-->
             <footer class="ps-footer">
                 <div class="container">
@@ -325,70 +325,14 @@
                                     </ul>
                                     <a href="#">
                                         <img src="images/app.jpg" alt="" /></a>
-                                   <p>Copyright &copy;25余会明</p>
+                                    <p>Copyright &copy;25余会明</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </footer>
-            <div class="modal-popup mfp-with-anim mfp-hide" id="quickview-modal" tabindex="-1">             
-                <button class="modal-close"><i class="fa fa-remove"></i></button>
-                <div class="ps-product-modal ps-product--detail clearfix">
-                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
-                        <div class="ps-product__thumbnail">
-                            <div class="quickview--main" data-owl-auto="true" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="0" data-owl-nav="false" data-owl-dots="false" data-owl-animate-in="" data-owl-animate-out="" data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-nav-left="&lt;i class=&quot;fa fa-angle-left&quot;&gt;&lt;/i&gt;" data-owl-nav-right="&lt;i class=&quot;fa fa-angle-right&quot;&gt;&lt;/i&gt;">
-                                <asp:Repeater ID="rptProducta" runat="server">
-                                    <ItemTemplate>
-                                        <div class="ps-product__image">
-                                            <div class="ps-badge"><span><%#Eval("Price") %></span></div>
-                                            <div class="ps-badge  ps-badge--new"><span>X<%#Eval("Quantity") %></span></div>
-                                            <img src="<%#Eval("Img") %>" alt="" />
-                                        </div>
-                                    </ItemTemplate>
-                                </asp:Repeater>
-                            </div>
-                            <div class="quickview--thumbnail" data-owl-auto="true" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="20" data-owl-nav="false" data-owl-dots="false" data-owl-animate-in="" data-owl-animate-out="" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-nav-left="&lt;i class=&quot;fa fa-angle-left&quot;&gt;&lt;/i&gt;" data-owl-nav-right="&lt;i class=&quot;fa fa-angle-right&quot;&gt;&lt;/i&gt;">
-                                <asp:Repeater ID="rptProductb" runat="server">
-                                    <ItemTemplate>
-                                        <img src="<%#Eval("Img") %>" alt="" />
-                                    </ItemTemplate>
-                                </asp:Repeater>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 ">
-                        <header>
-                            <h3 class="ps-product__name">Order Confirmation</h3>
-                            <br />
-                            <div class="ps-product__meta">
-                                <p><span id="spanUser">user: MR YU</span>  188XXXXX92</p>
-                                <p class="category"><span>address: </span><a>Zhejiang,shaoxing,shaoxing university</a></p>
-                            </div>
-                            <div class="ps-product__meta">
-                                <p><span>products:</span></p>
-                                <hr />
-                                <ul id="cartsUl">
-                                    <asp:Repeater ID="rptProductc" runat="server">
-                                        <ItemTemplate>
-                                            <li>
-                                                <p class="order"><span><%#Eval("Name") %></span><span1>x<%#Eval("Quantity") %></span1></p>
-                                            </li>
-                                        </ItemTemplate>
-                                    </asp:Repeater>
-                                </ul>
-                                <hr />
-                            </div>
-                            <p class="ps-product__price"><span>Total Price:</span><span id="TPrice">15.00</span></p>
-                        </header>
-                        <footer>
-                            <a class="ps-btn--fullwidth ps-btn ps-btn--sm" href="cart.aspx">Confirmation of orders<i class="fa fa-angle-right"></i></a>
-                        </footer>
-                    </div>
-                </div>
         </div>
-        </div>
-            <div class="ivu-message" id="ShowMessage" style="top: 120px;"></div>
     </form>
     <!-- JS Library-->
     <script type="text/javascript" src="plugins/jquery/dist/jquery.min.js"></script>
@@ -487,7 +431,7 @@
                 })
 
             })
-            $("#removeAll").css({"background":"#ee7560","color":"#fff","border":"0","cursor": "pointer"}).click(function () {
+            $("#removeAll").click(function () {
                 $(".ps-cart-listing__remove").click();
                 $("tbody tr").fadeOut(1000, function () {
                     $(this).remove();
@@ -503,16 +447,31 @@
                     $(this).find("span.total-row").text(eachSum.toFixed(2) + "$");
                     sum += eachSum;
                 })
-                
-                $(".ps-cart__process .ps-cart__total span").text(sum.toFixed(2) + "$");
-                $("#TPrice").text(sum.toFixed(2) + "$").css({ "color": "red" }).parent().css({ "text-align": "right" });
+
+                $("#TotalM").text(sum.toFixed(2) + "$");
             }
-            $("#quickview-modal").css("border-radius", "10px");
-            $("#TPrice").css({ "color": "red" }).parent().css({ "text-align": "right" });
-            $("#cartsUl").css({ "list-style-type": "disc", "margin-left": "20px" });
-            $("#spanUser").text("user：" + $("#UserName a:eq(0)").text());
             $("div.ps-product--cart").css("cursor", "pointer").click(function () {
                 window.location.href = $(this).find("a").attr("href");
+            })
+            $("#aPay").on("click", function (e) {
+
+                $.post("Handlers/ChangeMoney.ashx", { type: "-" }, function (data) {
+                    if (data == "ok") {
+                        message("success", "下单成功！", 2000, e);
+                        setTimeout(function () {
+                            window.location.href = "user.aspx";
+                        }, 2000);
+                    }
+                    else if (data == "errormoney")
+                        message("error", "账户余额不足，请充值", 2000, e);
+                    else if (data == "errorcart")
+                        message("error", "购物车为空！", 2000, e);
+                    else if (data == "errorcustomer")
+                        message("error", "请先登录", 2000, e);
+                    else
+                        message("error", "未知错误！", 2000, e);
+                })
+
             })
         })
     </script>

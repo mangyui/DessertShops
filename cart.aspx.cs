@@ -38,16 +38,6 @@ public partial class cart : System.Web.UI.Page
         rptMinCart.DataSource = Clist;
         rptMinCart.DataBind();
 
-
-        rptProducta.DataSource = Clist;
-        rptProducta.DataBind();
-
-        rptProductb.DataSource = Clist;
-        rptProductb.DataBind();
-
-        rptProductc.DataSource = Clist;
-        rptProductc.DataBind();
-
         CCNum.InnerText = Slist.TotalQuantity.ToString();
         MinNum.InnerText = Slist.TotalQuantity.ToString();
         MinTotal.InnerText = "£" + Slist.TotalSum.ToString();
