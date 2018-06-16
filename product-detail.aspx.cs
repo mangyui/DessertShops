@@ -5,26 +5,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class product_detail : System.Web.UI.Page
+public partial class product_detail2 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Customer cus = (Customer)Session["Customer"];
-        if (cus != null)
-        {
-            aName.InnerText = cus.UserName;
-            aName.HRef = "user.aspx";
-            aOut.InnerText = "Logout";
-            aOut.HRef = "";
-        }
-        else
-        {
-            aName.InnerText = "用户";
-            aName.HRef = "#";
-            aOut.InnerText = "请登入";
-            aOut.HRef = "login.html";
-        }
-
         List<Product> list3 = ProductFactory.GetProductsList2();
 
 
@@ -42,12 +26,7 @@ public partial class product_detail : System.Web.UI.Page
         PPName.InnerText = prodect.Name;
         PPOldprice.InnerText = "£" + prodect.OldPrice.ToString();
         litNewprice.Text = prodect.NewPrice.ToString();
-        PPHot.InnerHtml= prodect.NewPrice.ToString();
-
-        List<Product> list = new List<Product>();
-        list.Add(prodect);
-        rptaddCart.DataSource = list;
-        rptaddCart.DataBind();
-
+        PPHot.InnerHtml = prodect.NewPrice.ToString();
+        PId.InnerText = prodect.Id.ToString();
     }
 }

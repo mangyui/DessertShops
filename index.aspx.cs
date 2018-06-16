@@ -4,12 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-public partial class index : System.Web.UI.Page
+
+public partial class index2 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-       // string typeid=ProductContent.Attributes["data-type"];
-
         string typeid = Request.QueryString["typeId"];
         List<Product> list1;
         if (string.IsNullOrEmpty(typeid))
@@ -18,26 +17,10 @@ public partial class index : System.Web.UI.Page
         }
         else
         {
-            list1 = ProductFactory.GetProductByTypeId(typeid); 
+            list1 = ProductFactory.GetProductByTypeId(typeid);
         }
-        
-        List<Product> list3 = ProductFactory.GetProductsList2();
 
-        Customer cus = (Customer)Session["Customer"];
-        if (cus != null)
-        {
-            aName.InnerText = cus.UserName;
-            aName.HRef = "user.aspx";
-            aOut.InnerText = "Logout";
-            aOut.HRef = "";
-        }
-        else
-        {
-             aName.InnerText = "用户";
-            aName.HRef = "#";
-            aOut.InnerText = "请登入";
-            aOut.HRef = "login.html";            
-        }
+        List<Product> list3 = ProductFactory.GetProductsList2();
 
         rptProduct1.DataSource = list1;
         rptProduct1.DataBind();
@@ -45,6 +28,5 @@ public partial class index : System.Web.UI.Page
 
         rptProduct3.DataSource = list3;
         rptProduct3.DataBind();
-
     }
 }
