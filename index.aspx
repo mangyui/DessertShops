@@ -149,7 +149,8 @@
                                             <a class="ps-product__overlay" href="product-detail.aspx?id=<%#Eval("Id") %>"></a>
                                             <img src="<%#Eval("ImgPath") %>" alt="">
                                             <ul class="ps-product__action">
-                                                <li><a class="popup-modal" href="#quickview-modal" data-effect="mfp-zoom-out" data-tooltip="View"><i class="ps-icon--search"></i></a></li>
+                                                <li><a class="popup-modal" href="#quickview-modal" data-effect="mfp-zoom-out" data-tooltip="View">
+                                                    <i class="ps-icon--search"></i></a></li>
                                                 <li><a href="#" data-tooltip="Add to wishlist"><i class="ps-icon--heart"></i></a></li>
                                                 <li><a href="#" data-tooltip="Compare"><i class="ps-icon--reload"></i></a></li>
                                                 <li><a class="addCart" data-tooltip="Add to cart" data-pid="<%#Eval("Id") %>"><i class="ps-icon--shopping-cart"></i></a></li>
@@ -158,7 +159,8 @@
                                         <div class="ps-product__content">
                                             <a class="ps-product__title" href="product-detail.aspx?id=<%#Eval("Id") %>"><%#Eval("Name") %></a>
                                             <div class="ps-product__category">
-                                                <a class="ps-product__category" href="#">cupcake</a><a class="ps-product__category" href="#">sweet</a><a class="ps-product__category" href="#">bio</a>
+                                                <a class="ps-product__category" href="#">cupcake</a><a class="ps-product__category" href="#">sweet</a>
+                                                <a class="ps-product__category" href="#">bio</a>
                                             </div>
                                             <select class="ps-rating">
                                                 <option value="1">1</option>
@@ -321,7 +323,7 @@
                     </div>
                 </div>
             </section>
-             <!--讲述结束开始-->
+             <!--讲述经历结束-->
  </div>
 </asp:Content>
 

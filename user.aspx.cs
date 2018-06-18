@@ -18,7 +18,7 @@ public partial class user2 : System.Web.UI.Page
 
         if (cus != null)
         {
-            List<DingDan> DDlist = DingDanFactory.GetDDlist();
+            List<DingDan> DDlist = DingDanFactory.GetDDlist(cus);
 
             rptDingDan.DataSource = DDlist;
             rptDingDan.DataBind();

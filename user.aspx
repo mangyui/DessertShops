@@ -15,7 +15,6 @@
             $("#zhuye").click(function () {
                 $(".cuk-tab-bar").removeClass("cuk-tab-bar-active");
                 $("#zhuye").addClass("cuk-tab-bar-active");
-                //$("#Panes").load("user.aspx" + " #dingdan");
                 $("#Recharge").hide();
                 $("#dingdan").show();
                 return false;

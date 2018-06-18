@@ -18,9 +18,8 @@ public class Customer
     public decimal Balance { get; set; }
     public string Province { get; set; }
     public string  City { get; set; }
-
-
-    public Customer(string userId,string userName,string userPwd,string sex,DateTime birthday,string address,string telNo,decimal balance,string province,string city)
+    public Customer(string userId,string userName,string userPwd,string sex,
+DateTime birthday,string address,string telNo,decimal balance,string province,string city)
     {
         this.UserId = userId;
         this.UserName = userName;

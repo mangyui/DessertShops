@@ -8,7 +8,10 @@ using System.Web;
 /// </summary>
 public class CustomerFactory
 {
-    private static List<Customer> customersList = new List<Customer>(){new Customer("101", "余先生", "cool", "男", new DateTime(1990 - 1 - 21), "绍兴文理学院", "18857518492", 10000M, "浙江省", "绍兴市"), new Customer("102", "Tom", "123", "男", new DateTime(2006 - 5 - 22), "绍兴文理学院", "13856569696", 10000M, "浙江省", "绍兴市")};
+    private static List<Customer> customersList = new List<Customer>(){
+        new Customer("101", "余先生", "cool", "男", new DateTime(1990 - 1 - 21), "绍兴文理学院", "18857518492", 10000M, "浙江省", "绍兴市"),
+        new Customer("102", "Tom", "123", "男", new DateTime(2006 - 5 - 22), "绍兴文理学院", "13856569696", 10000M, "浙江省", "绍兴市")
+    };
     
 
     //public static List<Customer> GetCustomersList()
@@ -21,6 +24,10 @@ public class CustomerFactory
 
     //    return customersList;
     //}
+    public static void AddCustomer(Customer cus) 
+    {
+        customersList.Add(cus);
+    }
     public static Customer GetCustomerByUserId(string id)
     {
         Customer customer = new Customer();
@@ -34,7 +41,12 @@ public class CustomerFactory
         }
         return customer;
     }
-
+    /// <summary>
+    /// 通过电话号码及其密码匹配用户判断是否认证正确
+    /// </summary>
+    /// <param name="telNo"></param>
+    /// <param name="pwd"></param>
+    /// <returns></returns>
     public static Customer GetCustomerByTelNo(string telNo,string pwd)
     {
 
@@ -72,7 +84,6 @@ public class CustomerFactory
         }
         return null;
     }
-
     public static Customer CustomerPay(string telNo, decimal num)
     {
 

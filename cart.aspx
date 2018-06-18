@@ -12,27 +12,24 @@
                     }
                 })
             })
-            $("table .form-group--number .minus").click(function () {
+            $("table .form-group--number .minus").click(function () {   
                 $minus = $(this);
                 $.post("Handlers/CartHandler.ashx", {
                     id: $(this).data("pid"),
                     quantity: 1,
-                    work: "-",
+                    work: "-",                           //- 删除操作
                 }, function (data) {
                     if (data != "error") {
                         $minus.next().val($minus.next().val() * 1 - 1);
                         if ($minus.next().val() == 0) {
                             $minus.parents("tr").fadeOut(1000, function () {
                                 $(this).remove();
-
                             })
                         }
                         mySum();
                         $("#LoadCart").load("cart.aspx" + " #LoadC");
-
                     }
                 })
-
                 return false;
             })
             $("table .form-group--number .plus").click(function () {
@@ -40,7 +37,7 @@
                 $.post("Handlers/CartHandler.ashx", {
                     id: $(this).data("pid"),
                     quantity: 1,
-                    work: "+",
+                    work: "+",                        //+ 添加操作
                 }, function (data) {
                     if (data != "error") {
                         $plus.prev().val($plus.prev().val() * 1 + 1);
@@ -48,7 +45,6 @@
                         $("#LoadCart").load("cart.aspx" + " #LoadC");
                     }
                 })
-
                 return false;
             })
             $(".ps-cart-listing__remove").click(function (e) {

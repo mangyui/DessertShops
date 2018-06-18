@@ -11,7 +11,6 @@ public partial class product_detail2 : System.Web.UI.Page
     {
         List<Product> list3 = ProductFactory.GetProductsList2();
 
-
         rptProduct3.DataSource = list3;
         rptProduct3.DataBind();
 

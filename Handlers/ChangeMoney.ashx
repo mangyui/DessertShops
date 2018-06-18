@@ -10,23 +10,21 @@ public class ChangeMoney : IHttpHandler,IRequiresSessionState {
         context.Response.ContentType = "text/plain";
         try
         {
-            //获取request中的
-
-            string type = context.Request["type"];         //添加还是删除操作（还可能赋值）
+            string type = context.Request.Form["type"];         //充值还是付款操作
              Customer cu = (Customer)context.Session["Customer"];  
             if (cu == null)
                 context.Response.Write("errorcustomer");
             else
             {
                 Customer cus;
-                if (type == "+")
+                if (type == "+")            //充值
                 {
                     decimal mon = Convert.ToDecimal(context.Request["addmoney"]);
                      cus= CustomerFactory.Recharge(cu.TelNo, mon);
                     context.Session["Customer"] = cus;
                     context.Response.Write("ok"); 
                 }
-                else
+                else                      //下单付款
                 {
                     ShoppingCart Slist = (ShoppingCart)context.Session["ShoppingCart"];
                     if (Slist == null)
@@ -45,7 +43,6 @@ public class ChangeMoney : IHttpHandler,IRequiresSessionState {
                         }                
                     }
                 }
- 
             }
         }
         catch (Exception)

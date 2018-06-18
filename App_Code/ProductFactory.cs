@@ -71,7 +71,7 @@ public class ProductFactory
         return productsList1;
     }
     /// <summary>
-    /// 获取产品2
+    /// 获取特色产品信息（用于轮播）
     /// </summary>
     /// <returns></returns>
     public static List<Product> GetProductsList2()
@@ -109,6 +109,11 @@ public class ProductFactory
         }
         return null;
     }
+    /// <summary>
+    /// 根据产品类型获得该类型产品组
+    /// </summary>
+    /// <param name="typeid"></param>
+    /// <returns></returns>
     public static List<Product> GetProductByTypeId(string typeid)
     {
         if (productsList1 == null)

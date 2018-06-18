@@ -27,7 +27,6 @@
                         message("success", "加入购物车成功！", 2000,e);
                     }
                 })
-
                 return false;
             })
             $(".addCart").css("cursor", "pointer").click(function (e) {

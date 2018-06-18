@@ -25,7 +25,6 @@ public partial class index2 : System.Web.UI.Page
         rptProduct1.DataSource = list1;
         rptProduct1.DataBind();
 
-
         rptProduct3.DataSource = list3;
         rptProduct3.DataBind();
     }

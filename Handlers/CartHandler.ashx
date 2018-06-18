@@ -14,8 +14,8 @@ public class CartHandler : IHttpHandler ,IRequiresSessionState
         try
         {
             //获取request中的id，quantity
-            int id = Convert.ToInt32(context.Request["id"]);
-            int quantity = Convert.ToInt32(context.Request["quantity"]);
+            int id = Convert.ToInt32(context.Request.Form["id"]);
+            int quantity = Convert.ToInt32(context.Request.Form["quantity"]);
             string work = context.Request["work"];         //添加还是删除操作（还可能赋值）
 
             ShoppingCart cart = (ShoppingCart)context.Session["ShoppingCart"];

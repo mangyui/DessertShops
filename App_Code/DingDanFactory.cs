@@ -18,9 +18,17 @@ public class DingDanFactory
         DingDan Did = new DingDan(Id, DT, cart.TotalQuantity, cart.TotalSum, "完成", cus.UserId);
         dingdanList.Add(Did);
     }
-    public static List<DingDan> GetDDlist()
+    public static List<DingDan> GetDDlist(Customer cus)
     {
-        return dingdanList;
+        List<DingDan> ddlist = new List<DingDan>();
+        for (int i = 0; i < dingdanList.Count; i++)
+        {
+            if (dingdanList[i].Userid == cus.UserId )
+            {
+                ddlist.Add(dingdanList[i]);
+            }
+        }
+        return ddlist;
     }
     public static void RemoveDingDan(Customer cus, string did)
     {
