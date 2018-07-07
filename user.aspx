@@ -101,7 +101,7 @@
                             <ul class="section-2ZI activity-info-BDI">
                                 <li>联系方式：<%#Eval("TelNo") %></li>
                                 <li>联系地址：<%#Eval("City")+" "+Eval("Province")+" "+Eval("Address") %></li>
-                                <li class="clearfix"><span class="td-3ia">用户名：</span><%#Eval("UserName") %></li>
+                                <li class="clearfix"><span class="td-3ia">年龄：</span><%#Eval("Age") %></li>
                                 <li>性别：<%#Eval("Sex") %></li>
                             </ul>
                             <ul class="section-2ZI follow-info-5YF">
@@ -143,10 +143,10 @@
                                     <div id="Recharge" class="cuk-tab-pane">
                                         <h3 id="RCh3" class="">*当前仅为模拟充值</h3>
                                         <a class="num">10</a>
-                                        <a class="num">20</a>
-                                        <a class="num">30</a>
                                         <a class="num">50</a>
-                                        <a class="num">100</a><br />
+                                        <a class="num">100</a>
+                                        <a class="num">500</a>
+                                        <a class="num">1000</a><br />
                                         <a id="CZ" class="ps-btn ps-btn--xs">充值<i class="fa fa-angle-right"></i></a>
                                     </div>
                                 </div>

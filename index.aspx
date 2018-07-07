@@ -113,7 +113,7 @@
                                             </div>
                                             <div class="ps-product__content">
                                                 <h4 class="ps-product__title"><a href="product-detail.aspx?id=<%#Eval("Id") %>"><%#Eval("Name") %></a></h4>
-                                                <p>Lollipop dessert donut marzipan cookie bonbon sesame snaps chocolate.</p>
+                                                <p><%#Eval("DeSCC") %></p>
                                                 <p class="ps-product__price">
                                                     <del>£<%#Eval("OldPrice") %></del>£<%#Eval("NewPrice") %>
                                                 </p>

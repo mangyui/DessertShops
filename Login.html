@@ -45,7 +45,7 @@
 
                 <div class='login_fields__submit'>
                     <input id="Sub" type='button' value='登录' />
-                    <input id="hint" type='button' value='提示' />
+                    <input id="hint" type='button' value='注册' />
                 </div>
             </div>
             <div class='disclaimer'>
@@ -54,8 +54,8 @@
         </div>
     </form>
         <script type="text/javascript" src="plugins/jquery/dist/jquery.min.js"></script>
-        <script src="js/Particleground.js" type="text/javascript"></script>
-    <script src="plugins/ShowMessage/message.js"></script>
+        <!--<script src="js/Particleground.js" type="text/javascript"></script>-->
+        <script src="plugins/ShowMessage/message.js"></script>
         <script type="text/javascript">
 
             $(document).keypress(function (e) {
@@ -64,11 +64,11 @@
                     $('#Sub').click();
                 }
             });
-            //粒子背景特效
-            $('body').particleground({
-                dotColor: '#E8DFE8',
-                lineColor: '#ff5858'
-            });
+            ////粒子背景特效
+            //$('body').particleground({
+            //    dotColor: '#E8DFE8',
+            //    lineColor: '#ff5858'
+            //});
             $('input[name="pwd"]').focus(function () {
                 $(this).attr('type', 'password');
             });
@@ -97,7 +97,8 @@
                 }
             });
             $('#hint').click(function (e) {
-                message("info", "默认账号:18857518492<br/>默认密码:cool", 6000);
+                //message("info", "默认账号:18857518492<br/>默认密码:cool", 6000);
+                window.location.href = "Register.aspx";
 
             })
             $('#Sub').click(function (e) {
@@ -137,6 +138,6 @@
                 }
             })
         </script>
-    </form></body>
+</body>
 
 </html>

@@ -11,6 +11,7 @@ public class Product
     public string Name { get; set; }
     public decimal OldPrice { get; set; }
     public decimal NewPrice { get; set; }
+    public string DeSCC{ get; set; }
     public string ImgPath { get; set; }
     public string ImgPathLarge { get; set; }
     public DateTime InDate { get; set; }

@@ -88,7 +88,6 @@
                 window.location.href = $(this).find("a").attr("href");
             })
             $("#aPay").on("click", function (e) {
-
                 $.post("Handlers/ChangeMoney.ashx", { type: "-" }, function (data) {
                     if (data == "ok") {
                         message("success", "下单成功！", 2000, e);

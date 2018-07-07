@@ -1,0 +1,58 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="Admin_MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>管理员操作</title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style>
+        .topTr 
+        {
+            line-height:30px;
+            padding:10px 50px;
+           
+        }
+        .topTr span
+        {
+            margin-left:10px;
+            padding:0 20px;
+            border-left:3px solid #000;
+            font-weight:bold;
+        }
+        .topDiv
+         {
+            float:right;
+            width:30%;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <div class="topDiv"><div class="topTr">欢迎登录!<span id="SpanAd">admin</span></div></div>
+        <table width="100%">
+            <tr><td colspan="2" style="background-color:gray">后台管理</td></tr>
+            <tr>
+                <td width="25%">
+                    <p><a href="productsAdd.aspx">增加商品</a></p>
+                    <p><a href="productsEdit.aspx">管理商品</a></p>
+                    <p><a href="#">订单管理</a></p>
+                    <p><a href="uploadImg.aspx">上传图片</a></p>
+                    <p><a href="index.aspx">转到主页</a></p>
+                </td>
+                <td width="75%">
+                <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+                </asp:ContentPlaceHolder>
+
+            </td></tr>
+            <tr><td colspan="2"></td></tr>
+        </table>
+    </div>
+    </form>
+</body>
+
+</html>

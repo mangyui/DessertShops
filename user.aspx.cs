@@ -16,7 +16,7 @@ public partial class user2 : System.Web.UI.Page
         rptUser.DataSource = c;
         rptUser.DataBind();
 
-        if (cus != null)
+        if (cus != null)     //若客户登录了，获取该客户已存在的订单
         {
             List<DingDan> DDlist = DingDanFactory.GetDDlist(cus);
 
