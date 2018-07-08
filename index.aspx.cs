@@ -17,13 +17,17 @@ public partial class index2 : System.Web.UI.Page
         }
         else
         {
-            list1 = ProductFactory.GetProductByTypeId(typeid);
+            list1 = ProductFactory.GetProductsList2(int.Parse(typeid));
         }
+        List<Type> list2 = DBHelper.GetTypeList();
 
-        List<Product> list3 = ProductFactory.GetProductsList2();
+        List<Product> list3 = ProductFactory.GetProductsList2(3);
 
         rptProduct1.DataSource = list1;
         rptProduct1.DataBind();
+
+        rptType.DataSource = list2;
+        rptType.DataBind();
 
         rptProduct3.DataSource = list3;
         rptProduct3.DataBind();

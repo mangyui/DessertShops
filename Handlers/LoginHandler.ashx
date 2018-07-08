@@ -12,6 +12,8 @@ public class LoginHandler : IHttpHandler,IRequiresSessionState {
         string tel = context.Request.Form["tel"];
         string pwd = context.Request.Form["pwd"];
 
+        
+        
         if (CustomerFactory.HasCustomerByTelNo(tel) == false)
         {
             context.Response.Write("userIdError");

@@ -75,22 +75,23 @@ public class ProductFactory
     /// 获取特色产品信息（用于轮播）
     /// </summary>
     /// <returns></returns>
-    public static List<Product> GetProductsList2()
+    public static List<Product> GetProductsList2(int typeid)
     {
-        productsList2 = new List<Product>();
-        Product p = new Product(21, 30, "BREAD CAKE", 30.00m, 24.00m, "/images/cake/img-cr-1.jpg", "/images/cake/img-cr-1.jpg", new DateTime(2018, 5, 16), "special");
-        productsList2.Add(p);
+        //productsList2 = new List<Product>();
+        //Product p = new Product(21, 30, "BREAD CAKE", 30.00m, 24.00m, "/images/cake/img-cr-1.jpg", "/images/cake/img-cr-1.jpg", new DateTime(2018, 5, 16), "special");
+        //productsList2.Add(p);
 
-        p = new Product(22, 30, "BREAD CAKE 1", 30.00m, 24.00m, "/images/cake/img-cr-2.jpg", "/images/cake/img-cr-2.jpg", new DateTime(2018, 5, 16), "special");
-        productsList2.Add(p);
+        //p = new Product(22, 30, "BREAD CAKE 1", 30.00m, 24.00m, "/images/cake/img-cr-2.jpg", "/images/cake/img-cr-2.jpg", new DateTime(2018, 5, 16), "special");
+        //productsList2.Add(p);
 
-        p = new Product(23, 30, "BREAD CAKE 2", 30.00m, 24.00m, "/images/cake/img-cr-3.jpg", "/images/cake/img-cr-3.jpg", new DateTime(2018, 5, 16), "special");
-        productsList2.Add(p);
+        //p = new Product(23, 30, "BREAD CAKE 2", 30.00m, 24.00m, "/images/cake/img-cr-3.jpg", "/images/cake/img-cr-3.jpg", new DateTime(2018, 5, 16), "special");
+        //productsList2.Add(p);
 
-        p = new Product(24, 30, "BREAD CAKE 3", 30.00m, 24.00m, "/images/cake/img-cr-4.jpg", "/images/cake/img-cr-4.jpg", new DateTime(2018, 5, 16), "special");
-        productsList2.Add(p);
+        //p = new Product(24, 30, "BREAD CAKE 3", 30.00m, 24.00m, "/images/cake/img-cr-4.jpg", "/images/cake/img-cr-4.jpg", new DateTime(2018, 5, 16), "special");
+        //productsList2.Add(p);
 
-        return productsList2;
+        //return productsList2;
+        return DBHelper.GetProductsList2(typeid);
     }
     /// <summary>
     /// 根据Id获取单个产品信息

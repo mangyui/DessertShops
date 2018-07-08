@@ -12,20 +12,28 @@
                     }
                 })
             })
-            $("#zhuye").click(function () {
+            $(".cuk-tab-panes .cuk-tab-pane").hide();
+            $(".cuk-tab-panes .cuk-tab-pane").eq(0).show();
+            $(".cuk-tab-bar").click(function () {
                 $(".cuk-tab-bar").removeClass("cuk-tab-bar-active");
-                $("#zhuye").addClass("cuk-tab-bar-active");
-                $("#Recharge").hide();
-                $("#dingdan").show();
+                $(this).addClass("cuk-tab-bar-active");
+                $(".cuk-tab-panes .cuk-tab-pane").hide();
+                $(".cuk-tab-panes .cuk-tab-pane").eq($(this).index()).show();
                 return false;
             })
-            $("#Recharge").hide();
-            $("#chonghzi,#geren").click(function () {
+            //$("#zhuye").click(function () {
+            //    $(".cuk-tab-bar").removeClass("cuk-tab-bar-active");
+            //    $("#zhuye").addClass("cuk-tab-bar-active");
+            //    $("#Recharge").hide();
+            //    $("#dingdan").show();
+            //    return false;
+            //})
+            //$("#Recharge").hide();
+            $("#chonghzi").click(function () {
                 $(".cuk-tab-bar").removeClass("cuk-tab-bar-active");
                 $("#geren").addClass("cuk-tab-bar-active");
                 $("#dingdan").hide();
                 $("#Recharge").show();
-
                 return false;
             })
             $(".num").click(function () {
@@ -53,18 +61,18 @@
                     })
                 }
             })
-            $(".dingdanremove").click(function (e) {
-                var did = $(this).data("did");
-                var $th = $(this).parent();
-                $.post("Handlers/RemoveDingDan.ashx", {did:did},function(data){
-                    if (data == "ok") {
-                        message("success", "成功删除该订单", 2000,e);
-                        $th.fadeOut(1000, function () {
-                            $th.remove();
-                        })
-                    }
-                })
-            })
+            //$(".dingdanremove").click(function (e) {
+            //    var did = $(this).data("did");
+            //    var $th = $(this).parent();
+            //    $.post("Handlers/RemoveDingDan.ashx", {did:did},function(data){
+            //        if (data == "ok") {
+            //            message("success", "成功删除该订单", 2000,e);
+            //            $th.fadeOut(1000, function () {
+            //                $th.remove();
+            //            })
+            //        }
+            //    })
+            //})
         })
     </script>
 </asp:Content>
@@ -116,6 +124,7 @@
                             <div class="cuk-tab">
                                 <div class="cuk-tab-bar-nav">
                                     <a href="#" id="zhuye" class="cuk-tab-bar  cuk-tab-bar-active">主页</a>
+                                    <a href="#" id="order" class="cuk-tab-bar ">订单详情</a>
                                     <a href="#" id="geren" class="cuk-tab-bar ">充值</a>
                                     <a href="#" class="cuk-tab-bar">收藏</a>
                                     <a href="#" class="cuk-tab-bar">其他</a>
@@ -128,17 +137,28 @@
                                                 <ItemTemplate>
                                                     <div>
                                             <li class="dingdanli">
-                                                <a class="DId">订单编号：<%#Eval("Id") %></a><br/>
-                                                <span>下单时间：<%#Eval("InDate") %></span>
-                                                <span>商品数量：<%#Eval("Num") %></span>
-                                                <span>总价：<%#Eval("Price") %>$</span>
-                                                 <span>订单状态：<%#Eval("State") %></span>
+                                                <a class="DId">订单编号：16136235—<%#Eval("Id") %></a><br/>
+                                                <table>
+                                                    <tr>
+                                                        <td><span>下单时间：<%#Eval("InDate") %></span></td>
+                                                        <td><span>用户ID：<%#Eval("UserId") %></span></td>
+                                                        <td><span>总价：<%#Eval("Price") %>$</span></td>
+                                                        <td> <span>订单状态：<%#Eval("State") %></span></td>
+                                                    </tr>
+                                                </table>
+
                                             </li>
-                                                    <span class="dingdanremove" title="删除该订单" data-did="<%#Eval("Id") %>"></span>
+                                            <a class="ps-btn ps-btn--xs aorder" href="#" >前往付款<i class="fa fa-angle-right"></i></a>
+                                            <a class="ps-btn ps-btn--xs aorder" href="user.aspx?id=<%#Eval("Id") %>" >查看订单详情<i class="fa fa-angle-right"></i></a>
+
+                                              <%--<span class="dingdanremove" title="删除该订单" data-did="<%#Eval("Id") %>"></span>--%>
                                                     </div>
                                           </ItemTemplate>
                                             </asp:Repeater>
                                         </ul>
+                                    </div>
+                                    <div id="OrderM" class="cuk-tab-pane">
+
                                     </div>
                                     <div id="Recharge" class="cuk-tab-pane">
                                         <h3 id="RCh3" class="">*当前仅为模拟充值</h3>

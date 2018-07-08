@@ -94,11 +94,15 @@
                     <div class="row">
                         <div class=" col-sm-12 col-xs-12 ">
                             <div class="ps-section__header">
-                                <a href="index.aspx"><h3 class="ps-section__title ps-section__title--left ClassActive" data-type="">All CAKE</h3></a> 
-                                <a href="index.aspx?typeid=20"><h3 class="ps-section__title ps-section__title--left" data-type="20">New CAKE</h3></a> 
-                                <a href="index.aspx?typeid=10"><h3 class="ps-section__title ps-section__title--left" data-type="10">HOT CAKE</h3></a> 
-                                <a href="index.aspx?typeid=30"><h3 class="ps-section__title ps-section__title--left" data-type="30">specialty </h3></a> 
-                                <span id="ProductContent" data-type="10" runat="server" ></span>
+                                <table id="tableKind">
+                                    <tr><td> <a href="index.aspx"><h3 class="ps-section__title ps-section__title--left ClassActive" data-type="">All</h3></a></td>
+                                        <asp:Repeater ID="rptType" runat="server">
+                                            <ItemTemplate>
+                                                <td><a href="index.aspx?typeid=<%#Eval("TypeId") %>"><h3 class="ps-section__title ps-section__title--left" data-type="<%#Eval("TypeId") %>"><%#Eval("TypeName") %></h3></a> </td>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                </table>
+                                <%--<span id="ProductContent" data-type="10" runat="server" ></span>--%>
                             </div>
                             <div class="ps-section__content"  id="PC" >
                                 <div id="PCLoad">

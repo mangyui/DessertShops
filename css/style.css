@@ -50,12 +50,14 @@ img {
     transition:all 0.5s ease-in-out;
 }
 #UserName a{
-  text-decoration:underline;
+  /*text-decoration:underline;*/
+  
   color:#303030;
       font-family: "Varela Round", sans-serif;
     font-size: 14px;
     font-weight: 400;
 }
+
 .pring img {
    padding:8px;
    border-radius:50%;
@@ -132,6 +134,10 @@ img {
     padding:30px 0px;  
     margin:10px 0; 
 }
+.dingdanli table
+{
+    width:100%;
+}
 .DId {
     position:relative;
     top:-20px;
@@ -139,8 +145,12 @@ img {
 }
 .dingdanli span {
     margin:0 20px;
-
   }
+#Panes .aorder 
+{
+    width:18%;
+    margin:10px 0;
+}
 
 .dingdanremove{
   position: relative;
@@ -202,6 +212,20 @@ img {
 }
 .navigation--sticky #UserName a {
      color:#fff;
+}
+#tableKind
+ {
+    width:100%;
+}
+#tableKind td
+{
+    width:25%;
+}
+#UserName a:hover{
+  color:#e75e4e;
+}
+#CZ {
+    padding:10px 30px;
 }
 /*
     Project: BAKERY

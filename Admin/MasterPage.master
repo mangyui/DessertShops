@@ -6,8 +6,6 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>管理员操作</title>
-    <asp:ContentPlaceHolder id="head" runat="server">
-    </asp:ContentPlaceHolder>
     <style>
         .topTr 
         {
@@ -27,7 +25,33 @@
             float:right;
             width:30%;
         }
-    </style>
+        table td 
+        {
+            /*border:1px solid gray;*/
+        }
+        .tdCont p
+        {
+            margin:0 auto;
+            padding:10px;
+            width:40%;
+            border:2px solid #414141;
+            border-bottom:none;
+            font-size:19px;
+            text-align:center;
+            font-weight:bold;
+             background-color:#808080;
+        }
+        .tdCont .bottomP {
+              border-bottom:2px solid #414141;
+        }
+        .tdCont p a
+        {
+            color:#414141;
+            text-decoration:none;
+        }
+    </style>    
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -36,12 +60,12 @@
         <table width="100%">
             <tr><td colspan="2" style="background-color:gray">后台管理</td></tr>
             <tr>
-                <td width="25%">
+                <td width="25%" class="tdCont">
                     <p><a href="productsAdd.aspx">增加商品</a></p>
                     <p><a href="productsEdit.aspx">管理商品</a></p>
                     <p><a href="#">订单管理</a></p>
                     <p><a href="uploadImg.aspx">上传图片</a></p>
-                    <p><a href="index.aspx">转到主页</a></p>
+                    <p class="bottomP"><a href="/index.aspx">转到主页</a></p>
                 </td>
                 <td width="75%">
                 <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">

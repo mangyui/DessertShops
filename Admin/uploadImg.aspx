@@ -1,6 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeFile="uploadImg.aspx.cs" Inherits="Admin_uploadImg" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <style>
+        .tdCont p:nth-child(4) {
+            border-right:none;
+            border-left:4px solid #414141;
+            background-color:#ffffff;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div style="margin-bottom: 20px; font-size: 20px; text-align: center; color: blue;">

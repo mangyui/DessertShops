@@ -36,7 +36,7 @@ public class ChangeMoney : IHttpHandler,IRequiresSessionState {
                         else
                         {
                             cus = CustomerFactory.CustomerPay(cu.TelNo, Slist.TotalSum);
-                            DingDanFactory.AddDingDan(Slist,cus);       //生成订单
+                            OrderFactory.AddDingDan(Slist,cus);       //生成订单
                             context.Session["Customer"] = cus;        
                             context.Session["ShoppingCart"] = null;      //清空购物车  
                             context.Response.Write("ok");

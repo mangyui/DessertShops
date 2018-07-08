@@ -15,7 +15,7 @@ public class RemoveDingDan : IHttpHandler,IRequiresSessionState {
             Customer cus = (Customer)context.Session["Customer"];
             if (cus != null)
             {
-                DingDanFactory.RemoveDingDan(cus,id);
+                OrderFactory.RemoveDingDan(cus,id);
                context.Response.Write("ok");               
             }
             

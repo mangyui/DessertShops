@@ -9,7 +9,7 @@ public partial class product_detail2 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        List<Product> list3 = ProductFactory.GetProductsList2();
+        List<Product> list3 = ProductFactory.GetProductsList2(3);
 
         rptProduct3.DataSource = list3;
         rptProduct3.DataBind();
