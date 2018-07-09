@@ -3,7 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <title>Home</title>
      <script>
-        $(function () {
+         $(function () {
+          
             $(".header").removeClass("header--2");
             //$("#LoadCart").load("index.aspx" + " #LoadC");
             $(".addCart").css("cursor", "pointer").click(function (e) {
@@ -28,6 +29,18 @@
                     }
                 })
             })
+            $.getUrlParam = function (name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return unescape(r[2]); return "";
+            }
+            function aa() {
+                var type = $.getUrlParam("typeid");
+                $("h3[data-types]").removeClass("ClassActive");
+                $("#tableKind td").removeClass("activeTd");
+                $("h3[data-types='" + type + "']").addClass("ClassActive").parent().parent().addClass("activeTd");
+            }
+            aa();
             //$(".ps-section__title--left").click(function () {
                 
             //    $("#ProductContent").data("type",$(this).data("type"));
@@ -35,7 +48,7 @@
             //    alert($("#ProductContent").data("type"));
             //    $("#PC").load("index.aspx" + " #PCLoad");
             //})
-            
+            //$(".Myps-product--list").css("margin", "0 1px");
         })
     </script>
 </asp:Content>
@@ -95,14 +108,15 @@
                         <div class=" col-sm-12 col-xs-12 ">
                             <div class="ps-section__header">
                                 <table id="tableKind">
-                                    <tr><td> <a href="index.aspx"><h3 class="ps-section__title ps-section__title--left ClassActive" data-type="">All</h3></a></td>
+                                    <tr><td class="activeTd"> <a href="index.aspx"><h3 class="ps-section__title ps-section__title--left ClassActive" data-types="">All</h3></a></td>
                                         <asp:Repeater ID="rptType" runat="server">
                                             <ItemTemplate>
-                                                <td><a href="index.aspx?typeid=<%#Eval("TypeId") %>"><h3 class="ps-section__title ps-section__title--left" data-type="<%#Eval("TypeId") %>"><%#Eval("TypeName") %></h3></a> </td>
+                                                <td><a href="index.aspx?typeid=<%#Eval("TypeId") %>"><h3 class="ps-section__title ps-section__title--left" data-types="<%#Eval("TypeId") %>"><%#Eval("TypeName") %></h3></a> </td>
                                             </ItemTemplate>
                                         </asp:Repeater>
                                 </table>
                                 <%--<span id="ProductContent" data-type="10" runat="server" ></span>--%>
+                                <hr  class="typeHr"/>
                             </div>
                             <div class="ps-section__content"  id="PC" >
                                 <div id="PCLoad">

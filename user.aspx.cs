@@ -9,8 +9,21 @@ public partial class user2 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        string id = Request.QueryString["id"];  
         Customer cus = (Customer)Session["Customer"];
         List<Customer> c = new List<Customer>();
+        if (string.IsNullOrEmpty(id)==false&&cus!=null)
+        {
+            List<OrderDetails> list = DBHelper.GetODList(id);
+            rptOrderC.DataSource = list;
+            rptOrderC.DataBind();
+            Order order=DBHelper.GetOrder(id);
+            SpanOId.InnerText = order.Id.ToString();
+            OrderSum.InnerText = "£" + order.Price.ToString() ;
+            OrderState.InnerText = order.State;
+        }
+
+  
 
         c.Add(cus);
         rptUser.DataSource = c;

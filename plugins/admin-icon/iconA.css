@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'admin-icon';
+    src: url('fonts/icomoon.eot');
+    src: url('fonts/icomoon.eot?qyek7v#iefix') format('embedded-opentype'),
+         url('fonts/icomoon.ttf?qyek7v') format('truetype'),
+         url('fonts/icomoon.woff?qyek7v') format('woff'), 
+        url('fonts/icomoon.svg?qyek7v#ps-icon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.admin-icon {
+    font-family: "admin-icon" !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

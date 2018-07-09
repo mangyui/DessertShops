@@ -20,7 +20,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         else
         {
             aName.InnerText = "用户";
-            aName.HRef = "#";
+            aName.HRef = "user.aspx";
             aOut.InnerText = "请登入";
             aOut.HRef = "login.html";
         }

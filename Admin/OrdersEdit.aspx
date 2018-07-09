@@ -1,0 +1,115 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeFile="OrdersEdit.aspx.cs" Inherits="Admin_OrdersEdit" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+        <style>
+        .tdCont a:nth-child(5) {
+            border-right:none;
+            border-left:4px solid #414141;
+            background-color:#ffffff;  color:#000;
+        }
+      
+        .tableEdit
+        {
+            border-collapse: collapse;
+            margin:20px auto;
+        }
+        .tableEdit tr
+        {
+            border-bottom:1px solid gray;          
+        }
+        .tableEdit tr td
+        {
+            padding:30px;
+        }
+        .opTd a
+        {
+            text-decoration:none;
+        }
+        .opTd a:hover
+        {
+            color:#ee7560;
+        }
+        #ContentPlaceHolder1_DataPager1 a
+        {
+            margin-left:10px;
+        }
+    </style>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+     KeyWord:<asp:TextBox ID="txtKey" runat="server"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="查询" OnClick="btnSearch_Click" />
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [orders]"></asp:SqlDataSource>
+
+    <asp:ListView ID="ListView1" runat="server" DataKeyNames="订单号" DataSourceID="SqlDataSource1" OnPagePropertiesChanging="ListView1_PagePropertiesChanging" >
+      
+           
+        <EmptyDataTemplate>
+            <table runat="server" style="" >
+                <tr>
+                    <td>未返回数据。</td>
+                </tr>
+            </table>
+        </EmptyDataTemplate>
+         
+         
+        <ItemTemplate>
+            <tr style="">
+                <td>
+                    <asp:Label ID="订单号Label" runat="server" Text='<%# Eval("订单号") %>' />
+                </td>
+                <td>
+                    <asp:Label ID="用户号Label" runat="server" Text='<%# Eval("用户号") %>' />
+                </td>
+                <td>
+                    <asp:Label ID="下单日期Label" runat="server" Text='<%# Eval("下单日期") %>' />
+                </td>
+                <td>
+                    <asp:Label ID="总价Label" runat="server" Text='<%# Eval("总价") %>' />
+                </td>
+                <td>
+                    <asp:Label ID="订单状态Label" runat="server" Text='<%# Eval("订单状态") %>' />
+                </td>
+                <td class="opTd" >
+                    <asp:LinkButton ID="LinkButtonDelete" runat="server" CommandArgument='<%# Eval("订单号") %>' OnClientClick="return confirm('确定删除此记录吗？');" OnClick="LinkButtonDelete_Click" >删除</asp:LinkButton>
+                    ｜<a href="updateOrder.aspx?id=<%# Eval("订单号") %>">修改</a>
+                </td>
+
+            </tr>
+        </ItemTemplate>
+        <LayoutTemplate>
+            <table runat="server" >
+                <tr runat="server">
+                    <td runat="server">
+                        <table id="itemPlaceholderContainer" runat="server"  class="tableEdit" style="" >
+                            <tr runat="server" style="">
+                                <th runat="server">订单号</th>
+                                <th runat="server">用户号</th>
+                                <th runat="server">下单日期</th>
+                                <th runat="server">总价</th>
+                                <th runat="server">订单状态</th>
+                                   <th runat="server">操作</th>
+                            </tr>
+                            <tr runat="server" id="itemPlaceholder">
+                            </tr>
+                        </table>
+                    </td>
+                </tr>                
+                <tr runat="server">
+                    <td runat="server" style=""></td>
+                </tr>
+            </table>
+        </LayoutTemplate>
+    
+   
+    
+    
+    </asp:ListView>
+    <asp:DataPager ID="DataPager1" runat="server" PageSize="2" PagedControlID="ListView1">
+        <Fields>
+          <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
+           <asp:NumericPagerField />
+           <asp:NextPreviousPagerField ButtonType="Button" ShowLastPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
+        </Fields>
+    </asp:DataPager>
+    
+</asp:Content>
+

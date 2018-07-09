@@ -29,6 +29,16 @@
             //    return false;
             //})
             //$("#Recharge").hide();
+            $.getUrlParam = function (name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return unescape(r[2]); return null;
+            }
+            function aa () {
+                if ($.getUrlParam("id") != null)
+                    $(".cuk-tab-bar").eq(1).click();
+            }
+            aa();
             $("#chonghzi").click(function () {
                 $(".cuk-tab-bar").removeClass("cuk-tab-bar-active");
                 $("#geren").addClass("cuk-tab-bar-active");
@@ -158,6 +168,36 @@
                                         </ul>
                                     </div>
                                     <div id="OrderM" class="cuk-tab-pane">
+
+                                 <div class="" id="OrderContent">
+                                     <div class="ps-cart__total TopbgRed">
+                                         <p>订单号：16136235—<span id="SpanOId" runat="server">xx</span></p>
+                                     </div>
+                                    <div class="ps-cart__content">
+                                        <asp:Repeater ID="rptOrderC" runat="server">
+                                            <ItemTemplate>
+                                                <div class="ps-cart-item">
+                                                    <a class="ps-cart-item__close" href="#"></a>
+                                                    <div class="ps-cart-item__thumbnail">
+                                                        <a href="product-detail.aspx"></a>
+                                                        <img src="<%#Eval("Img") %>" alt="">
+                                                    </div>
+                                                    <div class="ps-cart-item__content">
+                                                        <a class="ps-cart-item__title" href="product-detail.aspx?id=<%#Eval("Peoductid") %>"><%#Eval("Name") %></a>
+                                                        <p>
+                                                            <span>Quantity:<i><%#Eval("Num") %></i></span>
+                                                            <span>Total:<i>£<%#Eval("Price") %></i></span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </div>
+                                    <div class="ps-cart__total bgRed">                                        
+                                        <p>Item Total:<span id="OrderSum" runat="server">£00.00</span></p>
+                                        <p>Order State:<span id="OrderState" runat="server">无</span></p>
+                                    </div>
+                                </div>
 
                                     </div>
                                     <div id="Recharge" class="cuk-tab-pane">

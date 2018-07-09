@@ -1,6 +1,39 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeFile="productsEdit.aspx.cs" Inherits="Admin_productsEdit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+        <style>
+        .tdCont a:nth-child(4) {
+            border-right:none;
+            border-left:4px solid #414141;
+            background-color:#ffffff;color:#000;
+        }
+
+        .tableEdit
+        {
+            border-collapse: collapse;
+            margin:20px auto;
+        }
+        .tableEdit tr
+        {
+            border-bottom:1px solid gray;          
+        }
+        .tableEdit tr td
+        {
+            padding:10px;
+        }
+        .opTd a
+        {
+            text-decoration:none;
+        }
+        .opTd a:hover
+        {
+            color:#ee7560;
+        }
+        #ContentPlaceHolder1_DataPager1 a
+        {
+            margin-left:10px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
      KeyWord:<asp:TextBox ID="txtKey" runat="server"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="查询" OnClick="btnSearch_Click" />
@@ -10,7 +43,7 @@
       
       
         <EmptyDataTemplate>
-            <table runat="server" style="">
+            <table runat="server" style="" >
                 <tr>
                     <td>未返回数据。</td>
                 </tr>
@@ -18,7 +51,7 @@
         </EmptyDataTemplate>
          
         <ItemTemplate>
-            <tr style="">
+            <tr style="" class="trList">
                 <td>
                     <asp:Label ID="商品IDLabel" runat="server" Text='<%# Eval("商品ID") %>' />
                 </td>
@@ -41,7 +74,7 @@
                 <td>
                     <asp:Label ID="标签Label" runat="server" Text='<%# Eval("标签") %>' />
                 </td>
-                <td>
+                <td class="opTd">
                     <asp:LinkButton ID="LinkButtonDelete" runat="server" CommandArgument='<%# Eval("商品ID") %>' OnClientClick="return confirm('确定删除此记录吗？');" OnClick="LinkButtonDelete_Click" >删除</asp:LinkButton>
                     ｜<a href="updateProduct.aspx?id=<%# Eval("商品ID") %>">修改</a>
                 </td>
@@ -49,10 +82,10 @@
             </tr>
         </ItemTemplate>
         <LayoutTemplate>
-            <table runat="server">
+            <table runat="server" >
                 <tr runat="server">
                     <td runat="server">
-                        <table id="itemPlaceholderContainer" runat="server" border="0" style="">
+                        <table id="itemPlaceholderContainer" runat="server"  class="tableEdit" style="">
                             <tr runat="server" style="">
                                 <th runat="server">商品ID</th>
                                 <th runat="server">商品名</th>

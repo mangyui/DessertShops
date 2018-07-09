@@ -6,48 +6,104 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>管理员操作</title>
+    <link href="../plugins/admin-icon/iconA.css" rel="stylesheet" />
     <style>
+
+        * {
+            margin:0 0;
+            padding:0 0;
+        }  
+        .admin-icon
+        {
+            margin-right:10px;
+            font-size:16px;
+        }
+        .Topicon
+        {
+            font-size:24px;
+            color:#000;
+        }
+        table {
+            margin: 0 auto;
+             text-align: center;
+        }
+        .Toptd
+        {
+            background-color:#ee7560;
+            text-align:left;
+            font-weight:bold;
+            padding:10px 20px;
+            font-size:20px;
+            color:#fff;
+        }
         .topTr 
         {
-            line-height:30px;
-            padding:10px 50px;
+            padding:10px;
            
         }
         .topTr span
         {
             margin-left:10px;
             padding:0 20px;
-            border-left:3px solid #000;
+            border-left:3px solid #fff;
             font-weight:bold;
+            color:#ee7560;
         }
         .topDiv
          {
-            float:right;
-            width:30%;
+            width:100%;
+            margin:10px auto;
         }
         table td 
         {
             /*border:1px solid gray;*/
         }
-        .tdCont p
+        .tdCont
         {
-            margin:0 auto;
-            padding:10px;
-            width:40%;
-            border:2px solid #414141;
+            height:auto;
+            background-color:#222831;
+            color:#ffffff;
+        }
+        .tdCont a
+        {
+            display:block;
+            margin:0 0;
+            padding:15px 0;
+            width:100%;
             border-bottom:none;
             font-size:19px;
             text-align:center;
             font-weight:bold;
-             background-color:#808080;
+            color:#e2e2e2;
+            text-decoration:none;
+        }
+        .tdCont a:hover
+        {
+            background-color:rgba(128, 128, 128, 0.42);
         }
         .tdCont .bottomP {
-              border-bottom:2px solid #414141;
+               margin-bottom:50px;
         }
-        .tdCont p a
+        .tdMo {
+            text-align:center;
+            background-color:rgba(128, 128, 128, 0.12)
+        }
+
+        #divLogo
         {
-            color:#414141;
-            text-decoration:none;
+            background:url("/images/logo-2.png") 0 20px no-repeat;
+            width:100px;
+            height:100px;
+            background-size:100%;
+            margin:10px auto;
+        }  
+        #divLogo2
+        {
+            background:url("/images/logo-1.png") no-repeat;
+            width:60px;
+            height:40px;
+            background-size:100%;
+
         }
     </style>    
     <asp:ContentPlaceHolder id="head" runat="server">
@@ -56,18 +112,22 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <div class="topDiv"><div class="topTr">欢迎登录!<span id="SpanAd">admin</span></div></div>
+
         <table width="100%">
-            <tr><td colspan="2" style="background-color:gray">后台管理</td></tr>
+            <tr><td colspan="2" class="Toptd" >
+                <i class="admin-icon Topicon">&#xe994;</i>
+                后台管理</td></tr>
             <tr>
-                <td width="25%" class="tdCont">
-                    <p><a href="productsAdd.aspx">增加商品</a></p>
-                    <p><a href="productsEdit.aspx">管理商品</a></p>
-                    <p><a href="#">订单管理</a></p>
-                    <p><a href="uploadImg.aspx">上传图片</a></p>
-                    <p class="bottomP"><a href="/index.aspx">转到主页</a></p>
+                <td width="15%" class="tdCont">
+                   <div><div id="divLogo"></div><h3>DessertShop</h3></div>
+                   <div class="topDiv"><div class="topTr">欢迎登录!<span id="SpanAd">admin</span></div></div>
+                    <a href="productsAdd.aspx"><i class="admin-icon">&#xea0a;</i>增加商品</a>
+                    <a href="productsEdit.aspx"><i class="admin-icon">&#xeaae;</i>管理商品</a>
+                    <a href="OrdersEdit.aspx"><i class="admin-icon">&#xe94b;</i>订单管理</a>
+                    <a href="uploadImg.aspx"><i class="admin-icon">&#xe9c6;</i>上传图片</a>
+                    <a class="bottomP" href="/index.aspx"><i class="admin-icon">&#xe900;</i>转到主页</a>
                 </td>
-                <td width="75%">
+                <td width="85%" class="tdMo">
                 <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
                 </asp:ContentPlaceHolder>

@@ -192,6 +192,55 @@ public static List<Product> GetProductsList2(int typeid)
         connection.Close();
         return list;
     }
+    public static List<OrderDetails> GetODList(string orderid)
+    {
+        List<OrderDetails> list = new List<OrderDetails>();
+
+        string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection connection = new SqlConnection(connectionString);
+
+        string queryString = "SELECT * FROM [orderDetails] where 订单号=@id";
+        SqlCommand command = new SqlCommand(queryString, connection);
+        command.Parameters.AddWithValue("@id", orderid);
+        connection.Open();
+        SqlDataReader reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            OrderDetails od = new OrderDetails();
+            od.OrderId = int.Parse(reader["订单号"].ToString());
+            od.Price = decimal.Parse(reader["小计总价"].ToString());
+            od.Name = reader["商品名"].ToString();
+            od.Img = reader["商品图"].ToString();
+            od.Peoductid = int.Parse(reader["商品号"].ToString());
+            od.Num = int.Parse(reader["数量"].ToString());
+            list.Add(od);
+        }
+        connection.Close();
+        return list;
+    }
+    public static Order GetOrder(string orderid)
+    {
+
+        string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection connection = new SqlConnection(connectionString);
+
+        string queryString = "SELECT * FROM [orders] where 订单号=@id";
+        SqlCommand command = new SqlCommand(queryString, connection);
+        command.Parameters.AddWithValue("@id", orderid);
+        connection.Open();
+        SqlDataReader reader = command.ExecuteReader();
+        Order o = new Order();
+        while (reader.Read())
+        {          
+            o.Id = int.Parse(reader["订单号"].ToString());
+            o.State = reader["订单状态"].ToString();
+            o.Price = decimal.Parse(reader["总价"].ToString());
+            o.Userid = reader["用户号"].ToString();
+            o.InDate = DateTime.Parse(reader["下单日期"].ToString());
+                    
+        }connection.Close(); 
+        return o;
+    }
     public static int createOrder(string userid, ShoppingCart cart)
     {
         //创建连接对象
@@ -221,7 +270,7 @@ public static List<Product> GetProductsList2(int typeid)
             orderid = sqlcmd.ExecuteScalar().ToString();//查自动生成的订单id值。因只查一个值，所以使用了标量查询。
 
             //向订单明细表中插入记录
-            cmdstr = "insert into orderDetails(订单号,商品号,数量,小计总价) values(@orderid,@pid,@number,@totalprice)";
+            cmdstr = "insert into orderDetails(订单号,商品号,商品名,商品图,数量,小计总价) values(@orderid,@pid,@pname,@pimg,@number,@totalprice)";
             sqlcmd.CommandText = cmdstr;
 
             //将购买的商品的信息一一添加到订单明细表中
@@ -230,6 +279,8 @@ public static List<Product> GetProductsList2(int typeid)
             {
                 sqlcmd.Parameters.Clear();//清空原来的sql参数，以便重新加入
                 sqlcmd.Parameters.AddWithValue("@pid", item.Id);
+                sqlcmd.Parameters.AddWithValue("@pname", item.Name);
+                sqlcmd.Parameters.AddWithValue("@pimg", item.Img);
                 sqlcmd.Parameters.AddWithValue("@orderid", orderid);
                 sqlcmd.Parameters.AddWithValue("@number", item.Quantity);
                 sqlcmd.Parameters.AddWithValue("@totalprice", item.Quantity * item.Price);

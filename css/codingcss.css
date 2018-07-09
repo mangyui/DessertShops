@@ -134,6 +134,7 @@ ul {
 }
 .cuk-tab-bar-nav {
     height: 36px;
+    width:100%;
     margin-bottom: 10px;
     border-bottom: 1px solid #d8dde4;
 }
@@ -172,4 +173,39 @@ ul {
 }
 .cuk-tab-pane{
     padding: 10px;
+}
+#OrderContent
+{
+    margin :0 auto;
+    width:70%;
+    
+}
+#OrderContent .ps-cart__content
+{
+    height :auto;
+    border:1px solid #d8dde4;
+    border-bottom:none;
+}
+#OrderContent p
+{
+    color:#fff;
+}
+#OrderContent p span
+{
+    float:none;
+    margin:0 10px;
+}
+#OrderContent .ps-cart-item__content p span
+{
+    margin:0 30px;
+
+    color:rgba(118, 128, 142, 0.70);
+}
+#dingdan ul div
+{
+    border-top:1px solid rgba(187, 191, 195, 0.36);
+}
+#OrderContent span i
+{
+    color:#ff5858;
 }

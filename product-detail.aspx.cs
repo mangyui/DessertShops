@@ -9,16 +9,18 @@ public partial class product_detail2 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        List<Product> list3 = ProductFactory.GetProductsList2(3);
-
-        rptProduct3.DataSource = list3;
-        rptProduct3.DataBind();
-
         string id = Request.QueryString["id"];
         if (string.IsNullOrEmpty(id))
         {
             Response.Redirect("index.aspx");
         }
+
+        List<Product> list3 = ProductFactory.GetProductsList2(3);
+
+        rptProduct3.DataSource = list3;
+        rptProduct3.DataBind();
+
+
 
         Product prodect = ProductFactory.GetProductById(int.Parse(id));
         PPImg.Src = prodect.ImgPath;
