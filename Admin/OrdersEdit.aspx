@@ -70,7 +70,7 @@
                 </td>
                 <td class="opTd" >
                     <asp:LinkButton ID="LinkButtonDelete" runat="server" CommandArgument='<%# Eval("订单号") %>' OnClientClick="return confirm('确定删除此记录吗？');" OnClick="LinkButtonDelete_Click" >删除</asp:LinkButton>
-                    ｜<a href="updateOrder.aspx?id=<%# Eval("订单号") %>">修改</a>
+                    ｜<asp:LinkButton ID="LinkButtonfh" runat="server" CommandArgument='<%# Eval("订单号") %>' OnClientClick="return confirm('确定确定发货么？');" OnClick="LinkButtonfh_Click" >发货</asp:LinkButton>
                 </td>
 
             </tr>

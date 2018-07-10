@@ -8,7 +8,7 @@ using System.Web;
 /// </summary>
 public class CustomerFactory
 {
-    private static List<Customer> customersList = new List<Customer>();
+    private static List<Customer> customersList; 
     //    new Customer("101", "余先生", "cool", "男", 18, "绍兴文理学院", "18857518492", 10000M, "浙江省", "绍兴市"),
     //    new Customer("102", "Tom", "123", "男", 19, "绍兴文理学院", "13856569696", 10000M, "浙江省", "绍兴市")
     //};
@@ -29,13 +29,14 @@ public class CustomerFactory
         return DBHelper.GetCustomersList();
     }
 
-    public static void AddCustomer(Customer cus) 
-    {
-        customersList.Add(cus);
-    }
+    //public static void AddCustomer(Customer cus) 
+    //{
+    //    customersList.Add(cus);
+    //}
     public static Customer GetCustomerByUserId(string id)
     {
         Customer customer = new Customer();
+        customersList= GetCustomersList();
         for (int i = 0; i < customersList.Count; i++)
         {
             if (customersList[i].UserId == id)
@@ -77,10 +78,35 @@ public class CustomerFactory
         }
         return false;
     }
+    public static Customer GetAdminByTelNo(string name,string pwd)
+    {
+
+        List<Customer> cuslist =DBHelper.GetAdminsList();
+        for (int i = 0; i < cuslist.Count; i++)
+        {
+            if (cuslist[i].UserName == name && cuslist[i].UserPwd == pwd)
+            {
+                return cuslist[i];
+            }
+        }
+        return null;
+    }
+    public static bool HasAdminByTelNo(string name)
+    {
+        List<Customer> cuslist = DBHelper.GetAdminsList();
+        for (int i = 0; i < cuslist.Count; i++)
+        {
+            if (cuslist[i].UserName == name)
+            {
+               return true;
+            }
+        }
+        return false;
+    }
     public static Customer Recharge(string telNo,decimal num)
     {
 
-
+        customersList = GetCustomersList();
         for (int i = 0; i < customersList.Count; i++)
         {
             if (customersList[i].TelNo == telNo)
@@ -93,7 +119,7 @@ public class CustomerFactory
     }
     public static Customer CustomerPay(string telNo, decimal num)
     {
-
+        customersList = GetCustomersList();
         for (int i = 0; i < customersList.Count; i++)
         {
             if (customersList[i].TelNo == telNo)

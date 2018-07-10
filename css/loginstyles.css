@@ -344,3 +344,34 @@ body .zhuce .zcsub #adduser {
     outline: none;
     color: #000;
 }
+.SpanLogin
+{
+    cursor:pointer;
+}
+.SLactive
+{
+    color:#fff;
+}
+#AdminLogin
+{
+    float:right;
+}
+#Line
+{
+    border-bottom:2px solid #fff;
+    width:38%;
+    position:relative;
+    right:3%;
+    transition:all 0.5s ease-in-out;
+}
+#checkcode
+{
+    width:50%;
+    margin-top:-5px;
+}
+#CCode
+{
+    cursor:pointer;
+    width: 30%;
+    height: 50px;
+}

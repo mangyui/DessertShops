@@ -21,7 +21,9 @@
     <form class="form-signin" action="Handlers/LoginHandler.ashx" method="post">
         <div class='login'>
             <div class='login_title'>
-                <span>用户登录</span>
+                <span id="CustomerLogin" class="SpanLogin SLactive">用户登录</span>
+                <span id="AdminLogin" class="SpanLogin">管理员登录</span>
+                <div id="Line"></div>
             </div>
             <div class='login_fields'>
                 <div class='login_fields__user'>
@@ -42,15 +44,18 @@
                         <img alt="" src='images/loginimg/tick.png' />
                     </div>
                 </div>
+                <input  type="text" name="checkcode" id="checkcode" class="form-control" placeholder="验证码" required>
+                <img id="CCode" src="handlers/CheckCode.ashx" alt=""  title='看不清楚，双击图片换一张。' ondblclick="this.src = 'handlers/CheckCode.ashx?flag=' + Math.random()" border="1" />
+
 
                 <div class='login_fields__submit'>
                     <input id="Sub" type='button' value='登录' />
                     <input id="hint" type='button' value='注册' />
                 </div>
             </div>
-            <div class='disclaimer'>
+            <!--<div class='disclaimer'>
                 <p>欢迎登陆。。。</p>
-            </div>
+            </div>-->
         </div>
     </form>
         <script type="text/javascript" src="plugins/jquery/dist/jquery.min.js"></script>
@@ -64,6 +69,25 @@
                     $('#Sub').click();
                 }
             });
+            $("#AdminLogin").click(function () {
+                //$("#Line").css("float", "right");
+                $("#Line").css("right", "-62%");
+                $("#CustomerLogin").removeClass("SLactive");
+                $(this).addClass("SLactive");
+                $("input[name='login']").val("admin");
+                $("input[name='pwd']").val("");
+                //$("#hint").attr("disabled", "disabled");
+
+            })
+            $("#CustomerLogin").click(function () {
+                $("#Line").css("right", "3%");
+                $("#AdminLogin").removeClass("SLactive");
+                $(this).addClass("SLactive");
+                $("input[name='login']").val("18857510000");
+                $("input[name='pwd']").val("");
+                //$("#hint").removeAttr("disabled");
+
+            })
             ////粒子背景特效
             //$('body').particleground({
             //    dotColor: '#E8DFE8',
@@ -104,21 +128,32 @@
             $('#Sub').click(function (e) {
                 var login = $('input[name="login"]').val();
                 var pwd = $('input[name="pwd"]').val();
+                var code = $('input[name="checkcode"]').val();
                 if (login == '') {
                     message("error", "请输入您的账号", 2000,e);
                 } else if (pwd == '') {
                     message("error", "请输入您的密码", 2000,e);
+                } else if (code == '') {
+                    message("error", "请输入验证码", 2000, e);
                 } else {
+                    var AC = "customer";
+                    if ($("#AdminLogin").hasClass("SLactive"))
+                        AC = "admin";
                     //认证中..
                     $('.login').addClass('test'); //倾斜特效
                     setTimeout(function () {
                         $('.login').addClass('testtwo'); //平移特效
                     }, 300);
-                    $.post("Handlers/LoginHandler.ashx", { tel: login, pwd: pwd }, function (data) {
-                        if (data == "ok")
+                    $.post("Handlers/LoginHandler.ashx", { tel: login, pwd: pwd ,checkcode:code,type:AC}, function (data) {
+                        if (data == "ToCustomer")
                         {
                             window.location.href = "index.aspx";
-                        } else {
+                        }
+                        else if(data == "ToAdmin")
+                        {
+                            window.location.href = "Admin/productsEdit.aspx";
+                        }
+                        else {
                             setTimeout(function () {
                                 $('.login').removeClass('testtwo'); //xx平移特效
                             }, 1000);
@@ -129,9 +164,19 @@
                             setTimeout(function () {
                                 message("error", "账号错误", 3000);
                             }, 1500);
-                            else
+                            else if (data == "userPwdError") {
                                 setTimeout(function () {
                                     message("error", "密码错误", 3000);
+                                }, 1500);
+                            }
+                            else if (data == "errorcode") {
+                                setTimeout(function () {
+                                    message("error", "验证码错误", 3000);
+                                }, 1500);
+                            }
+                            else
+                                setTimeout(function () {
+                                    message("error", "登录失败", 3000);
                                 }, 1500);
                         }
                     })

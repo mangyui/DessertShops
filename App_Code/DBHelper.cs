@@ -82,6 +82,27 @@ public class DBHelper
         connection.Close();
         return list;
     }
+    public static List<Customer> GetAdminsList()
+    {
+        List<Customer> list = new List<Customer>();
+        string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection connection = new SqlConnection(connectionString);
+
+        string queryString = "SELECT * FROM [admin]";
+        SqlCommand command = new SqlCommand(queryString, connection);
+        connection.Open();
+        SqlDataReader reader = command.ExecuteReader();
+        Customer c = null;
+        while (reader.Read())
+        {
+            c = new Customer();
+            c.UserName = reader["管理员名"].ToString();
+            c.UserPwd = reader["密码"].ToString();
+            list.Add(c);
+        }
+        connection.Close();
+        return list;
+    }
     public static List<Product> GetProductsList()
     {
         List<Product> list = new List<Product>();
@@ -263,7 +284,7 @@ public static List<Product> GetProductsList2(int typeid)
             sqlcmd.ExecuteNonQuery();//插入记录（生成订单）
 
             //向订单明细表中插入记录
-            cmdstr = "select top 1 订单号 from orders where 用户号=@userid order by 订单号 desc"; //降序排序后输出第一个orderid，即最新的。
+            cmdstr = "exec get_Orderid @userid"; //降序排序后输出第一个orderid，即最新的。            **** //存储过程get_Orderid******
             sqlcmd.CommandText = cmdstr;
             sqlcmd.Parameters.Clear();//清空原来的sql参数，以便重新加入
             sqlcmd.Parameters.AddWithValue("@userid", userid);
@@ -307,6 +328,39 @@ public static List<Product> GetProductsList2(int typeid)
             {
                 connection.Close();
             }
+        }
+    }
+    public static bool PayOrder(string userid, int orderid)
+    {
+        string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection connection = new SqlConnection(connectionString);
+        String insertcmd = "exec Order_User @userid,@orderid";         //****Order_User存储过程*********
+
+        SqlCommand mycmd = new SqlCommand(insertcmd, connection);
+        //
+        mycmd.Parameters.AddWithValue("@userid", userid);
+        mycmd.Parameters.AddWithValue("@orderid", orderid);
+        mycmd.Connection.Open();
+        int iResult = 0;
+        try
+        {
+            iResult = mycmd.ExecuteNonQuery();
+        }
+        catch (Exception ee)
+        {
+            return false;
+        }
+        finally
+        {
+            mycmd.Connection.Close();
+        }
+        if (iResult > 0)
+        {
+           return true;
+        }
+        else
+        {
+           return false;           
         }
     }
 

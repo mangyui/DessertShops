@@ -8,7 +8,7 @@ public class ProductFactory
 {
 
     private static List<Product> productsList1;
-    private static List<Product> productsList2;
+    //private static List<Product> productsList2;
 
     /// <summary>
     /// 获取所有产品信息
@@ -100,8 +100,7 @@ public class ProductFactory
     /// <returns>产品对象</returns>
     public static Product GetProductById(int id)
     {
-        if (productsList1 == null)
-            productsList1=GetProductsList();   
+        productsList1=GetProductsList();   
         foreach (Product p in productsList1)
         {
             if (p.Id == id)
@@ -118,8 +117,7 @@ public class ProductFactory
     /// <returns></returns>
     public static List<Product> GetProductByTypeId(string typeid)
     {
-        if (productsList1 == null)
-            productsList1=GetProductsList();
+        productsList1=GetProductsList();
         List<Product> list = new List<Product>();
         foreach (Product p in productsList1)
         {

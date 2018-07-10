@@ -36,19 +36,22 @@
             font-size:20px;
             color:#fff;
         }
+        .Toptd #aLogin
+        {
+            float:right;
+            text-decoration:none;
+            color:#fff;
+        }
+        #aLogin:hover
+        {
+            text-decoration:underline;           
+        }
         .topTr 
         {
             padding:10px;
            
         }
-        .topTr span
-        {
-            margin-left:10px;
-            padding:0 20px;
-            border-left:3px solid #fff;
-            font-weight:bold;
-            color:#ee7560;
-        }
+
         .topDiv
          {
             width:100%;
@@ -64,7 +67,7 @@
             background-color:#222831;
             color:#ffffff;
         }
-        .tdCont a
+        .tdCont .aa
         {
             display:block;
             margin:0 0;
@@ -77,7 +80,7 @@
             color:#e2e2e2;
             text-decoration:none;
         }
-        .tdCont a:hover
+        .tdCont .aa:hover
         {
             background-color:rgba(128, 128, 128, 0.42);
         }
@@ -105,6 +108,15 @@
             background-size:100%;
 
         }
+        .topTr #SpanAd
+        {
+            margin-left:10px;
+            padding:0 20px;
+            border-left:3px solid #fff;
+            font-weight:bold;
+            color:#ee7560;
+            text-decoration:none;
+        }
     </style>    
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -116,16 +128,16 @@
         <table width="100%">
             <tr><td colspan="2" class="Toptd" >
                 <i class="admin-icon Topicon">&#xe994;</i>
-                后台管理</td></tr>
+                后台管理<a href="/login.html" id="aLogin" runat="server">登出</a></td></tr>
             <tr>
                 <td width="15%" class="tdCont">
                    <div><div id="divLogo"></div><h3>DessertShop</h3></div>
-                   <div class="topDiv"><div class="topTr">欢迎登录!<span id="SpanAd">admin</span></div></div>
-                    <a href="productsAdd.aspx"><i class="admin-icon">&#xea0a;</i>增加商品</a>
-                    <a href="productsEdit.aspx"><i class="admin-icon">&#xeaae;</i>管理商品</a>
-                    <a href="OrdersEdit.aspx"><i class="admin-icon">&#xe94b;</i>订单管理</a>
-                    <a href="uploadImg.aspx"><i class="admin-icon">&#xe9c6;</i>上传图片</a>
-                    <a class="bottomP" href="/index.aspx"><i class="admin-icon">&#xe900;</i>转到主页</a>
+                   <div class="topDiv"><div class="topTr" ><span id="SpanLg" runat="server">欢迎登录!</span><a href="#" id="SpanAd" runat="server">admin</a></div></div>
+                    <a class="aa" href="productsAdd.aspx"><i class="admin-icon">&#xea0a;</i>增加商品</a>
+                    <a class="aa" href="productsEdit.aspx"><i class="admin-icon">&#xeaae;</i>管理商品</a>
+                    <a class="aa" href="OrdersEdit.aspx"><i class="admin-icon">&#xe94b;</i>订单管理</a>
+                    <a class="aa" href="uploadImg.aspx"><i class="admin-icon">&#xe9c6;</i>上传图片</a>
+                    <a  class="bottomP aa" href="/index.aspx" target="_blank"><i class="admin-icon">&#xe900;</i>转到主页</a>
                 </td>
                 <td width="85%" class="tdMo">
                 <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">

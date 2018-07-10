@@ -76,11 +76,10 @@ public partial class Admin_updateProduct : System.Web.UI.Page
     //修改
     protected void Button1_Click(object sender, EventArgs e)
     {
-        GetOldPrice();
         string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         SqlConnection connection = new SqlConnection(connectionString);
-
-        String insertcmd = "update Product set 商品名=@name,现价=@price,简介=@desc,图片=@imgpath,商品类别=@typeid where 商品ID=@id";
+        String insertcmd = "exec update_Product @name,@price,@desc,@imgpath,@typeid,@id";         //****update_Product存储过程*********
+        //String insertcmd = "update Product set 商品名=@name,现价=@price,简介=@desc,图片=@imgpath,商品类别=@typeid where 商品ID=@id";
         SqlCommand mycmd = new SqlCommand(insertcmd, connection);
         //
         mycmd.Parameters.AddWithValue("@name", txtName.Text.Trim());
@@ -104,7 +103,7 @@ public partial class Admin_updateProduct : System.Web.UI.Page
         {
             mycmd.Connection.Close();
         }
-        if (iResult == 1)
+        if (iResult > 0)
         {
             ClientScript.RegisterStartupScript(GetType(), "message", "<script>alert('修改记录成功！');window.location.href='productsEdit.aspx';</script>");
         }
@@ -113,30 +112,4 @@ public partial class Admin_updateProduct : System.Web.UI.Page
             ClientScript.RegisterStartupScript(GetType(), "message", "<script>alert('命令执行完成，但没有记录被修改！');window.location.href='productsEdit.aspx';</script>");
         }
     }
-    public void GetOldPrice()
-    {
-        string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-        SqlConnection connection = new SqlConnection(connectionString);
-
-        String insertcmd = "update Product set 原价=现价 where 商品ID=@id";
-        SqlCommand mycmd = new SqlCommand(insertcmd, connection);
-       
-        mycmd.Parameters.AddWithValue("@id", txtID.Text.Trim());
-        mycmd.Connection.Open();
-        int iResult = 0;
-        try
-        {
-            iResult = mycmd.ExecuteNonQuery();
-        }
-        catch (Exception ee)
-        {
-            ClientScript.RegisterStartupScript(GetType(), "message", "<script>alert('错误！');</script>");
-            return;
-        }
-        finally
-        {
-            mycmd.Connection.Close();
-        }
-    }
-
 }
