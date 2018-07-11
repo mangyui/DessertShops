@@ -120,8 +120,8 @@ public class DBHelper
             p.Id = int.Parse(reader["商品ID"].ToString());
             p.Name = reader["商品名"].ToString();
             p.NewPrice = decimal.Parse(reader["现价"].ToString());
-            //if (reader["原价"].ToString() != null)
-            //    p.OldPrice = decimal.Parse(reader["原价"].ToString());
+            if (reader["原价"].ToString() != "")
+                p.OldPrice = decimal.Parse(reader["原价"].ToString());
             //p.ImgPath = reader["ImgPath"].ToString();
             p.ImgPath = reader["图片"].ToString().Replace("~\\", "");
             p.TypeId = int.Parse(reader["商品类别"].ToString());
@@ -195,7 +195,7 @@ public static List<Product> GetProductsList2(int typeid)
         string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         SqlConnection connection = new SqlConnection(connectionString);
 
-        string queryString = "SELECT * FROM [orders] where 用户号=@id";
+        string queryString = "SELECT * FROM [orders] where 用户号=@id order by 订单号 desc";
         SqlCommand command = new SqlCommand(queryString, connection);
         command.Parameters.AddWithValue("@id", userid);
         connection.Open();
@@ -239,7 +239,7 @@ public static List<Product> GetProductsList2(int typeid)
         connection.Close();
         return list;
     }
-    public static Order GetOrder(string orderid)
+    public static Order GetOrder(int orderid)
     {
 
         string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
@@ -272,7 +272,7 @@ public static List<Product> GetProductsList2(int typeid)
         sqlcmd.Parameters.AddWithValue("@userid", userid);
         sqlcmd.Parameters.AddWithValue("@date", DateTime.Now.ToString());
         sqlcmd.Parameters.AddWithValue("@totalprice", cart.TotalSum);
-        sqlcmd.Parameters.AddWithValue("@status", "未付款");
+        sqlcmd.Parameters.AddWithValue("@status", "待付款");
         SqlTransaction tran = null;
         string orderid = "";
         try
@@ -363,5 +363,101 @@ public static List<Product> GetProductsList2(int typeid)
            return false;           
         }
     }
+    public static bool ShouHuo(int orderid)
+    {
+        string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection connection = new SqlConnection(connectionString);
+        String insertcmd = "update  [orders] set 订单状态='待评价' where 订单号=@orderid and 订单状态='待收货'";        
 
+        SqlCommand mycmd = new SqlCommand(insertcmd, connection);
+        //
+        mycmd.Parameters.AddWithValue("@orderid", orderid);
+        mycmd.Connection.Open();
+        int iResult = 0;
+        try
+        {
+            iResult = mycmd.ExecuteNonQuery();
+        }
+        catch (Exception ee)
+        {
+            return false;
+        }
+        finally
+        {
+            mycmd.Connection.Close();
+        }
+        if (iResult > 0)
+        {
+           return true;
+        }
+        else
+        {
+           return false;           
+        }
+    }
+    public static bool PingJia(int orderid)
+    {
+        string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection connection = new SqlConnection(connectionString);
+        String insertcmd = "update  [orders] set 订单状态='交易完成' where 订单号=@orderid and 订单状态='待评价'";
+
+        SqlCommand mycmd = new SqlCommand(insertcmd, connection);
+        //
+        mycmd.Parameters.AddWithValue("@orderid", orderid);
+        mycmd.Connection.Open();
+        int iResult = 0;
+        try
+        {
+            iResult = mycmd.ExecuteNonQuery();
+        }
+        catch (Exception ee)
+        {
+            return false;
+        }
+        finally
+        {
+            mycmd.Connection.Close();
+        }
+        if (iResult > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public static bool ChongZhi(string userid,decimal money)
+    {
+        string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection connection = new SqlConnection(connectionString);
+        String insertcmd = "update  Customers set 余额+=@money where 用户ID=@userid";        
+
+        SqlCommand mycmd = new SqlCommand(insertcmd, connection);
+        //
+        mycmd.Parameters.AddWithValue("@userid", userid);
+        mycmd.Parameters.AddWithValue("@money", money);
+        mycmd.Connection.Open();
+        int iResult = 0;
+        try
+        {
+            iResult = mycmd.ExecuteNonQuery();
+        }
+        catch (Exception ee)
+        {
+            return false;
+        }
+        finally
+        {
+            mycmd.Connection.Close();
+        }
+        if (iResult > 0)
+        {
+           return true;
+        }
+        else
+        {
+           return false;           
+        }
+    }
 }

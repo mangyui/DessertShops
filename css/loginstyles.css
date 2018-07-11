@@ -375,3 +375,14 @@ body .zhuce .zcsub #adduser {
     width: 30%;
     height: 50px;
 }
+#aBack
+{
+    color:white;
+    position:absolute;
+    bottom:10px;
+    left:10px;
+}
+#aBack:hover
+{
+    color:#4FA1D9;
+}

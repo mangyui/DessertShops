@@ -53,6 +53,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="zhuce">
+            <a href="login.html" id="aBack">返回登录</a>
             <div class='login_title2'>
                 <span>用户注册</span>
             </div>

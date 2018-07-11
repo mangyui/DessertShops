@@ -182,7 +182,7 @@ ul {
 }
 #OrderContent .ps-cart__content
 {
-    height :auto;
+    height :240px;
     border:1px solid #d8dde4;
     border-bottom:none;
 }

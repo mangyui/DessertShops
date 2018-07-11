@@ -62,7 +62,7 @@ Showbo.Msg = {
     dvBtns: null,
     lightBox: null,
     dvMsgBox: null,
-    defaultWidth: 300,
+    defaultWidth: 400,
     moveProcessbar: function () {
         var o = Showbo.$('dvProcessbar'),
             w = o.style.width;
@@ -108,16 +108,93 @@ Showbo.Msg = {
         btn.type = "button";
         btn.className = 'Sbtn';
         btn.value = v;
+        if (p == "yes")
+            btn.id = "YesBtn";
         btn.onmouseover = function () {
             this.className = 'btnfocus';
         }
         btn.onmouseout = function () {
             this.className = 'Sbtn';
         }
-        btn.onclick = function () {
-            Showbo.Msg.hide();
-            if (fn) fn(p);
-        }
+        if (v == "付款")
+            btn.onclick = function (e) {
+                var orderid = $(this).parents("#dvMsgBox").find("#dvMsgCT").find("span").eq(0).text();
+                var pwd = $(this).parents("#dvMsgBox").find("#dvMsgCT").find("#msg_txtInput").val();
+                $.post("/Handlers/ChangeMoney.ashx", { type: "-",pwd:pwd, orderid: orderid }, function (data) {
+                    if (data == "ok") {
+                        message("success", "付款成功！", 1000);
+                        setTimeout(function () {
+                            window.location.href = "user.aspx";
+                        }, 2000);
+                    }
+                    else if (data == "errorpwd")
+                        message("error", "密码错误", 3000);
+                    else if (data == "errormoney")
+                        message("error", "余额不足", 2000);
+                    else if (data == "errorcustomer")
+                        message("error", "请先登录", 2000);
+                    else
+                        message("error", "付款失败！", 3000);
+                })
+            }
+        else if (v == "充值")
+            btn.onclick = function (e) {
+                var money = $(this).parents("#dvMsgBox").find("#dvMsgCT").find("span").eq(1).text();
+                var pwd = $(this).parents("#dvMsgBox").find("#dvMsgCT").find("#msg_txtInput").val();
+                $.post("/Handlers/ChangeMoney.ashx", { type: "+", pwd: pwd, addmoney: money }, function (data) {
+                    if (data == "ok") {
+                        message("success", "充值成功！", 1000);
+                        setTimeout(function () {
+                            window.location.href = "user.aspx";
+                        }, 2000);
+                    }
+                    else if (data == "errorpwd")
+                        message("error", "密码错误", 3000);
+                    else if (data == "errorcustomer")
+                        message("error", "请先登录", 2000);
+                    else
+                        message("error", "充值失败！", 3000);
+                })
+            }
+
+        else if (v == "收货")
+            btn.onclick = function (e) {
+                var orderid = $(this).parents("#dvMsgBox").find("#dvMsgCT").find("span").eq(0).text();
+                $.post("/Handlers/Oporder.ashx", { type: "shouhuo",orderid: orderid }, function (data) {
+                    if (data == "ok") {
+                        message("success", "收货成功！", 1000);
+                        setTimeout(function () {
+                            window.location.href = "user.aspx";
+                        }, 2000);
+                    }
+                    else if (data == "errorcustomer")
+                        message("error", "请先登录", 2000);
+                    else
+                        message("error", "收货失败！", 3000);
+                })
+            }
+        else if (v == "评价")
+            btn.onclick = function (e) {
+                var orderid = $(this).parents("#dvMsgBox").find("#dvMsgCT").find("span").eq(0).text();
+                //var pwd = $(this).parents("#dvMsgBox").find("#dvMsgCT").find("#msg_txtInput").val();
+                $.post("/Handlers/Oporder.ashx", { type: "pingjia", orderid: orderid }, function (data) {
+                    if (data == "ok") {
+                        message("success", "评价成功！", 1000);
+                        setTimeout(function () {
+                            window.location.href = "user.aspx";
+                        }, 2000);
+                    }
+                    else if (data == "errorcustomer")
+                        message("error", "请先登录", 2000);
+                    else
+                        message("error", "评价失败！", 3000);
+                })
+            }
+        else
+            btn.onclick = function () {
+                Showbo.Msg.hide();
+                if (fn) fn(p);
+            }
         return btn;
     },
     alert: function (msg) {
@@ -146,7 +223,7 @@ Showbo.Msg = {
         if (!txtId) txtId = "msg_txtInput";
         this.show({
             title: '输入提示',
-            msg: labelWord+'<br/>' + '<input type="text" id="' + txtId + '" style="width:200px" value="' + defaultValue + '"/>',
+            msg: labelWord + '<br/>' + '<input type="text" id="' + txtId + '" style="width:200px" value="' + defaultValue + '"/>',
             buttons: {
                 yes: '确认',
                 no: '取消'
@@ -154,15 +231,57 @@ Showbo.Msg = {
             fn: fn
         });
     },
-    topwd: function (labelWord, defaultValue, txtId, fn) {
+    topwd: function (num, labelWord, defaultValue, txtId, fn) {
         if (!labelWord) labelWord = '请输入密码';
-        if (!defaultValue) defaultValue = "";
+        if (!defaultValue) defaultValue = "请输入密码";
         if (!txtId) txtId = "msg_txtInput";
         this.show({
-            title: '提示',
-            msg: labelWord+'<br/>' + '<input type="text" id="' + txtId + '" style="width:200px" value="' + defaultValue + '"/>',
+            title: '付款',
+            msg: '订单号：<span>' + num + '</span><br/>总金额：<span>' + labelWord + '</span>$<br/>' + '<input type="password" id="' + txtId + '" style="width:200px  text-align:center;" placeholder="' + defaultValue + '"/>',
             buttons: {
-                yes: '确认',
+                yes: '付款',
+                no: '取消'
+            },
+            fn: fn
+        });
+    },
+    tochong: function (num, labelWord, defaultValue, txtId, fn) {
+        if (!labelWord) labelWord = '请输入密码';
+        if (!defaultValue) defaultValue = "请输入密码";
+        if (!txtId) txtId = "msg_txtInput";
+        this.show({
+            title: '充值',
+            msg: '用户名：<span>' + num + '</span><br/>充值金额：<span>' + labelWord + '</span>$<br/>' + '<input type="password" id="' + txtId + '" style="width:200px  text-align:center;" placeholder="' + defaultValue + '"/>',
+            buttons: {
+                yes: '充值',
+                no: '取消'
+            },
+            fn: fn
+        });
+    },
+    toshou: function (num, labelWord, defaultValue, txtId, fn) {
+        if (!labelWord) labelWord = '请输入密码';
+        if (!defaultValue) defaultValue = "请输入密码";
+        if (!txtId) txtId = "msg_txtInput";
+        this.show({
+            title: '收货',
+            msg: '订单号：<span>' + num + '</span><br/>总金额：<span>' + labelWord + '</span>$<br/>',
+            buttons: {
+                yes: '收货',
+                no: '取消'
+            },
+            fn: fn
+        });
+    },
+   toping: function (num, labelWord, defaultValue, txtId, fn) {
+        if (!labelWord) labelWord = '未知';
+        if (!defaultValue) defaultValue = "请输入对这次消费的评价";
+        if (!txtId) txtId = "msg_txtInput";
+        this.show({
+            title: '评价',
+            msg: '订单号：<span>' + num + '</span><br/>总金额：<span>' + labelWord + '</span>$<br/>' + '<textarea id="' + txtId + '" style="width:300px" placeholder="' + defaultValue + '"></textarea>',
+            buttons: {
+                yes: '评价',
                 no: '取消'
             },
             fn: fn

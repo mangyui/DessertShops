@@ -81,6 +81,7 @@ img {
 #ShowMessage {
     font-size:14px;
     font-weight:bolder;
+    z-index:9999999;
 }
 #removeAll {
     background:#ee7560;
@@ -91,8 +92,63 @@ img {
 .cuk-tab-panes {
     text-align:center;
     padding:30px 10px;
-    height :450px;
+    height :500px;
     overflow:auto;
+}
+.ps-cart-item .ps-cart-item_xin {
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+    z-index: 1000;
+    background-color: #000;
+    background-color: #ccc;
+    /*background-image: -webkit-linear-gradient(-360deg, black, black);
+    background-image: linear-gradient(90deg,black, black);*/
+    -webkit-transition: all 0.6s ease;
+    -moz-transition: all 0.6s ease;
+    transition: all 0.6s ease;
+}
+/*.ps-cart-item .ps-cart-item_xin:hover {
+        background-color: #ee7560;
+        background-image: -webkit-linear-gradient(-360deg, #ee7560, #ff5858);
+        background-image: linear-gradient(90deg,#ee7560, #ff5858);
+    }*/
+.ps-cart-item .ps_xin_active
+{
+        background-color: #ee7560;
+        background-image: -webkit-linear-gradient(-360deg, #ee7560, #ff5858);
+        background-image: linear-gradient(90deg,#ee7560, #ff5858);
+}
+.ps-cart-item .ps-cart-item_xin .ps-icon--heart {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%) rotate(0deg);
+        -moz-transform: translate(-50%, -50%) rotate(0deg);
+        -ms-transform: translate(-50%, -50%) rotate(0deg);
+        -o-transform: translate(-50%, -50%) rotate(0deg);
+        transform: translate(-50%, -50%) rotate(0deg);
+        font-size: 18px;
+        line-height: 1em;
+        color: #fff;
+        -webkit-transition: all 0.6s ease;
+        -moz-transition: all 0.6s ease;
+        transition: all 0.6s ease;
+    }
+.ps-cart-item .ps-cart-item_xin .ps-icon--heart:hover
+{
+  -webkit-transform: translate(-50%, -50%) rotate(360deg);
+        -moz-transform: translate(-50%, -50%) rotate(360deg);
+        -ms-transform: translate(-50%, -50%) rotate(360deg);
+        -o-transform: translate(-50%, -50%) rotate(360deg);
+        transform: translate(-50%, -50%) rotate(360deg);
 }
 .num {
    display: inline-block;

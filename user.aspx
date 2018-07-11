@@ -7,6 +7,7 @@
     <script src="plugins/showBo/showBo.js"></script>
     <script>
         $(function () {
+  
             $("#aOut").click(function () {
                 $.get("Handlers/Loginout.ashx", { work: "logout" }, function (data) {
                     if (data == "ok") {
@@ -23,6 +24,10 @@
                 $(".cuk-tab-panes .cuk-tab-pane").eq($(this).index()).show();
                 return false;
             })
+            $(".ps-cart-item_xin").click(function () {
+                $(this).toggleClass("ps_xin_active");
+                return false;
+            })
             //$("#zhuye").click(function () {
             //    $(".cuk-tab-bar").removeClass("cuk-tab-bar-active");
             //    $("#zhuye").addClass("cuk-tab-bar-active");
@@ -37,8 +42,10 @@
                 if (r != null) return unescape(r[2]); return null;
             }
             function aa() {
-                if ($.getUrlParam("id") != null)
+                if ($.getUrlParam("id") != null) {
                     $(".cuk-tab-bar").eq(1).click();
+                    $("#Aopde").data("orderid", $("#ContentPlaceHolder1_SpanOId").text()).data("odstate", $("#ContentPlaceHolder1_OrderState").text()).data("odprice", $("#ContentPlaceHolder1_OrderSum").text());
+                }
             }
             aa();
             $("#chonghzi").click(function () {
@@ -55,38 +62,56 @@
                 if (num == "")
                     message("error", "请先选择要充值的金额", 1000, e);
                 else {
-                    $.post("Handlers/ChangeMoney.ashx", { type: "+", addmoney: num }, function (data) {
-                        if (data == "ok") {
-                            message("success", "充值成功！", 2000, e);
-                            $('#CZ').attr('disabled', 'disabled')
-                            setTimeout(function () {
-                                window.location.href = "user.aspx";
-                            }, 2000);
-                        }
-                        else if (data == "errorcustomer")
-                            message("error", "请先登录", 2000, e);
-                        else
-                            message("error", "充值失败！", 2000, e);
-                    })
+                    var name=$("#pName").text();
+                    Showbo.Msg.tochong(name,num);
                 }
             })
-            $(".PayA").click(function (e) {
-                var $th = $(this);
-                var orderid = $(this).data("orderid");
-                $.post("Handlers/ChangeMoney.ashx", { type: "-", orderid: orderid }, function (data) {
-                    if (data == "ok") {
-                        message("success", "付款成功！", 2000, e);
-                        $th.attr('disabled', 'disabled');
-                        setTimeout(function () {
-                            window.location.href = "user.aspx";
-                        }, 2000);
-                    }
-                    else if (data == "errorcustomer")
-                        message("error", "请先登录", 2000, e);
-                    else
-                        message("error", "付款失败！", 2000, e);
-                })
+            $(".PayA").each(function () {
+                if ($(this).data("odstate") == "待付款") {
+                    var odid = $(this).data("orderid");
+                    var odpr = $(this).data("odprice");
+                    $(this).text("付款").css("background-image", "linear-gradient(90deg,#228fbd, #2570a1)").attr("onclick", "Showbo.Msg.topwd(" + odid + "," + odpr + ")");
+                }
+                else if ($(this).data("odstate") == "已付款") {
+                    $(this).text("待发货").css("background-image", "linear-gradient(90deg,#009ad6, skyblue)");
+                }
+                else if ($(this).data("odstate") == "待收货") {
+                    var odid = $(this).data("orderid");
+                    var odpr = $(this).data("odprice");               
+                    $(this).text("确认收货").css("background-image", "linear-gradient(90deg,#00a6ac, #008792)").attr("onclick", "Showbo.Msg.toshou(" + odid + "," + odpr + ")");
+                }
+                else if ($(this).data("odstate") == "待评价") {
+                    var odid = $(this).data("orderid");
+                    var odpr = $(this).data("odprice");               
+                    $(this).text("评价").css("background-image", "linear-gradient(90deg,#6f60aa, #585eaa)").attr("onclick", "Showbo.Msg.toping(" + odid + "," + odpr + ")");
+                }
+                else if ($(this).data("odstate") == "交易完成") {
+                    $(this).text("交易完成").css("background-image", "linear-gradient(90deg,#006c54, #007d65)");
+                }
             })
+            //var ke=function kkk() {
+            //  var $th = $(this); alert("132");         
+            //    var orderid = $(this).parents("#dvMsgBox").find("dvMsgCT").find("span").eq(1).text();
+                
+            //    $.post("Handlers/ChangeMoney.ashx", { type: "-", orderid: orderid }, function (data) {
+            //        if (data == "ok") {
+            //            message("success", "付款成功！", 2000, e);
+            //            setTimeout(function () {
+            //                window.location.href = "user.aspx";
+            //            }, 2000);
+            //        }
+            //        else if (data == "errormoney")
+            //            message("error", "余额不足", 2000, e);
+            //        else if (data == "errorcustomer")
+            //            message("error", "请先登录", 2000, e);
+            //        else
+            //            message("error", "付款失败！", 2000, e);
+            //    })
+            //}
+            //$("#YesBtn").click(function(e){
+             
+            //})
+
             //$(".dingdanremove").click(function (e) {
             //    var did = $(this).data("did");
             //    var $th = $(this).parent();
@@ -100,12 +125,13 @@
             //    })
             //})
         })
+        
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="page-wrap">
         <div class="ps-section--hero">
-            <img src="images/hero/03.jpg" alt="">
+            <img src="images/hero/03.jpg" alt=""/>
             <div class="ps-section__content text-center">
                 <h3 class="ps-section__title">User Centre</h3>
                 <div class="ps-breadcrumb">
@@ -124,7 +150,7 @@
                     <ItemTemplate>
                         <div class="section-2ZI basic-info-2Ns">
                             <img class="cuk-avatar cuk-avatar-circle cuk-avatar-large avatar-36q" src="images/User.jpg" />
-                            <p class="username-1y7"><%#Eval("UserName") %></p>
+                            <p id="pName" class="username-1y7"><%#Eval("UserName") %></p>
                             <p class="bio-_sm"></p>
                         </div>
                         <div class="section-2ZI follow-info-5YF">
@@ -139,7 +165,7 @@
                             <li>性别：<%#Eval("Sex") %></li>
                         </ul>
                         <ul class="section-2ZI follow-info-5YF">
-                            <a id="chonghzi" class="ps-btn ps-btn--xs" href="#" onclick="Showbo.Msg.topwd()">前往充值<i class="fa fa-angle-right"></i></a>
+                            <a id="chonghzi" class="ps-btn ps-btn--xs" href="#" >前往充值<i class="fa fa-angle-right"></i></a>
                         </ul>
 
                         </div>
@@ -163,18 +189,18 @@
                                             <ItemTemplate>
                                                 <div>
                                                     <li class="dingdanli">
-                                                        <a class="DId">订单编号：16136235—<%#Eval("Id") %></a><br />
+                                                        <a href="user.aspx?id=<%#Eval("Id") %>" class="DId">订单编号：16136235—<%#Eval("Id") %></a><br />
                                                         <table>
                                                             <tr>
                                                                 <td><span>下单时间：<%#Eval("InDate") %></span></td>
                                                                 <td><span>用户ID：<%#Eval("UserId") %></span></td>
-                                                                <td><span>总价：<%#Eval("Price") %>$</span></td>
+                                                                <td><span>总价：<i  class="SpanOP"><%#Eval("Price") %></i> $</span></td>
                                                                 <td><span>订单状态：<%#Eval("State") %></span></td>
                                                             </tr>
                                                         </table>
 
                                                     </li>
-                                                    <a class="ps-btn ps-btn--xs aorder PayA" data-orderid="<%#Eval("Id") %>">前往付款<i class="fa fa-angle-right"></i></a>
+                                                    <a class="ps-btn ps-btn--xs aorder PayA" data-orderid="<%#Eval("Id") %>" data-odstate="<%#Eval("State") %>" data-odprice="<%#Eval("Price") %>">无操作<i class="fa fa-angle-right"></i></a>
                                                     <a class="ps-btn ps-btn--xs aorder" href="user.aspx?id=<%#Eval("Id") %>">查看订单详情<i class="fa fa-angle-right"></i></a>
 
                                                     <%--<span class="dingdanremove" title="删除该订单" data-did="<%#Eval("Id") %>"></span>--%>
@@ -193,7 +219,9 @@
                                             <asp:Repeater ID="rptOrderC" runat="server">
                                                 <ItemTemplate>
                                                     <div class="ps-cart-item">
-                                                        <a class="ps-cart-item__close" href="#"></a>
+                                                         <a href="#" class="ps-cart-item_xin" data-tooltip="Add to wishlist">
+                                                    <i class="ps-icon--heart"></i>
+                                                </a>
                                                         <div class="ps-cart-item__thumbnail">
                                                             <a href="product-detail.aspx"></a>
                                                             <img src="<%#Eval("Img") %>" alt="">
@@ -210,14 +238,14 @@
                                             </asp:Repeater>
                                         </div>
                                         <div class="ps-cart__total bgRed">
-                                            <p>Item Total:<span id="OrderSum" runat="server">£00.00</span></p>
+                                            <p>Item Total:£<span id="OrderSum" runat="server">00.00</span></p>
                                             <p>Order State:<span id="OrderState" runat="server">无</span></p>
                                         </div>
                                     </div>
-
+                                  <a class="ps-btn ps-btn--xs aorder PayA" id="Aopde" data-orderid="" data-odstate="" data-odprice="">无操作<i class="fa fa-angle-right"></i></a>
                                 </div>
                                 <div id="Recharge" class="cuk-tab-pane">
-                                    <h3 id="RCh3" class="">*当前仅为模拟充值</h3>
+                                    <h3 id="RCh3" class="">*请先选择下列充值数值</h3>
                                     <a class="num">10</a>
                                     <a class="num">50</a>
                                     <a class="num">100</a>
