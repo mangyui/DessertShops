@@ -2,42 +2,16 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
         <style>
-        .tdCont a:nth-child(5) {
+        .tdCont a:nth-child(6) {
             border-right:none;
             border-left:4px solid #414141;
             background-color:#ffffff;  color:#000;
         }
-      
-        .tableEdit
-        {
-            border-collapse: collapse;
-            margin:20px auto;
-        }
-        .tableEdit tr
-        {
-            border-bottom:1px solid gray;          
-        }
-        .tableEdit tr td
-        {
-            padding:30px;
-        }
-        .opTd a
-        {
-            text-decoration:none;
-        }
-        .opTd a:hover
-        {
-            color:#ee7560;
-        }
-        #ContentPlaceHolder1_DataPager1 a
-        {
-            margin-left:10px;
-        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-     KeyWord:<asp:TextBox ID="txtKey" runat="server"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="查询" OnClick="btnSearch_Click" />
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [orders]"></asp:SqlDataSource>
+     关键字：<asp:TextBox ID="txtKey" runat="server"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="查询" OnClick="btnSearch_Click" />
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [orders] order by 订单号 desc"></asp:SqlDataSource>
 
     <asp:ListView ID="ListView1" runat="server" DataKeyNames="订单号" DataSourceID="SqlDataSource1" OnPagePropertiesChanging="ListView1_PagePropertiesChanging" >
       
@@ -45,7 +19,7 @@
         <EmptyDataTemplate>
             <table runat="server" style="" >
                 <tr>
-                    <td>未返回数据。</td>
+                    <td>未找到数据。</td>
                 </tr>
             </table>
         </EmptyDataTemplate>
@@ -103,7 +77,7 @@
     
     
     </asp:ListView>
-    <asp:DataPager ID="DataPager1" runat="server" PageSize="2" PagedControlID="ListView1">
+    <asp:DataPager ID="DataPager1" runat="server" PageSize="5" PagedControlID="ListView1">
         <Fields>
           <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
            <asp:NumericPagerField />

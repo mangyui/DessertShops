@@ -25,9 +25,10 @@ public partial class product_detail2 : System.Web.UI.Page
         Product prodect = ProductFactory.GetProductById(int.Parse(id));
         PPImg.Src = prodect.ImgPath;
         PPName.InnerText = prodect.Name;
-        PPOldprice.InnerText = "£" + prodect.OldPrice.ToString();
+        PPOldprice.InnerText = "$" + prodect.OldPrice.ToString();
         litNewprice.Text = prodect.NewPrice.ToString();
         PPHot.InnerHtml = prodect.NewPrice.ToString();
         PId.InnerText = prodect.Id.ToString();
+        Pdesc.InnerText = prodect.DeSCC;
     }
 }

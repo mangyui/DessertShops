@@ -4,150 +4,215 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>管理员操作</title>
     <link href="../plugins/admin-icon/iconA.css" rel="stylesheet" />
     <style>
-
         * {
-            margin:0 0;
-            padding:0 0;
-        }  
-        .admin-icon
-        {
-            margin-right:10px;
-            font-size:16px;
+            margin: 0 0;
+            padding: 0 0;
         }
-        .Topicon
-        {
-            font-size:24px;
-            color:#000;
+
+        .admin-icon {
+            margin-right: 10px;
+            font-size: 16px;
         }
+
+        .Topicon {
+            font-size: 24px;
+            color: #000;
+        }
+
         table {
             margin: 0 auto;
-             text-align: center;
-        }
-        .Toptd
-        {
-            background-color:#ee7560;
-            text-align:left;
-            font-weight:bold;
-            padding:10px 20px;
-            font-size:20px;
-            color:#fff;
-        }
-        .Toptd #aLogin
-        {
-            float:right;
-            text-decoration:none;
-            color:#fff;
-        }
-        #aLogin:hover
-        {
-            text-decoration:underline;           
-        }
-        .topTr 
-        {
-            padding:10px;
-           
+            text-align: center;
         }
 
-        .topDiv
-         {
-            width:100%;
-            margin:10px auto;
+        .Toptd {
+            background-color: #ee7560;
+            text-align: left;
+            font-weight: bold;
+            padding: 10px 20px;
+            font-size: 20px;
+            color: #fff;
+        }  
+          .Toptd  #IconLogin
+          {
+               float: right;
+               font-size:24px;
+               padding:4px 5px 0 5px;
+               color:#fff;
+          }
+            .Toptd #aLogin {
+                float: right;
+                text-decoration: none;
+                color: #fff;
+            }
+
+        #aLogin:hover {
+            text-decoration: underline;
         }
-        table td 
-        {
+
+        .topTr {
+            padding: 10px;
+        }
+
+        .topDiv {
+            width: 100%;
+            margin: 10px auto;
+        }
+
+        table td {
             /*border:1px solid gray;*/
         }
-        .tdCont
-        {
-            height:auto;
-            background-color:#222831;
-            color:#ffffff;
+
+        .tdCont {
+            height: auto;
+            background-color: #222831;
+            color: #ffffff;
         }
-        .tdCont .aa
-        {
-            display:block;
-            margin:0 0;
-            padding:15px 0;
-            width:100%;
-            border-bottom:none;
-            font-size:19px;
-            text-align:center;
-            font-weight:bold;
-            color:#e2e2e2;
-            text-decoration:none;
-        }
-        .tdCont .aa:hover
-        {
-            background-color:rgba(128, 128, 128, 0.42);
-        }
-        .tdCont .bottomP {
-               margin-bottom:50px;
-        }
+
+            .tdCont .aa {
+                display: block;
+                margin: 0 0;
+                padding: 15px 0;
+                width: 100%;
+                border-bottom: none;
+                font-size: 19px;
+                text-align: center;
+                font-weight: bold;
+                color: #e2e2e2;
+                text-decoration: none;
+            }
+
+                .tdCont .aa:hover {
+                    background-color: rgba(128, 128, 128, 0.42);
+                }
+
+            .tdCont .bottomP {
+                margin-bottom: 50px;
+            }
+
         .tdMo {
-            text-align:center;
-            background-color:rgba(128, 128, 128, 0.12)
+            text-align: center;
+            background-color: rgba(128, 128, 128, 0.12);
         }
 
-        #divLogo
-        {
-            background:url("/images/logo-2.png") 0 20px no-repeat;
-            width:100px;
-            height:100px;
-            background-size:100%;
-            margin:10px auto;
-        }  
-        #divLogo2
-        {
-            background:url("/images/logo-1.png") no-repeat;
-            width:60px;
-            height:40px;
-            background-size:100%;
+            .tdMo #ContentPlaceHolder1_txtKey {
+                margin: 10px;
+                background-color: transparent;
+                border: none;
+                padding: 0 10px 5px 10px;
+                font-size: 13px;
+                border-bottom: 1px solid #000;
+                outline: none;
+            }
 
+        #divLogo {
+            background: url("/images/logo-2.png") 0 20px no-repeat;
+            width: 100px;
+            height: 100px;
+            background-size: 100%;
+            margin: 10px auto;
         }
-        .topTr #SpanAd
-        {
-            margin-left:10px;
-            padding:0 20px;
-            border-left:3px solid #fff;
-            font-weight:bold;
-            color:#ee7560;
-            text-decoration:none;
+
+        #divLogo2 {
+            background: url("/images/logo-1.png") no-repeat;
+            width: 60px;
+            height: 40px;
+            background-size: 100%;
         }
-    </style>    
-    <asp:ContentPlaceHolder id="head" runat="server">
+
+        .topTr #SpanAd {
+            margin-left: 10px;
+            padding: 0 20px;
+            border-left: 3px solid #fff;
+            font-weight: bold;
+            color: #ee7560;
+            text-decoration: none;
+        }
+
+        .tableEdit {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+
+            .tableEdit tr {
+                border-bottom: 1px solid rgba(128, 128, 128, 0.30);
+            }
+
+            .tableEdit tbody tr:hover {
+                background: rgba(32, 45, 64, 0.14);
+            }
+
+            .tableEdit th {
+                background: #202d40;
+                padding: 20px 10px;
+                color: #fff;
+            }
+
+            .tableEdit tr td {
+                padding: 30px;
+            }
+
+        .opTd a {
+            text-decoration: none;
+        }
+
+            .opTd a:hover {
+                color: #ee7560;
+            }
+
+        #ContentPlaceHolder1_DataPager1 a {
+            margin-left: 10px;
+        }
+
+        .addtable td:nth-child(2n+1) {
+            background-color: #202d40;
+            color: #fff;
+            padding: 20px;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+        <div>
 
-        <table width="100%">
-            <tr><td colspan="2" class="Toptd" >
-                <i class="admin-icon Topicon">&#xe994;</i>
-                后台管理<a href="/login.html" id="aLogin" runat="server">登出</a></td></tr>
-            <tr>
-                <td width="15%" class="tdCont">
-                   <div><div id="divLogo"></div><h3>DessertShop</h3></div>
-                   <div class="topDiv"><div class="topTr" ><span id="SpanLg" runat="server">欢迎登录!</span><a href="#" id="SpanAd" runat="server">admin</a></div></div>
-                    <a class="aa" href="productsAdd.aspx"><i class="admin-icon">&#xea0a;</i>增加商品</a>
-                    <a class="aa" href="productsEdit.aspx"><i class="admin-icon">&#xeaae;</i>管理商品</a>
-                    <a class="aa" href="OrdersEdit.aspx"><i class="admin-icon">&#xe94b;</i>订单管理</a>
-                    <a class="aa" href="uploadImg.aspx"><i class="admin-icon">&#xe9c6;</i>上传图片</a>
-                    <a  class="bottomP aa" href="/index.aspx" target="_blank"><i class="admin-icon">&#xe900;</i>转到主页</a>
-                </td>
-                <td width="85%" class="tdMo">
-                <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
-        
-                </asp:ContentPlaceHolder>
+            <table width="100%">
+                <tr>
+                    <td colspan="2" class="Toptd">
+                        <i class="admin-icon Topicon">&#xe994;</i>
+                        后台管理<i class="admin-icon Topicon" id="IconLogin">&#xea13;</i><a href="/login.html" id="aLogin" runat="server">登出</a></td>
+                </tr>
+                <tr>
+                    <td width="15%" class="tdCont">
+                        <div>
+                            <div id="divLogo"></div>
+                            <h3>DessertShop</h3>
+                        </div>
+                        <div class="topDiv">
+                            <div class="topTr"><span id="SpanLg" runat="server">欢迎登录!</span><a href="#" id="SpanAd" runat="server">admin</a></div>
+                        </div>
+                        <a class="aa" href="Tocustomers.aspx"><i class="admin-icon">&#xe972;</i>查看用户</a>
+                        <a class="aa" href="productsAdd.aspx"><i class="admin-icon">&#xea0a;</i>增加商品</a>
+                        <a class="aa" href="productsEdit.aspx"><i class="admin-icon">&#xeaae;</i>管理商品</a>
+                        <a class="aa" href="OrdersEdit.aspx"><i class="admin-icon">&#xe94b;</i>订单管理</a>
+                        <a class="aa" href="uploadImg.aspx"><i class="admin-icon">&#xe9c6;</i>上传图片</a>
+                        <a class="bottomP aa" href="/index.aspx" target="_blank"><i class="admin-icon">&#xe900;</i>转到主页</a>
+                    </td>
+                    <td width="85%" class="tdMo">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
 
-            </td></tr>
-            <tr><td colspan="2"></td></tr>
-        </table>
-    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+            </table>
+        </div>
     </form>
 </body>
 

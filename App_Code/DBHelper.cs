@@ -21,10 +21,9 @@ public class DBHelper
         string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         SqlConnection connection = new SqlConnection(connectionString);
 
-        String insertcmd = "insert into Customers(用户ID,用户名,密码,性别,电话,年龄,地址) values(@userid,@UserName,@UserPwd,@Sex,@TelNo,@Birthday,@Address)";
+        String insertcmd = "insert into Customers(用户名,密码,性别,电话,年龄,地址) values(@UserName,@UserPwd,@Sex,@TelNo,@Birthday,@Address)";
         SqlCommand mycmd = new SqlCommand(insertcmd, connection);
         //可在此判断参数是否正确，密码是否相同
-        mycmd.Parameters.AddWithValue("@userid", c.UserId);
         mycmd.Parameters.AddWithValue("@UserName", c.UserName);
         mycmd.Parameters.AddWithValue("@UserPwd", c.UserPwd);
         mycmd.Parameters.AddWithValue("@Sex", c.Sex);
@@ -77,6 +76,10 @@ public class DBHelper
             c.Age = Convert.ToInt32(reader["年龄"]);
             c.Address = reader["地址"].ToString();
             c.Balance = decimal.Parse(reader["余额"].ToString());
+            if (reader["省份"].ToString() != "")
+                c.Province = reader["省份"].ToString();
+            if (reader["城市"].ToString() != "")
+                c.City = reader["城市"].ToString();
             list.Add(c);
         }
         connection.Close();
@@ -363,46 +366,17 @@ public static List<Product> GetProductsList2(int typeid)
            return false;           
         }
     }
-    public static bool ShouHuo(int orderid)
+    public static bool updateOrder(string oldstate,string newstate,int orderid)
     {
         string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         SqlConnection connection = new SqlConnection(connectionString);
-        String insertcmd = "update  [orders] set 订单状态='待评价' where 订单号=@orderid and 订单状态='待收货'";        
+       // String insertcmd = "update  [orders] set 订单状态='交易完成' where 订单号=@orderid and 订单状态='待评价'";
+        String insertcmd = "exec Update_Order @oldstate,@newstate,@orderid";             //****Update_Order存储过程*********
 
         SqlCommand mycmd = new SqlCommand(insertcmd, connection);
         //
-        mycmd.Parameters.AddWithValue("@orderid", orderid);
-        mycmd.Connection.Open();
-        int iResult = 0;
-        try
-        {
-            iResult = mycmd.ExecuteNonQuery();
-        }
-        catch (Exception ee)
-        {
-            return false;
-        }
-        finally
-        {
-            mycmd.Connection.Close();
-        }
-        if (iResult > 0)
-        {
-           return true;
-        }
-        else
-        {
-           return false;           
-        }
-    }
-    public static bool PingJia(int orderid)
-    {
-        string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-        SqlConnection connection = new SqlConnection(connectionString);
-        String insertcmd = "update  [orders] set 订单状态='交易完成' where 订单号=@orderid and 订单状态='待评价'";
-
-        SqlCommand mycmd = new SqlCommand(insertcmd, connection);
-        //
+        mycmd.Parameters.AddWithValue("@oldstate", oldstate);
+        mycmd.Parameters.AddWithValue("@newstate", newstate);
         mycmd.Parameters.AddWithValue("@orderid", orderid);
         mycmd.Connection.Open();
         int iResult = 0;

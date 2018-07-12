@@ -2,41 +2,15 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
         <style>
-        .tdCont a:nth-child(4) {
+        .tdCont a:nth-child(5) {
             border-right:none;
             border-left:4px solid #414141;
             background-color:#ffffff;color:#000;
         }
-
-        .tableEdit
-        {
-            border-collapse: collapse;
-            margin:20px auto;
-        }
-        .tableEdit tr
-        {
-            border-bottom:1px solid gray;          
-        }
-        .tableEdit tr td
-        {
-            padding:10px;
-        }
-        .opTd a
-        {
-            text-decoration:none;
-        }
-        .opTd a:hover
-        {
-            color:#ee7560;
-        }
-        #ContentPlaceHolder1_DataPager1 a
-        {
-            margin-left:10px;
-        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-     KeyWord:<asp:TextBox ID="txtKey" runat="server"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="查询" OnClick="btnSearch_Click" />
+     关键字：<asp:TextBox ID="txtKey" runat="server"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="查询" OnClick="btnSearch_Click" />
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [商品ID], [商品名], [现价], [图片], [商品类别], [日期], [标签] FROM [Product]"></asp:SqlDataSource>
 
     <asp:ListView ID="ListView1" runat="server" DataKeyNames="商品ID" DataSourceID="SqlDataSource1" OnPagePropertiesChanging="ListView1_PagePropertiesChanging" >

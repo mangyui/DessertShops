@@ -20,7 +20,6 @@
     <script>
         $(function () {
             $("#adduser").click(function (e) {
-                var UserId = $("#UserId").val();
                 var UserName = $("#UserName").val();
                 //alert(UserName);
                 var UserPwd = $("#UserPwd").val();
@@ -31,19 +30,21 @@
                 var Address = $("#Address").val();
                 if (UserPwd != ReUserPwd)
                      message("error", "您输入密码不一致!", 3000);
-                else if (UserId == "" || UserName == "" || ReUserPwd == "" || UserPwd == "" || Sex == "" || TelNo == "" || Birthday == "" || Address == "")
+                else if (UserName == "" || ReUserPwd == "" || UserPwd == "" || Sex == "" || TelNo == "" || Birthday == "" || Address == "")
                     message("error", "不能为空！请填写完整。", 3000);
                 else
                 {
-                var pdata = { UserId: UserId, UserName: UserName, UserPwd: UserPwd, ReUserPwd: ReUserPwd, Sex: Sex, TelNo: TelNo, Birthday: Birthday, Address: Address };
+                var pdata = {UserName: UserName, UserPwd: UserPwd, ReUserPwd: ReUserPwd, Sex: Sex, TelNo: TelNo, Birthday: Birthday, Address: Address };
                 //alert(pdata);
                 $.post("Handlers/AddUserHandler.ashx", pdata, function (data) {
                     if (data != "error") {
                         message("success", "注册成功！", 3000);
+                        setTimeout(function () {
                         window.location.href = "login.html";
+                        }, 2000)
                     }
                     else {
-                        message("error", "注册失败！请填写正确信息", 3000);
+                        message("error", "注册失败！", 3000);
                     }
                 });}
             });
@@ -57,9 +58,7 @@
             <div class='login_title2'>
                 <span>用户注册</span>
             </div>
-            <div class="zcbg">
-                <lable>用户&nbsp;&nbsp;ID&nbsp;：</lable><input type="text" id="UserId" name="userid" />
-                <br />
+            <div class="zcbg">          
                 用户名称：<input type="text" id="UserName" name="UserName" />
                 <br />
                 用户密码：<input type="text" id="UserPwd" name="UserPwd" />

@@ -9,8 +9,6 @@ public class adduserhandler : IHttpHandler {
         context.Response.ContentType = "text/plain";
 
         Customer c = new Customer();
-
-        c.UserId = context.Request["UserId"];
         c.UserName = context.Request["UserName"];
         //alert(UserName);
         c.UserPwd = context.Request["UserPwd"];

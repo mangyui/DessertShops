@@ -122,10 +122,10 @@ Showbo.Msg = {
                 var pwd = $(this).parents("#dvMsgBox").find("#dvMsgCT").find("#msg_txtInput").val();
                 $.post("/Handlers/ChangeMoney.ashx", { type: "-",pwd:pwd, orderid: orderid }, function (data) {
                     if (data == "ok") {
-                        message("success", "付款成功！", 1000);
+                        message("success", "付款成功！", 2000);
                         setTimeout(function () {
-                            window.location.href = "user.aspx";
-                        }, 2000);
+                            window.location.href = "/user.aspx";
+                        }, 1500);
                     }
                     else if (data == "errorpwd")
                         message("error", "密码错误", 3000);
@@ -143,10 +143,10 @@ Showbo.Msg = {
                 var pwd = $(this).parents("#dvMsgBox").find("#dvMsgCT").find("#msg_txtInput").val();
                 $.post("/Handlers/ChangeMoney.ashx", { type: "+", pwd: pwd, addmoney: money }, function (data) {
                     if (data == "ok") {
-                        message("success", "充值成功！", 1000);
+                        message("success", "充值成功！", 2000);
                         setTimeout(function () {
-                            window.location.href = "user.aspx";
-                        }, 2000);
+                            window.location.href = "/user.aspx";
+                        }, 1500);
                     }
                     else if (data == "errorpwd")
                         message("error", "密码错误", 3000);
@@ -156,16 +156,45 @@ Showbo.Msg = {
                         message("error", "充值失败！", 3000);
                 })
             }
-
+            else if (v == "修改")
+            btn.onclick = function (e) {
+                var UserName = $("#cusName").val();
+                //alert(UserName);
+                var UserPwd = $("#UserPwd").val();
+                var ReUserPwd = $("#ReUserPwd").val();
+                var Sex = $("#Sex").val();
+                var TelNo = $("#TelNo").val();
+                var Birthday = $("#Birthday").val();
+                var Address = $("#Address").val();
+                if (UserPwd != ReUserPwd)
+                    message("error", "您输入密码不一致!", 3000);
+                else if (UserName == "" || ReUserPwd == "" || UserPwd == "" || Sex == "" || TelNo == "" || Birthday == "" || Address == "")
+                    message("error", "不能为空！请填写完整。", 3000);
+                else {
+                    var pdata = { UserName: UserName, UserPwd: UserPwd, ReUserPwd: ReUserPwd, Sex: Sex, TelNo: TelNo, Birthday: Birthday, Address: Address };
+                    //alert(pdata);
+                    $.post("Handlers/AddUserHandler.ashx", pdata, function (data) {
+                        if (data != "error") {
+                            message("success", "注册成功！", 3000);
+                            setTimeout(function () {
+                                window.location.href = "login.html";
+                            }, 2000)
+                        }
+                        else {
+                            message("error", "注册失败！", 3000);
+                        }
+                    });
+                }
+            }
         else if (v == "收货")
             btn.onclick = function (e) {
                 var orderid = $(this).parents("#dvMsgBox").find("#dvMsgCT").find("span").eq(0).text();
                 $.post("/Handlers/Oporder.ashx", { type: "shouhuo",orderid: orderid }, function (data) {
                     if (data == "ok") {
-                        message("success", "收货成功！", 1000);
+                        message("success", "收货成功！", 2000);
                         setTimeout(function () {
-                            window.location.href = "user.aspx";
-                        }, 2000);
+                            window.location.href = "/user.aspx";
+                        }, 1500);
                     }
                     else if (data == "errorcustomer")
                         message("error", "请先登录", 2000);
@@ -179,10 +208,10 @@ Showbo.Msg = {
                 //var pwd = $(this).parents("#dvMsgBox").find("#dvMsgCT").find("#msg_txtInput").val();
                 $.post("/Handlers/Oporder.ashx", { type: "pingjia", orderid: orderid }, function (data) {
                     if (data == "ok") {
-                        message("success", "评价成功！", 1000);
+                        message("success", "评价成功！", 2000);
                         setTimeout(function () {
-                            window.location.href = "user.aspx";
-                        }, 2000);
+                            window.location.href = "/user.aspx";
+                        }, 1500);
                     }
                     else if (data == "errorcustomer")
                         message("error", "请先登录", 2000);

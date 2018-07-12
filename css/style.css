@@ -53,26 +53,31 @@ img {
   /*text-decoration:underline;*/
   
   color:#303030;
-      font-family: "Varela Round", sans-serif;
+      font-family: "Varela Round", 'Adobe Song Std';
     font-size: 14px;
-    font-weight: 400;
+    font-weight:bold;
 }
 
 .pring img {
    padding:8px;
    border-radius:50%;
-   border:12px solid #ff5858; 
+   border:16px solid #ff5858; 
      /*margin:2px;
    box-shadow:0 2px 5px #000;*/
 }
 .bgRed {
-    background:linear-gradient(90deg,#ee7560, #ff5858);
+    background:#202d40;
     border-radius:0 0 5px 5px;
+}
+.bgBlack
+{
+    background:#202d40;
+    border-radius:0 0 5px 80px;
 }
 .TopbgRed
 {
-    background:linear-gradient(90deg,#ee7560, #ff5858);
-    border-radius: 5px 5px 0 0;
+    background:#202d40;
+    border-radius: 5px 100px 0 0;
 }
 .newadd {
     position:fixed;
@@ -187,10 +192,11 @@ img {
 .dingdanli{
     float:left;
     width:80%;
-    border-radius:10px;
+    border-radius:10px 40px 10px 40px;
     background-color: #ee7560;
     background-image: -webkit-linear-gradient(-360deg, #ee7560, #ff5858);
-    background-image: linear-gradient(90deg,#ee7560, #ff5858); 
+    /*background-image: linear-gradient(90deg,#ee7560, #ff5858);*/ 
+     background-image:linear-gradient(#202d40,#202d40);
     color:#fff;
     padding:30px 0px;  
     margin:10px 0; 
@@ -297,9 +303,7 @@ img {
 #UserName a:hover{
   color:#e75e4e;
 }
-#CZ {
-    padding:10px 30px;
-}
+
 .typeHr 
 {
     position:relative;
@@ -8956,3 +8960,9 @@ html .bg--parallax {
 }
 
 /* 6. CUSTOM STYLESHEET*/
+
+/*add*/
+.addCart
+{
+    background:linear-gradient(#202d40,#202d40);
+}

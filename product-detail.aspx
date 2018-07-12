@@ -79,7 +79,7 @@
                         <div class="row">
                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                                 <div class="ps-product__image">
-                                    <div class="ps-badge"><span id="PPHot" runat="server">£25.00</span></div>
+                                    <div class="ps-badge"><span id="PPHot" runat="server">$25.00</span></div>
                                     <div class="ps-badge ps-badge--new"><span id="PId" runat="server"></span></div>
                                     <img id="PPImg" runat="server" src="images/cake/img-cake-6.jpg" xq_big="true" setting='{"pwidth":400,"pheight":400,"margin_top":0,"margin_left":0}' />
                                 </div>
@@ -95,17 +95,16 @@
                                         <option value="5">5</option>
                                     </select>
                                     <p class="ps-product__price">
-                                        £<asp:Literal ID="litNewprice" Text="15.00" runat="server" />
-                                        <del id="PPOldprice" runat="server">£25.00</del>
+                                        $<asp:Literal ID="litNewprice" Text="15.00" runat="server" />
+                                        <del id="PPOldprice" runat="server">$25.00</del>
                                     </p>
                                     <a class="ps-product__quickview" href="#" data-effect="mfp-zoom-out">QUICK OVERVIEW</a>
                                     <div class="ps-product__description">
+                                        <p id="Pdesc" runat="server">
+                                           
+                                        </p><br/>
                                         <p>
-                                            Lollipop dessert donut marzipan cookie bonbon sesame snaps chocolate. Cupcake sweet roll sweet dragée dragée. Lollipop
-										dessert donut marzipan cookie bonbon sesame snaps chocolate cake.
-                                        </p>
-                                        <p>
-                                            Toffee chocolate cake apple pie sugar plum sesame snaps muffin cake pudding cupcake. Muffin danish muffin lollipop
+                                            （附加信息）Toffee chocolate cake apple pie sugar plum sesame snaps muffin cake pudding cupcake. Muffin danish muffin lollipop
 										biscuit jelly beans oat cake croissant.
                                         </p>
                                     </div>
@@ -273,7 +272,7 @@
                                                 <option value="1">4</option>
                                                 <option value="5">5</option>
                                             </select>
-                                            <p class="ps-product__price">£<%#Eval("NewPrice") %></p>
+                                            <p class="ps-product__price">$<%#Eval("NewPrice") %></p>
                                         </div>
                                     </div>
                                 </ItemTemplate>

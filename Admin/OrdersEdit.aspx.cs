@@ -38,7 +38,7 @@ public partial class Admin_OrdersEdit : System.Web.UI.Page
         }
         catch (Exception ee)
         {
-            ClientScript.RegisterStartupScript(GetType(), "message", "<script>alert('删除错误。');</script>");
+            ClientScript.RegisterStartupScript(GetType(), "message", "<script>alert('该订单无法删除');</script>");
         }
         finally
         {
@@ -80,27 +80,27 @@ public partial class Admin_OrdersEdit : System.Web.UI.Page
         LinkButton lbn = (LinkButton)sender;
         string id = lbn.CommandArgument;//订单ID
         //ClientScript.RegisterStartupScript(GetType(), "message", "<script>alert('" + lbn.CommandArgument + "');</script>");
-        string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-        SqlConnection connection = new SqlConnection(connectionString);
+        //string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        //SqlConnection connection = new SqlConnection(connectionString);
 
-        String cmd = "update  [orders] set 订单状态='待收货' where 订单号=@id and 订单状态='已付款'";
-        SqlCommand mycmd = new SqlCommand(cmd, connection);
-        mycmd.Parameters.AddWithValue("@id", id);
-        mycmd.Connection.Open();
-        int iResult = 0;//影响的记录数
-        try
-        {
-            iResult = mycmd.ExecuteNonQuery();
-        }
-        catch (Exception ee)
-        {
-            ClientScript.RegisterStartupScript(GetType(), "message", "<script>alert('发货错误。');</script>");
-        }
-        finally
-        {
-            mycmd.Connection.Close();
-        }
-        if (iResult > 0)
+        //String cmd = "update  [orders] set 订单状态='待收货' where 订单号=@id and 订单状态='已付款'";
+        //SqlCommand mycmd = new SqlCommand(cmd, connection);
+        //mycmd.Parameters.AddWithValue("@id", id);
+        //mycmd.Connection.Open();
+        //int iResult = 0;//影响的记录数
+        //try
+        //{
+        //    iResult = mycmd.ExecuteNonQuery();
+        //}
+        //catch (Exception ee)
+        //{
+        //    ClientScript.RegisterStartupScript(GetType(), "message", "<script>alert('发货错误。');</script>");
+        //}
+        //finally
+        //{
+        //    mycmd.Connection.Close();
+        //}
+        if (DBHelper.updateOrder("已付款","待收货",int.Parse(id)))
         {
             ClientScript.RegisterStartupScript(GetType(), "message", "<script>alert('发货成功。');window.location.href='OrdersEdit.aspx';</script>");
         }

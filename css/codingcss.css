@@ -209,3 +209,38 @@ ul {
 {
     color:#ff5858;
 }
+#UpdateCus
+{
+    color:#fff;
+    background-image:linear-gradient(#202d40,#202d40);
+}
+#CZ {
+    padding:10px 30px;
+    background-image:linear-gradient(#202d40,#202d40);
+}
+
+.zhuce 
+{
+    font-size:16px;
+}
+
+.zhuce input, .zhuce select {
+    width:64%;
+    margin:13px 10px;
+    /*clear:both;
+    float:right;*/
+   background-color: transparent;
+    border: none;
+    padding:0 10px 5px 10px;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(238, 238, 238, 0.41);
+    outline: none;
+    color: #202d40;
+}
+#UpdateUser
+{
+    margin-top:15px;
+    padding:6px 20px;
+    width:100px;
+    background-image:linear-gradient(#202d40,#202d40);
+}

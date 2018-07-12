@@ -21,7 +21,7 @@ public class Oporder : IHttpHandler, IRequiresSessionState
                 if (type == "shouhuo")                  //收货
                 {
                     int orderid = Convert.ToInt32(context.Request.Form["orderid"]);
-                    if (DBHelper.ShouHuo(orderid))
+                    if (DBHelper.updateOrder("待收货","待评价",orderid))
                         context.Response.Write("ok");
                     else
                         context.Response.Write("error");
@@ -29,7 +29,7 @@ public class Oporder : IHttpHandler, IRequiresSessionState
                 else if (type == "pingjia")                //评价（交易完成）
                 {
                     int orderid = Convert.ToInt32(context.Request.Form["orderid"]);
-                    if (DBHelper.PingJia(orderid))
+                    if (DBHelper.updateOrder("待评价","交易完成",orderid))
                         context.Response.Write("ok");
                     else
                         context.Response.Write("error");

@@ -7,7 +7,7 @@
     <script src="plugins/showBo/showBo.js"></script>
     <script>
         $(function () {
-  
+
             $("#aOut").click(function () {
                 $.get("Handlers/Loginout.ashx", { work: "logout" }, function (data) {
                     if (data == "ok") {
@@ -48,8 +48,8 @@
                 }
             }
             aa();
-            $("#chonghzi").click(function () {
-                $(".cuk-tab-bar").eq(2).click();
+            $("#UpdateCus").click(function () {
+                $(".cuk-tab-bar").eq(4).click();
                 return false;
             })
             $(".num").click(function () {
@@ -62,8 +62,8 @@
                 if (num == "")
                     message("error", "请先选择要充值的金额", 1000, e);
                 else {
-                    var name=$("#pName").text();
-                    Showbo.Msg.tochong(name,num);
+                    var name = $("#pName").text();
+                    Showbo.Msg.tochong(name, num);
                 }
             })
             $(".PayA").each(function () {
@@ -73,26 +73,26 @@
                     $(this).text("付款").css("background-image", "linear-gradient(90deg,#228fbd, #2570a1)").attr("onclick", "Showbo.Msg.topwd(" + odid + "," + odpr + ")");
                 }
                 else if ($(this).data("odstate") == "已付款") {
-                    $(this).text("待发货").css("background-image", "linear-gradient(90deg,#009ad6, skyblue)");
+                    $(this).text("待发货").css("background-image", "linear-gradient(90deg,#202d40,#202d40)");
                 }
                 else if ($(this).data("odstate") == "待收货") {
                     var odid = $(this).data("orderid");
-                    var odpr = $(this).data("odprice");               
+                    var odpr = $(this).data("odprice");
                     $(this).text("确认收货").css("background-image", "linear-gradient(90deg,#00a6ac, #008792)").attr("onclick", "Showbo.Msg.toshou(" + odid + "," + odpr + ")");
                 }
                 else if ($(this).data("odstate") == "待评价") {
                     var odid = $(this).data("orderid");
-                    var odpr = $(this).data("odprice");               
+                    var odpr = $(this).data("odprice");
                     $(this).text("评价").css("background-image", "linear-gradient(90deg,#6f60aa, #585eaa)").attr("onclick", "Showbo.Msg.toping(" + odid + "," + odpr + ")");
                 }
                 else if ($(this).data("odstate") == "交易完成") {
-                    $(this).text("交易完成").css("background-image", "linear-gradient(90deg,#006c54, #007d65)");
+                    $(this).text("交易完成").css("background-image", "linear-gradient(90deg,#007d65, #007d65)");
                 }
             })
             //var ke=function kkk() {
             //  var $th = $(this); alert("132");         
             //    var orderid = $(this).parents("#dvMsgBox").find("dvMsgCT").find("span").eq(1).text();
-                
+
             //    $.post("Handlers/ChangeMoney.ashx", { type: "-", orderid: orderid }, function (data) {
             //        if (data == "ok") {
             //            message("success", "付款成功！", 2000, e);
@@ -109,7 +109,7 @@
             //    })
             //}
             //$("#YesBtn").click(function(e){
-             
+
             //})
 
             //$(".dingdanremove").click(function (e) {
@@ -125,13 +125,13 @@
             //    })
             //})
         })
-        
+
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="page-wrap">
         <div class="ps-section--hero">
-            <img src="images/hero/03.jpg" alt=""/>
+            <img src="images/hero/03.jpg" alt="" />
             <div class="ps-section__content text-center">
                 <h3 class="ps-section__title">User Centre</h3>
                 <div class="ps-breadcrumb">
@@ -160,12 +160,12 @@
                         </div>
                         <ul class="section-2ZI activity-info-BDI">
                             <li>联系方式：<%#Eval("TelNo") %></li>
-                            <li>联系地址：<%#Eval("City")+" "+Eval("Province")+" "+Eval("Address") %></li>
+                            <li>联系地址：<%#Eval("Province")+" "+Eval("City")+" "+Eval("Address") %></li>
                             <li class="clearfix"><span class="td-3ia">年龄：</span><%#Eval("Age") %></li>
                             <li>性别：<%#Eval("Sex") %></li>
                         </ul>
                         <ul class="section-2ZI follow-info-5YF">
-                            <a id="chonghzi" class="ps-btn ps-btn--xs" href="#" >前往充值<i class="fa fa-angle-right"></i></a>
+                            <a id="UpdateCus" class="ps-btn ps-btn--xs" href="#">修改个人信息<i class="fa fa-angle-right"></i></a>
                         </ul>
 
                         </div>
@@ -179,6 +179,7 @@
                                 <a href="#" id="order" class="cuk-tab-bar ">订单详情</a>
                                 <a href="#" id="geren" class="cuk-tab-bar ">充值</a>
                                 <a href="#" class="cuk-tab-bar">收藏</a>
+                                <a href="#" id="geren" class="cuk-tab-bar ">修改资料</a>
                                 <a href="#" class="cuk-tab-bar">其他</a>
                             </div>
                             <div id="Panes" class="cuk-tab-panes">
@@ -189,12 +190,12 @@
                                             <ItemTemplate>
                                                 <div>
                                                     <li class="dingdanli">
-                                                        <a href="user.aspx?id=<%#Eval("Id") %>" class="DId">订单编号：16136235—<%#Eval("Id") %></a><br />
+                                                        <a href="user.aspx?id=<%#Eval("Id") %>" class="DId">订单编号：<%#Eval("Id") %></a><br />
                                                         <table>
                                                             <tr>
                                                                 <td><span>下单时间：<%#Eval("InDate") %></span></td>
                                                                 <td><span>用户ID：<%#Eval("UserId") %></span></td>
-                                                                <td><span>总价：<i  class="SpanOP"><%#Eval("Price") %></i> $</span></td>
+                                                                <td><span>总价：<i class="SpanOP"><%#Eval("Price") %></i> $</span></td>
                                                                 <td><span>订单状态：<%#Eval("State") %></span></td>
                                                             </tr>
                                                         </table>
@@ -219,9 +220,9 @@
                                             <asp:Repeater ID="rptOrderC" runat="server">
                                                 <ItemTemplate>
                                                     <div class="ps-cart-item">
-                                                         <a href="#" class="ps-cart-item_xin" data-tooltip="Add to wishlist">
-                                                    <i class="ps-icon--heart"></i>
-                                                </a>
+                                                        <a href="#" class="ps-cart-item_xin" data-tooltip="Add to wishlist">
+                                                            <i class="ps-icon--heart"></i>
+                                                        </a>
                                                         <div class="ps-cart-item__thumbnail">
                                                             <a href="product-detail.aspx"></a>
                                                             <img src="<%#Eval("Img") %>" alt="">
@@ -230,19 +231,19 @@
                                                             <a class="ps-cart-item__title" href="product-detail.aspx?id=<%#Eval("Peoductid") %>"><%#Eval("Name") %></a>
                                                             <p>
                                                                 <span>Quantity:<i><%#Eval("Num") %></i></span>
-                                                                <span>Total:<i>£<%#Eval("Price") %></i></span>
+                                                                <span>Total:<i>$<%#Eval("Price") %></i></span>
                                                             </p>
                                                         </div>
                                                     </div>
                                                 </ItemTemplate>
                                             </asp:Repeater>
                                         </div>
-                                        <div class="ps-cart__total bgRed">
-                                            <p>Item Total:£<span id="OrderSum" runat="server">00.00</span></p>
+                                        <div class="ps-cart__total bgBlack">
+                                            <p>Item Total:$<span id="OrderSum" runat="server">00.00</span></p>
                                             <p>Order State:<span id="OrderState" runat="server">无</span></p>
                                         </div>
                                     </div>
-                                  <a class="ps-btn ps-btn--xs aorder PayA" id="Aopde" data-orderid="" data-odstate="" data-odprice="">无操作<i class="fa fa-angle-right"></i></a>
+                                    <a class="ps-btn ps-btn--xs aorder PayA" id="Aopde" data-orderid="" data-odstate="" data-odprice="">无操作<i class="fa fa-angle-right"></i></a>
                                 </div>
                                 <div id="Recharge" class="cuk-tab-pane">
                                     <h3 id="RCh3" class="">*请先选择下列充值数值</h3>
@@ -253,7 +254,39 @@
                                     <a class="num">1000</a><br />
                                     <a id="CZ" class="ps-btn ps-btn--xs">充值<i class="fa fa-angle-right"></i></a>
                                 </div>
+                                <div class="cuk-tab-pane">
+                                </div>
+                                <div id="UpCus" class="cuk-tab-pane">                                   
+                                      <asp:Repeater ID="rptUpcus" runat="server">
+                                            <ItemTemplate>
+                                                <div class="zcbg zhuce">
+                                      
+                                        用户名称：<input type="text" id="cusName" name="UserName" value="<%#Eval("UserName") %>"/>
+                                        <br />
+                                        用户密码：<input type="text" id="UserPwd" name="UserPwd" />
+                                        <br />
+                                        重复密码：<input type="text" id="ReUserPwd" name="ReUserPwd" />
+                                        <br />
+                                        用户性别：<select id="Sex" name="Sex">
+                                            <option>男</option>
+                                            <option>女</option>
+                                        </select>
+                                        <br />
+                                        联系电话：<input type="text" id="TelNo" name="TelNo" value="<%#Eval("TelNo") %>"/>
+                                        <br />
+                                        用户年龄：<input type="text" id="Birthday" name="Birthday" value="<%#Eval("Age") %>"/>
+                                        <br />
+                                        联系地址：<input type="text" id="Address" name="Address" value="<%#Eval("Address") %>"/>
+                                        <br />
+                                     </div>  
+                                      <div class='login_fields__submit zcsub'>
+ <%--                                             <a id="UpdateCus" class="ps-btn ps-btn--xs" href="#">修改个人信息<i class="fa fa-angle-right"></i></a>--%>
+                                            <input id="UpdateUser"  class="ps-btn ps-btn--xs"  type="button" value="修改" />
+                                        </div>
                             </div>
+                            </ItemTemplate>
+                                        </asp:Repeater>
+                        </div>
                         </div>
                     </div>
                 </aside>

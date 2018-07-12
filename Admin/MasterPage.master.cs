@@ -13,16 +13,16 @@ public partial class Admin_MasterPage : System.Web.UI.MasterPage
         if (cus != null)
         {
             SpanAd.InnerText = cus.UserName;
-            SpanLg.InnerText = "欢迎登陆！";
+            SpanLg.InnerText = "欢迎登录！";
             SpanAd.HRef = "";
-
+           aLogin.InnerText = "登出";
         }
         else
         {
-            SpanAd.InnerText = "请登入";
-            SpanLg.InnerText = "未登陆！";
+            SpanAd.InnerText = "请登录";
+            SpanLg.InnerText = "未登录！";
             SpanAd.HRef = "/login.html";
-            aLogin.InnerText = "登入";
+            aLogin.InnerText = "登录";        
         }
     }
 }

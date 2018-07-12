@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <style>
-        .tdCont a:nth-child(6) {
+        .tdCont a:nth-child(7) {
             border-right:none;
             border-left:4px solid #414141;
             background-color:#ffffff;
@@ -15,7 +15,7 @@
     <div style="margin-bottom: 20px; font-size: 20px; text-align: center; color: blue;">
         <b>商品图片上传</b></div>
     <div>
-        <table style="margin: 0 auto; text-align: center">
+        <table style="margin: 0 auto; text-align: center" class="addtable">
             <tr>
                 <td>
                     服务器已存在的图片</td><td>
