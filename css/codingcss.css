@@ -176,7 +176,7 @@ ul {
 }
 #OrderContent
 {
-    margin :0 auto;
+    margin :-20px auto 20px;
     width:70%;
     
 }
@@ -204,6 +204,7 @@ ul {
 #dingdan ul div
 {
     border-top:1px solid rgba(187, 191, 195, 0.36);
+    clear: both;
 }
 #OrderContent span i
 {

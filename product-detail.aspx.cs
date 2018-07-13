@@ -30,5 +30,7 @@ public partial class product_detail2 : System.Web.UI.Page
         PPHot.InnerHtml = prodect.NewPrice.ToString();
         PId.InnerText = prodect.Id.ToString();
         Pdesc.InnerText = prodect.DeSCC;
+        iDate.InnerText = prodect.InDate.ToString();
+        DetailSale.InnerText = prodect.Sale.ToString();
     }
 }

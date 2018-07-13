@@ -106,6 +106,36 @@ public class DBHelper
         connection.Close();
         return list;
     }
+    public static Customer GetCustomer(string userid)
+    {
+        string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection connection = new SqlConnection(connectionString);
+
+        string queryString = "SELECT * FROM Customers where 用户ID=@id";
+        SqlCommand command = new SqlCommand(queryString, connection);
+        command.Parameters.AddWithValue("@id", userid);
+        connection.Open();
+        SqlDataReader reader = command.ExecuteReader();
+        Customer c = null;
+        while (reader.Read())
+        {
+            c = new Customer();
+            c.UserId = reader["用户ID"].ToString();//或 c.UserId = reader[0].ToString();
+            c.UserName = reader["用户名"].ToString();
+            c.UserPwd = reader["密码"].ToString();
+            c.Sex = reader["性别"].ToString();
+            c.TelNo = reader["电话"].ToString();
+            c.Age = Convert.ToInt32(reader["年龄"]);
+            c.Address = reader["地址"].ToString();
+            c.Balance = decimal.Parse(reader["余额"].ToString());
+            if (reader["省份"].ToString() != "")
+                c.Province = reader["省份"].ToString();
+            if (reader["城市"].ToString() != "")
+                c.City = reader["城市"].ToString();
+        }
+        connection.Close();
+        return c;
+    }
     public static List<Product> GetProductsList()
     {
         List<Product> list = new List<Product>();
@@ -130,6 +160,8 @@ public class DBHelper
             p.TypeId = int.Parse(reader["商品类别"].ToString());
             p.DeSCC = reader["简介"].ToString();
             p.Label=reader["标签"].ToString();
+            p.InDate=DateTime.Parse(reader["日期"].ToString());
+            p.Sale=int.Parse(reader["销量"].ToString());
          //   p.Img1 = p.Img2 = p.Img3 = p.ImgPath;//请根据自己定义的模型进行赋值
 
             list.Add(p);
@@ -312,7 +344,7 @@ public static List<Product> GetProductsList2(int typeid)
             }
 
             tran.Commit();//提交事务
-            return 0;
+            return int.Parse(orderid);
         }
         catch (Exception ex)//出错时
         {
@@ -364,6 +396,37 @@ public static List<Product> GetProductsList2(int typeid)
         else
         {
            return false;           
+        }
+    }
+    public static bool deleteOrder(int orderid)
+    {
+        string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection connection = new SqlConnection(connectionString);
+
+        String cmd = "delete from [orderDetails] where 订单号=@id";
+        SqlCommand mycmd = new SqlCommand(cmd, connection);
+        mycmd.Parameters.AddWithValue("@id", orderid);
+        mycmd.Connection.Open();
+        int iResult = 0;//影响的记录数
+        try
+        {
+            iResult = mycmd.ExecuteNonQuery();
+        }
+        catch (Exception ee)
+        {
+            return false;
+        }
+        finally
+        {
+            mycmd.Connection.Close();
+        }
+        if (iResult > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
     public static bool updateOrder(string oldstate,string newstate,int orderid)
@@ -432,6 +495,42 @@ public static List<Product> GetProductsList2(int typeid)
         else
         {
            return false;           
+        }
+    }
+    public static bool UpdateCustomer(string userid,Customer cus)
+    {
+        string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection connection = new SqlConnection(connectionString);
+        String insertcmd = "update Customers set 用户名=@name,年龄=@age,电话=@telno,地址=@adss,密码=@pwd where 用户ID=@id";
+        SqlCommand mycmd = new SqlCommand(insertcmd, connection);
+        //
+        mycmd.Parameters.AddWithValue("@name", cus.UserName);
+        mycmd.Parameters.AddWithValue("@age", cus.Age);
+        mycmd.Parameters.AddWithValue("@telno", cus.TelNo);
+        mycmd.Parameters.AddWithValue("@adss", cus.Address);
+        mycmd.Parameters.AddWithValue("@pwd", cus.UserPwd);
+        mycmd.Parameters.AddWithValue("@id", userid);
+        mycmd.Connection.Open();
+        int iResult = 0;
+        try
+        {
+            iResult = mycmd.ExecuteNonQuery();
+        }
+        catch (Exception ee)
+        {       
+            return false;
+        }
+        finally
+        {
+            mycmd.Connection.Close();
+        }
+        if (iResult > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

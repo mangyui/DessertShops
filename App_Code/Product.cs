@@ -16,7 +16,7 @@ public class Product
     public string ImgPathLarge { get; set; }
     public DateTime InDate { get; set; }
     public string Label{ get; set; }
-
+    public int Sale{ get; set; }    
     public Product(int id,int typeid, string name, decimal oldprice, decimal newprice,
         string imgPath, string imgPathLarge, DateTime inDate,string label)
     {

@@ -7,7 +7,6 @@
     <script src="plugins/showBo/showBo.js"></script>
     <script>
         $(function () {
-
             $("#aOut").click(function () {
                 $.get("Handlers/Loginout.ashx", { work: "logout" }, function (data) {
                     if (data == "ok") {
@@ -45,9 +44,16 @@
                 if ($.getUrlParam("id") != null) {
                     $(".cuk-tab-bar").eq(1).click();
                     $("#Aopde").data("orderid", $("#ContentPlaceHolder1_SpanOId").text()).data("odstate", $("#ContentPlaceHolder1_OrderState").text()).data("odprice", $("#ContentPlaceHolder1_OrderSum").text());
+                    if ($("#ContentPlaceHolder1_OrderState").text() == "待付款") {
+                        var $anew = $("<a class='ps-btn ps-btn--xs aorder' id='deleOrder' data-orderid='" + $("#ContentPlaceHolder1_SpanOId").text() + "' data-odstate='" + $("#ContentPlaceHolder1_OrderState").text() + "' data-odprice='" + $("#ContentPlaceHolder1_OrderSum").text() + "'>取消订单<i class='fa fa-angle-right'></i></a>")
+                        $anew.insertAfter("#Aopde");
+                    }
                 }
             }
             aa();
+            $("#deleOrder").click(function () {
+                Showbo.Msg.todele($(this).data("orderid"), $(this).data("odprice"));
+            })
             $("#UpdateCus").click(function () {
                 $(".cuk-tab-bar").eq(4).click();
                 return false;
@@ -71,6 +77,8 @@
                     var odid = $(this).data("orderid");
                     var odpr = $(this).data("odprice");
                     $(this).text("付款").css("background-image", "linear-gradient(90deg,#228fbd, #2570a1)").attr("onclick", "Showbo.Msg.topwd(" + odid + "," + odpr + ")");
+                    //var $anew = $("<a class='ps-btn ps-btn--xs aorder deleOrder' data-orderid='" + odid + "' data-odstate='待付款' data-odprice='" + odpr + "'>取消订单<i class='fa fa-angle-right'></i></a>")
+                    //$anew.insertAfter($(this));
                 }
                 else if ($(this).data("odstate") == "已付款") {
                     $(this).text("待发货").css("background-image", "linear-gradient(90deg,#202d40,#202d40)");
@@ -87,6 +95,37 @@
                 }
                 else if ($(this).data("odstate") == "交易完成") {
                     $(this).text("交易完成").css("background-image", "linear-gradient(90deg,#007d65, #007d65)");
+                }
+            })
+            $("#UpdateUser").click(function (e) {
+                var UserName = $("#cusName").val();
+                var newPwd = $("#newPwd").val();
+                var oldPwd = $("#oldPwd").val();
+                var TelNo = $("#TelNo").val();
+                var Age = $("#Age").val();
+                var Address = $("#Address").val();
+                if(oldPwd == "")
+                    message("error", "请输入密码", 3000);
+                else if (UserName == ""|| TelNo == "" || Address == ""||Age=="")
+                    message("error", "不能为空！请填写完整。", 3000);
+                else {
+                    var pdata = { work:"update", UserName: UserName, newPwd: newPwd, oldPwd: oldPwd,TelNo: TelNo, Age:Age, Address: Address };
+                    //alert(pdata);
+                    $.post("Handlers/Loginout.ashx", pdata, function (data) {
+                        if (data == "ok") {
+                            message("success", "修改成功！", 2000);
+                            setTimeout(function () {
+                                window.location.href = "user.aspx";
+                            }, 1500)
+                        }
+                        else if (data == "errorcustomer")
+                            message("error", "请先登录！", 3000, e);
+                        else if(data == "errorpwd")
+                           message("error", "密码错误！", 3000,e);
+                        else {
+                            message("error", "修改失败！", 3000);
+                        }
+                    });
                 }
             })
             //var ke=function kkk() {
@@ -162,7 +201,7 @@
                             <li>联系方式：<%#Eval("TelNo") %></li>
                             <li>联系地址：<%#Eval("Province")+" "+Eval("City")+" "+Eval("Address") %></li>
                             <li class="clearfix"><span class="td-3ia">年龄：</span><%#Eval("Age") %></li>
-                            <li>性别：<%#Eval("Sex") %></li>
+                            <li id="oldsex">性别：<%#Eval("Sex") %></li>
                         </ul>
                         <ul class="section-2ZI follow-info-5YF">
                             <a id="UpdateCus" class="ps-btn ps-btn--xs" href="#">修改个人信息<i class="fa fa-angle-right"></i></a>
@@ -214,13 +253,13 @@
 
                                     <div class="" id="OrderContent">
                                         <div class="ps-cart__total TopbgRed">
-                                            <p>订单号：16136235—<span id="SpanOId" runat="server">xx</span></p>
+                                            <p>订单号：<span id="SpanOId" runat="server">请先在主页选择要查看的订单</span></p>
                                         </div>
                                         <div class="ps-cart__content">
                                             <asp:Repeater ID="rptOrderC" runat="server">
                                                 <ItemTemplate>
                                                     <div class="ps-cart-item">
-                                                        <a href="#" class="ps-cart-item_xin" data-tooltip="Add to wishlist">
+                                                        <a href="#" class="ps-cart-item_xin" title="love" data-tooltip="Add to wishlist">
                                                             <i class="ps-icon--heart"></i>
                                                         </a>
                                                         <div class="ps-cart-item__thumbnail">
@@ -259,24 +298,18 @@
                                 <div id="UpCus" class="cuk-tab-pane">                                   
                                       <asp:Repeater ID="rptUpcus" runat="server">
                                             <ItemTemplate>
-                                                <div class="zcbg zhuce">
-                                      
-                                        用户名称：<input type="text" id="cusName" name="UserName" value="<%#Eval("UserName") %>"/>
-                                        <br />
-                                        用户密码：<input type="text" id="UserPwd" name="UserPwd" />
-                                        <br />
-                                        重复密码：<input type="text" id="ReUserPwd" name="ReUserPwd" />
-                                        <br />
-                                        用户性别：<select id="Sex" name="Sex">
-                                            <option>男</option>
-                                            <option>女</option>
-                                        </select>
+                                                <div class="zcbg zhuce">                                    
+                                        用户名称：<input type="text" id="cusName" name="cusName" value="<%#Eval("UserName") %>"/>
+                                        <br />                                      
+                                        用户年龄：<input type="text" id="Age" name="Age" value="<%#Eval("Age") %>"/>
                                         <br />
                                         联系电话：<input type="text" id="TelNo" name="TelNo" value="<%#Eval("TelNo") %>"/>
                                         <br />
-                                        用户年龄：<input type="text" id="Birthday" name="Birthday" value="<%#Eval("Age") %>"/>
-                                        <br />
                                         联系地址：<input type="text" id="Address" name="Address" value="<%#Eval("Address") %>"/>
+                                        <br />
+                                        修改密码：<input type="text" id="newPwd" name="newPwd"  placeholder="如需修改密码，则再次输入新密码"/>
+                                        <br />
+                                        输原密码：<input type="text" id="oldPwd" name="oldPwd" />
                                         <br />
                                      </div>  
                                       <div class='login_fields__submit zcsub'>

@@ -98,7 +98,7 @@
                                         $<asp:Literal ID="litNewprice" Text="15.00" runat="server" />
                                         <del id="PPOldprice" runat="server">$25.00</del>
                                     </p>
-                                    <a class="ps-product__quickview" href="#" data-effect="mfp-zoom-out">QUICK OVERVIEW</a>
+                                    <a class="ps-product__quickview" href="#" data-effect="mfp-zoom-out">Saled：<i id="DetailSale" runat="server">0</i></a>
                                     <div class="ps-product__description">
                                         <p id="Pdesc" runat="server">
                                            
@@ -110,7 +110,7 @@
                                     </div>
                                     <div class="ps-product__meta">
                                         <p>
-                                            <span>Availability: </span>In stock
+                                            <span>ToDate: </span><i id="iDate" runat="server">stock</i> 
                                         </p>
                                         <p class="category">
                                             <span>CATEGORIES: </span>

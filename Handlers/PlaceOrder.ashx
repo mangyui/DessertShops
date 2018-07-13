@@ -18,10 +18,11 @@ public class PlaceOrder : IHttpHandler,IRequiresSessionState {
                 context.Response.Write("errorcart");
             else
             {
-                if (DBHelper.createOrder(customer.UserId, cart) == 0)
+                int toid=DBHelper.createOrder(customer.UserId, cart);
+                if ( toid>= 0)
                 {
                     context.Session["ShoppingCart"] = null;
-                    context.Response.Write("ok");
+                    context.Response.Write(toid);
                 }
                 else
                 {

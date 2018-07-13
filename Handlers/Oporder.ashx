@@ -18,9 +18,10 @@ public class Oporder : IHttpHandler, IRequiresSessionState
                 context.Response.Write("errorcustomer");
             else
             {
+                int orderid = Convert.ToInt32(context.Request.Form["orderid"]);               
                 if (type == "shouhuo")                  //收货
                 {
-                    int orderid = Convert.ToInt32(context.Request.Form["orderid"]);
+
                     if (DBHelper.updateOrder("待收货","待评价",orderid))
                         context.Response.Write("ok");
                     else
@@ -28,8 +29,14 @@ public class Oporder : IHttpHandler, IRequiresSessionState
                 }
                 else if (type == "pingjia")                //评价（交易完成）
                 {
-                    int orderid = Convert.ToInt32(context.Request.Form["orderid"]);
                     if (DBHelper.updateOrder("待评价","交易完成",orderid))
+                        context.Response.Write("ok");
+                    else
+                        context.Response.Write("error");
+                } 
+                else if (type == "delete")                //取消订单
+                {
+                    if (DBHelper.deleteOrder(orderid))
                         context.Response.Write("ok");
                     else
                         context.Response.Write("error");

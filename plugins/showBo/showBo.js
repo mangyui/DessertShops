@@ -156,36 +156,6 @@ Showbo.Msg = {
                         message("error", "充值失败！", 3000);
                 })
             }
-            else if (v == "修改")
-            btn.onclick = function (e) {
-                var UserName = $("#cusName").val();
-                //alert(UserName);
-                var UserPwd = $("#UserPwd").val();
-                var ReUserPwd = $("#ReUserPwd").val();
-                var Sex = $("#Sex").val();
-                var TelNo = $("#TelNo").val();
-                var Birthday = $("#Birthday").val();
-                var Address = $("#Address").val();
-                if (UserPwd != ReUserPwd)
-                    message("error", "您输入密码不一致!", 3000);
-                else if (UserName == "" || ReUserPwd == "" || UserPwd == "" || Sex == "" || TelNo == "" || Birthday == "" || Address == "")
-                    message("error", "不能为空！请填写完整。", 3000);
-                else {
-                    var pdata = { UserName: UserName, UserPwd: UserPwd, ReUserPwd: ReUserPwd, Sex: Sex, TelNo: TelNo, Birthday: Birthday, Address: Address };
-                    //alert(pdata);
-                    $.post("Handlers/AddUserHandler.ashx", pdata, function (data) {
-                        if (data != "error") {
-                            message("success", "注册成功！", 3000);
-                            setTimeout(function () {
-                                window.location.href = "login.html";
-                            }, 2000)
-                        }
-                        else {
-                            message("error", "注册失败！", 3000);
-                        }
-                    });
-                }
-            }
         else if (v == "收货")
             btn.onclick = function (e) {
                 var orderid = $(this).parents("#dvMsgBox").find("#dvMsgCT").find("span").eq(0).text();
@@ -217,6 +187,23 @@ Showbo.Msg = {
                         message("error", "请先登录", 2000);
                     else
                         message("error", "评价失败！", 3000);
+                })
+            }
+        else if (v == "删除")
+            btn.onclick = function (e) {
+                var orderid = $(this).parents("#dvMsgBox").find("#dvMsgCT").find("span").eq(0).text();
+                //var pwd = $(this).parents("#dvMsgBox").find("#dvMsgCT").find("#msg_txtInput").val();
+                $.post("/Handlers/Oporder.ashx", { type: "delete", orderid: orderid }, function (data) {
+                    if (data == "ok") {
+                        message("success", "删除成功！", 2000);
+                        setTimeout(function () {
+                            window.location.href = "/user.aspx";
+                        }, 1500);
+                    }
+                    else if (data == "errorcustomer")
+                        message("error", "请先登录", 2000);
+                    else
+                        message("error", "删除失败！", 3000);
                 })
             }
         else
@@ -255,6 +242,20 @@ Showbo.Msg = {
             msg: labelWord + '<br/>' + '<input type="text" id="' + txtId + '" style="width:200px" value="' + defaultValue + '"/>',
             buttons: {
                 yes: '确认',
+                no: '取消'
+            },
+            fn: fn
+        });
+    },
+    todele: function (num, labelWord, defaultValue, txtId, fn) {
+        if (!labelWord) labelWord = '请';
+        if (!defaultValue) defaultValue = "请";
+        if (!txtId) txtId = "msg_txtInput";
+        this.show({
+            title: '删除订单',
+            msg: '订单号：<span>' + num + '</span><br/>总金额：<span>' + labelWord + '</span>$<br/>' ,
+            buttons: {
+                yes: '删除',
                 no: '取消'
             },
             fn: fn

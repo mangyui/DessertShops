@@ -133,7 +133,7 @@
                                                 <h4 class="ps-product__title"><a href="product-detail.aspx?id=<%#Eval("Id") %>"><%#Eval("Name") %></a></h4>
                                                 <p><%#Eval("DeSCC") %></p>
                                                 <p class="ps-product__price">
-                                                    <del>$<%#Eval("OldPrice") %></del>$<%#Eval("NewPrice") %>
+                                                    <del>$<%#Eval("OldPrice") %></del>$<%#Eval("NewPrice") %> <i class="isale">Saled：<%#Eval("Sale") %></i>
                                                 </p>
                                                 <a class="ps-btn ps-btn--xs" href="product-detail.aspx?id=<%#Eval("Id") %>">Order now<i class="fa fa-angle-right"></i></a>
                                                 <span class="ps-btn ps-btn--xs addCart" data-pid="<%#Eval("Id") %>">Add to cart<i class="fa fa-angle-right"></i></span>

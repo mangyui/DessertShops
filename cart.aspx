@@ -89,12 +89,8 @@
             })
             $("#aPay").on("click", function (e) {
                 $.post("Handlers/PlaceOrder.ashx", { type: "-" }, function (data) {
-                    if (data == "ok") {
-                        message("success", "生成订单成功！前往付款...", 2000, e);
-                        setTimeout(function () {
-                            window.location.href = "user.aspx";
-                        }, 2000);
-                    }
+                    if (data == "error")  
+                        message("error", "生成订单失败！", 2000, e);
                     //else if (data == "errormoney")
                     //    message("error", "账户余额不足，请充值", 2000, e);
                     else if (data == "errorcart")
@@ -102,7 +98,13 @@
                     else if (data == "errorcustomer")
                         message("error", "请先登录！", 2000, e);
                     else
-                        message("error", "生成订单失败！", 2000, e);
+                    {
+                        message("success", "生成订单成功！前往付款...", 2000, e);
+                        setTimeout(function () {
+                            window.location.href = "user.aspx?id="+data;
+                        }, 2000);
+                    }
+                       
                 })
 
             })

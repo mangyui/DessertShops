@@ -37,7 +37,7 @@
                 var pdata = {UserName: UserName, UserPwd: UserPwd, ReUserPwd: ReUserPwd, Sex: Sex, TelNo: TelNo, Birthday: Birthday, Address: Address };
                 //alert(pdata);
                 $.post("Handlers/AddUserHandler.ashx", pdata, function (data) {
-                    if (data != "error") {
+                    if (data =="ok") {
                         message("success", "注册成功！", 3000);
                         setTimeout(function () {
                         window.location.href = "login.html";
