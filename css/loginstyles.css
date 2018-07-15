@@ -174,7 +174,7 @@ body {
             margin-top: -2px;
             background: rgba(57, 61, 82, 0);
             left: 0;
-            padding: 10px 65px;
+            padding: 8px 8px 8px 66px;
             border-top: 2px solid rgba(57, 61, 82, 0);
             border-bottom: 2px solid rgba(57, 61, 82, 0);
             border-right: none;
@@ -366,7 +366,7 @@ body .zhuce .zcsub #adduser {
 }
 #checkcode
 {
-    width:50%;
+    width:55%;
     margin-top:-5px;
 }
 #CCode

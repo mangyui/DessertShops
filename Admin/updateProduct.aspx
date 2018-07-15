@@ -8,7 +8,7 @@
         .auto-style2 {
             height: 60px;
         }
-        .tdCont a:nth-child(5) {
+        .tdCont a:nth-child(6) {
             border-right:none;
             border-left:4px solid #414141;
             background-color:#ffffff;color:#000;

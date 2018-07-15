@@ -3,34 +3,46 @@
 using System;
 using System.Web;
 
-public class adduserhandler : IHttpHandler {
-    
-    public void ProcessRequest (HttpContext context) {
+public class adduserhandler : IHttpHandler
+{
+
+    public void ProcessRequest(HttpContext context)
+    {
         context.Response.ContentType = "text/plain";
-
-        Customer c = new Customer();
-        c.UserName = context.Request["UserName"];
-        //alert(UserName);
-        c.UserPwd = context.Request["UserPwd"];
-        //c.ReUserPwd = context.Request["ReUserPwd"];
-        c.Sex = context.Request["Sex"];
-        c.TelNo = context.Request["TelNo"];
-        c.Age = Convert.ToInt32(context.Request["Birthday"]);
-        c.Address = context.Request["Address"];
-
-        if (DBHelper.AddCustomer(c) != 0)
+        try
         {
+            Customer c = new Customer();
+            c.UserName = context.Request["UserName"];
+            //alert(UserName);
+            c.UserPwd = context.Request["UserPwd"];
+            //c.ReUserPwd = context.Request["ReUserPwd"];
+            c.Sex = context.Request["Sex"];
+            c.TelNo = context.Request["TelNo"];
+            c.Age = Convert.ToInt32(context.Request["Birthday"]);
+            c.Address = context.Request["Address"];
+
+            if (DBHelper.AddCustomer(c) != 0)
+            {
+                context.Response.Write("error");
+            }
+            else
+            {
+                context.Response.Write("ok");
+            }
+        }
+        catch (Exception)
+        {
+
             context.Response.Write("error");
         }
-        else
-        {
-            context.Response.Write("ok");
-        }
+
 
     }
- 
-    public bool IsReusable {
-        get {
+
+    public bool IsReusable
+    {
+        get
+        {
             return false;
         }
     }

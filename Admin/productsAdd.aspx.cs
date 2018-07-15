@@ -24,7 +24,7 @@ public partial class Admin_productsAdd : System.Web.UI.Page
 
         String insertcmd = "insert into Product(商品名,现价,简介,图片,商品类别,标签) values(@name,@price,@desc,@imgpath,@typeid,@lable)";
         SqlCommand mycmd = new SqlCommand(insertcmd, connection);
-        //可在此判断参数是否正确，密码是否相同
+        
         mycmd.Parameters.AddWithValue("@name", txtName.Text.Trim());
         mycmd.Parameters.AddWithValue("@price", txtPrice.Text.Trim());
         mycmd.Parameters.AddWithValue("@desc", txtDesc.Text.Trim());

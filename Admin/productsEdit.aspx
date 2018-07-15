@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
         <style>
-        .tdCont a:nth-child(5) {
+        .tdCont a:nth-child(6) {
             border-right:none;
             border-left:4px solid #414141;
             background-color:#ffffff;color:#000;
@@ -59,9 +59,9 @@
         <LayoutTemplate>
             <table runat="server" >
                 <tr runat="server">
-                    <td runat="server">
-                        <table id="itemPlaceholderContainer" runat="server" class="tableEdit" style="" border="0">
-                            <tr runat="server" style="">
+                    <td runat="server" width="80%" >
+                        <table id="itemPlaceholderContainer" runat="server" class="tableEdit"  style=""  border="0">
+                            <tr runat="server" style="" >
                                 <th runat="server">商品ID</th>
                                 <th runat="server">商品名</th>
                                 <th runat="server">现价</th>

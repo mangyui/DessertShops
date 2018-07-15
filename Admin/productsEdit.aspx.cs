@@ -58,7 +58,7 @@ public partial class Admin_productsEdit : System.Web.UI.Page
         string selectCmd = "select * from Product";//不输入关键字，则查所有
         if (txtKey.Text.Trim().Length != 0)//输入了关键字，则在此按商品名和商品描述 模糊查找
         {
-            selectCmd += " where 商品名 like '%" + txtKey.Text.Trim() + "%' or 简介 like '%" + txtKey.Text.Trim() + "%'";
+            selectCmd += " where 商品名 like '%" + txtKey.Text.Trim() + "%' or 商品类别 like '%" + txtKey.Text.Trim() + "%'";
         }
 
         SqlDataSource1.SelectCommand = selectCmd;

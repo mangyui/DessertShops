@@ -72,7 +72,7 @@
                 <br />
                 联系电话：<input type="text" id="TelNo" name="TelNo" />
                 <br />
-                用户年龄：<input type="text" id="Birthday" name="Birthday" />
+                用户年龄：<input type="number" id="Birthday" name="Birthday" />
                 <br />
                 联系地址：<input type="text" id="Address" name="Address" />
                 <br />

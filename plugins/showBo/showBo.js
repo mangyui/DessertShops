@@ -119,8 +119,9 @@ Showbo.Msg = {
         if (v == "付款")
             btn.onclick = function (e) {
                 var orderid = $(this).parents("#dvMsgBox").find("#dvMsgCT").find("span").eq(0).text();
+                var orderpr = $(this).parents("#dvMsgBox").find("#dvMsgCT").find("span").eq(1).text();
                 var pwd = $(this).parents("#dvMsgBox").find("#dvMsgCT").find("#msg_txtInput").val();
-                $.post("/Handlers/ChangeMoney.ashx", { type: "-",pwd:pwd, orderid: orderid }, function (data) {
+                $.post("/Handlers/ChangeMoney.ashx", { type: "-",pwd:pwd, orderid: orderid,price:orderpr }, function (data) {
                     if (data == "ok") {
                         message("success", "付款成功！", 2000);
                         setTimeout(function () {

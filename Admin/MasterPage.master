@@ -97,7 +97,15 @@
             text-align: center;
             background-color: rgba(128, 128, 128, 0.12);
         }
-
+        .tdMo .PEtable
+        {
+            width:80%;
+        }
+        .tdMo input
+        {
+            font-size:16px;
+            padding:5px;
+        }
             .tdMo #ContentPlaceHolder1_txtKey {
                 margin: 10px;
                 background-color: transparent;
@@ -195,6 +203,7 @@
                         <div class="topDiv">
                             <div class="topTr"><span id="SpanLg" runat="server">欢迎登录!</span><a href="#" id="SpanAd" runat="server">admin</a></div>
                         </div>
+                        <a class="aa" href="ProductsSales.aspx"><i class="admin-icon">&#xe99b;</i>销量统计</a>
                         <a class="aa" href="Tocustomers.aspx"><i class="admin-icon">&#xe972;</i>查看用户</a>
                         <a class="aa" href="productsAdd.aspx"><i class="admin-icon">&#xea0a;</i>增加商品</a>
                         <a class="aa" href="productsEdit.aspx"><i class="admin-icon">&#xeaae;</i>管理商品</a>

@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <style>
-        .tdCont a:nth-child(7) {
+        .tdCont a:nth-child(8) {
             border-right:none;
             border-left:4px solid #414141;
             background-color:#ffffff;

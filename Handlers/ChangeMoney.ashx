@@ -37,20 +37,20 @@ public class ChangeMoney : IHttpHandler, IRequiresSessionState
                     else if (type == "-")                      //付款
                     {
                         int orderid = Convert.ToInt32(context.Request.Form["orderid"]);
-                        if (DBHelper.PayOrder(cu.UserId, orderid))
+                        decimal sum = Convert.ToDecimal(context.Request.Form["price"]);
+                        if (cu.Balance >= sum)
                         {
-                            decimal sum = DBHelper.GetOrder(orderid).Price;
-                            if (cu.Balance >= sum)
+                            if (DBHelper.PayOrder(cu.UserId, orderid))
                             {
                                 cu.Balance -= sum;
                                 context.Response.Write("ok");
                             }
                             else
-                                context.Response.Write("errormomey");
+                                context.Response.Write("error");
                         }
                         else
-                            context.Response.Write("error");
-                    }   
+                            context.Response.Write("errormoney");
+                    }
                 }
             }
         }

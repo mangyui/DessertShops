@@ -468,7 +468,7 @@ public static List<Product> GetProductsList2(int typeid)
     {
         string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         SqlConnection connection = new SqlConnection(connectionString);
-        String insertcmd = "update  Customers set 余额+=@money where 用户ID=@userid";        
+        String insertcmd = "update  Customers set 余额=余额+@money where 用户ID=@userid";        
 
         SqlCommand mycmd = new SqlCommand(insertcmd, connection);
         //

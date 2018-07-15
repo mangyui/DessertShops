@@ -198,10 +198,11 @@
                             <span class="count-3gW" id="Cmoney"><%#Eval("Balance") %></span>$
                         </div>
                         <ul class="section-2ZI activity-info-BDI">
+                            <li>ID编号：<%#Eval("UserId") %></li>
+                            <li id="oldsex">性别：<%#Eval("Sex") %></li>
+                            <li class="clearfix"><span class="td-3ia">年龄：</span><%#Eval("Age") %></li>
                             <li>联系方式：<%#Eval("TelNo") %></li>
                             <li>联系地址：<%#Eval("Province")+" "+Eval("City")+" "+Eval("Address") %></li>
-                            <li class="clearfix"><span class="td-3ia">年龄：</span><%#Eval("Age") %></li>
-                            <li id="oldsex">性别：<%#Eval("Sex") %></li>
                         </ul>
                         <ul class="section-2ZI follow-info-5YF">
                             <a id="UpdateCus" class="ps-btn ps-btn--xs" href="#">修改个人信息<i class="fa fa-angle-right"></i></a>
@@ -235,7 +236,7 @@
                                                                 <td><span>下单时间：<%#Eval("InDate") %></span></td>
                                                                 <td><span>用户ID：<%#Eval("UserId") %></span></td>
                                                                 <td><span>总价：<i class="SpanOP"><%#Eval("Price") %></i> $</span></td>
-                                                                <td><span>订单状态：<%#Eval("State") %></span></td>
+                                                                <td><span>订单状态：<i style="font-size:15px;font-weight:bold"><%#Eval("State") %></i></span></td>
                                                             </tr>
                                                         </table>
 
@@ -307,7 +308,7 @@
                                         <br />
                                         联系地址：<input type="text" id="Address" name="Address" value="<%#Eval("Address") %>"/>
                                         <br />
-                                        修改密码：<input type="text" id="newPwd" name="newPwd"  placeholder="如需修改密码，则再次输入新密码"/>
+                                        修改密码：<input type="text" id="newPwd" name="newPwd"  placeholder="如需修改密码，则在此输入新密码"/>
                                         <br />
                                         输原密码：<input type="text" id="oldPwd" name="oldPwd" />
                                         <br />
