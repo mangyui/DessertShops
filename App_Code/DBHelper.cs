@@ -533,4 +533,96 @@ public static List<Product> GetProductsList2(int typeid)
             return false;
         }
     }
+    public static int AddCollcection(Customer c,Product p)
+    {
+        string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection connection = new SqlConnection(connectionString);
+
+        String insertcmd = "insert into [Collection] values(@UserID,@ProId,@ProName,@ProImage,@ProPrice)";
+        SqlCommand mycmd = new SqlCommand(insertcmd, connection);
+        mycmd.Parameters.AddWithValue("@UserID", c.UserId);
+        mycmd.Parameters.AddWithValue("@ProId", p.Id);
+        mycmd.Parameters.AddWithValue("@ProName", p.Name);
+        mycmd.Parameters.AddWithValue("@ProImage", p.ImgPath);
+        mycmd.Parameters.AddWithValue("@ProPrice", p.NewPrice);
+        mycmd.Connection.Open();
+        int iResult = 0;
+        try
+        {
+            iResult = mycmd.ExecuteNonQuery();
+        }
+        catch (Exception ee)
+        {
+            //Label1.Text = ee.Message;
+            return -1;
+        }
+        finally
+        {
+            mycmd.Connection.Close();
+        }
+        if (iResult >0)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0; ;
+        }
+    }
+    public static List<Product> GetColltionList(string userid)
+    {
+        List<Product> list = new List<Product>();
+
+        string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection connection = new SqlConnection(connectionString);
+
+        string queryString = "SELECT * FROM [Collection] where 用户号=@id";
+        SqlCommand command = new SqlCommand(queryString, connection);
+        command.Parameters.AddWithValue("@id", userid);
+        connection.Open();
+        SqlDataReader reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            Product pro = new Product();
+            pro.Id = int.Parse(reader["商品号"].ToString());
+            pro.NewPrice = decimal.Parse(reader["商品价格"].ToString());
+            pro.Name = reader["商品名"].ToString();
+            pro.ImgPath = reader["商品图"].ToString();
+            list.Add(pro);
+        }
+        connection.Close();
+        return list;
+    }
+    public static bool deleteCollection(int id,Customer cus)
+    {
+        string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection connection = new SqlConnection(connectionString);
+
+        String cmd = "delete from [Collection] where 商品号=@id and 用户号=@userid";
+        SqlCommand mycmd = new SqlCommand(cmd, connection);
+        mycmd.Parameters.AddWithValue("@id", id);
+        mycmd.Parameters.AddWithValue("@userid", cus.UserId);
+        mycmd.Connection.Open();
+        int iResult = 0;//影响的记录数
+        try
+        {
+            iResult = mycmd.ExecuteNonQuery();
+        }
+        catch (Exception ee)
+        {
+            return false;
+        }
+        finally
+        {
+            mycmd.Connection.Close();
+        }
+        if (iResult > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

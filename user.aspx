@@ -4,6 +4,7 @@
     <title>User</title>
     <link rel="stylesheet" href="css/codingcss.css" />
     <link href="plugins/showBo/showBo.css" rel="stylesheet" />
+    <link href="/plugins/admin-icon/iconA.css" rel="stylesheet" />
     <script src="plugins/showBo/showBo.js"></script>
     <script>
         $(function () {
@@ -23,10 +24,7 @@
                 $(".cuk-tab-panes .cuk-tab-pane").eq($(this).index()).show();
                 return false;
             })
-            $(".ps-cart-item_xin").click(function () {
-                $(this).toggleClass("ps_xin_active");
-                return false;
-            })
+
             //$("#zhuye").click(function () {
             //    $(".cuk-tab-bar").removeClass("cuk-tab-bar-active");
             //    $("#zhuye").addClass("cuk-tab-bar-active");
@@ -76,7 +74,7 @@
                 if ($(this).data("odstate") == "待付款") {
                     var odid = $(this).data("orderid");
                     var odpr = $(this).data("odprice");
-                    $(this).text("付款").css("background-image", "linear-gradient(90deg,#228fbd, #2570a1)").attr("onclick", "Showbo.Msg.topwd(" + odid + "," + odpr + ")");
+                    $(this).text("付款").css("background-image", "linear-gradient(90deg,#2570a1, #2570a1)").attr("onclick", "Showbo.Msg.topwd(" + odid + "," + odpr + ")");
                     //var $anew = $("<a class='ps-btn ps-btn--xs aorder deleOrder' data-orderid='" + odid + "' data-odstate='待付款' data-odprice='" + odpr + "'>取消订单<i class='fa fa-angle-right'></i></a>")
                     //$anew.insertAfter($(this));
                 }
@@ -86,7 +84,7 @@
                 else if ($(this).data("odstate") == "待收货") {
                     var odid = $(this).data("orderid");
                     var odpr = $(this).data("odprice");
-                    $(this).text("确认收货").css("background-image", "linear-gradient(90deg,#00a6ac, #008792)").attr("onclick", "Showbo.Msg.toshou(" + odid + "," + odpr + ")");
+                    $(this).text("确认收货").css("background-image", "linear-gradient(90deg,#00a6ac, #00a6ac )").attr("onclick", "Showbo.Msg.toshou(" + odid + "," + odpr + ")");
                 }
                 else if ($(this).data("odstate") == "待评价") {
                     var odid = $(this).data("orderid");
@@ -94,7 +92,7 @@
                     $(this).text("评价").css("background-image", "linear-gradient(90deg,#6f60aa, #585eaa)").attr("onclick", "Showbo.Msg.toping(" + odid + "," + odpr + ")");
                 }
                 else if ($(this).data("odstate") == "交易完成") {
-                    $(this).text("交易完成").css("background-image", "linear-gradient(90deg,#007d65, #007d65)");
+                    $(this).text("交易完成").css("background-image", "linear-gradient(90deg,#1abc9c, #1abc9c)");
                 }
             })
             $("#UpdateUser").click(function (e) {
@@ -104,12 +102,12 @@
                 var TelNo = $("#TelNo").val();
                 var Age = $("#Age").val();
                 var Address = $("#Address").val();
-                if(oldPwd == "")
+                if (oldPwd == "")
                     message("error", "请输入密码", 3000);
-                else if (UserName == ""|| TelNo == "" || Address == ""||Age=="")
+                else if (UserName == "" || TelNo == "" || Address == "" || Age == "")
                     message("error", "不能为空！请填写完整。", 3000);
                 else {
-                    var pdata = { work:"update", UserName: UserName, newPwd: newPwd, oldPwd: oldPwd,TelNo: TelNo, Age:Age, Address: Address };
+                    var pdata = { work: "update", UserName: UserName, newPwd: newPwd, oldPwd: oldPwd, TelNo: TelNo, Age: Age, Address: Address };
                     //alert(pdata);
                     $.post("Handlers/Loginout.ashx", pdata, function (data) {
                         if (data == "ok") {
@@ -120,13 +118,46 @@
                         }
                         else if (data == "errorcustomer")
                             message("error", "请先登录！", 3000, e);
-                        else if(data == "errorpwd")
-                           message("error", "密码错误！", 3000,e);
+                        else if (data == "errorpwd")
+                            message("error", "密码错误！", 3000, e);
                         else {
                             message("error", "修改失败！", 3000);
                         }
                     });
                 }
+            })
+            $(".ps-cart-item_xin").click(function (e) {
+                var $th = $(this);
+                var collid = $(this).data("collid");
+                if ($(this).hasClass("ps_xin_active")) {
+                    $.post("Handlers/addCollection.ashx", { collid: collid, type: "remove" }, function (data) {
+                        if (data == "ok") {
+                            message("success", "已取消收藏！", 2000, e);
+                            $th.removeClass("ps_xin_active");
+                        }
+                        else
+                            message("error", "取消收藏失败！", 2000, e);
+                    })
+                }
+                else {
+                    $.post("Handlers/addCollection.ashx", { collid: collid, type: "add" }, function (data) {
+                        if (data == "ok") {
+                            message("success", "收藏成功！", 2000, e);
+                            $th.addClass("ps_xin_active");
+                        }
+                        else if (data == "errora") {
+                            message("info", "已在收藏列表中！", 2000, e);
+                            $th.addClass("ps_xin_active");
+                        }
+                        else
+                            message("error", "收藏失败！", 2000, e);
+                    })
+                }
+                return false;
+            })
+            $(".spanStar i").click(function () {
+                $(this).parent().find("i").addClass("iactive");
+                $(this).parent().find("i:gt(" + $(this).index()+ ")").removeClass("iactive");
             })
             //var ke=function kkk() {
             //  var $th = $(this); alert("132");         
@@ -236,7 +267,7 @@
                                                                 <td><span>下单时间：<%#Eval("InDate") %></span></td>
                                                                 <td><span>用户ID：<%#Eval("UserId") %></span></td>
                                                                 <td><span>总价：<i class="SpanOP"><%#Eval("Price") %></i> $</span></td>
-                                                                <td><span>订单状态：<i style="font-size:15px;font-weight:bold"><%#Eval("State") %></i></span></td>
+                                                                <td><span>订单状态：<i style="font-size: 15px; font-weight: bold"><%#Eval("State") %></i></span></td>
                                                             </tr>
                                                         </table>
 
@@ -260,7 +291,7 @@
                                             <asp:Repeater ID="rptOrderC" runat="server">
                                                 <ItemTemplate>
                                                     <div class="ps-cart-item">
-                                                        <a href="#" class="ps-cart-item_xin" title="love" data-tooltip="Add to wishlist">
+                                                        <a href="#" class="ps-cart-item_xin addColltion" title="love" data-tooltip="Add to wishlist" data-collid="<%#Eval("Peoductid") %>">
                                                             <i class="ps-icon--heart"></i>
                                                         </a>
                                                         <div class="ps-cart-item__thumbnail">
@@ -283,6 +314,53 @@
                                             <p>Order State:<span id="OrderState" runat="server">无</span></p>
                                         </div>
                                     </div>
+                                    <div>
+                                        <h3 class="activity-title-1mK h3pingjia"><b>下滑评价</b><i class="admin-icon">&#xea36;</i></h3>
+                                        <div class="divPing">
+                                        <ul class="ulpingjia">
+                                            <li>
+                                                <span>物流评价</span>
+                                                <span class="spanStar">
+                                                    <i class="admin-icon"></i>
+                                                    <i class="admin-icon"></i>
+                                                    <i class="admin-icon"></i>
+                                                    <i class="admin-icon"></i>
+                                                    <i class="admin-icon"></i>
+                                                </span>
+                                            </li>  
+                                            <li>
+                                                <span>服务态度</span>
+                                                <span class="spanStar">
+                                                    <i class="admin-icon"></i>
+                                                    <i class="admin-icon"></i>
+                                                    <i class="admin-icon"></i>
+                                                    <i class="admin-icon"></i>
+                                                    <i class="admin-icon"></i>
+                                                </span>
+                                            </li> 
+                                            <li>
+                                                <span>购物体验</span>
+                                                <span class="spanStar">
+                                                    <i class="admin-icon"></i>
+                                                    <i class="admin-icon"></i>
+                                                    <i class="admin-icon"></i>
+                                                    <i class="admin-icon"></i>
+                                                    <i class="admin-icon"></i>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                        <ul class="ulnum">
+                                            <asp:Repeater ID="rptiItemPing" runat="server">
+                                                <ItemTemplate>
+                                                    <li><h5><%#Eval("Name") %></h5>
+                                                        <textarea></textarea>
+                                                    </li>
+                                                </ItemTemplate>
+                                            </asp:Repeater>
+                                        </ul>
+                                       </div>
+                                    </div>
+                                    <div class="divclear"></div>
                                     <a class="ps-btn ps-btn--xs aorder PayA" id="Aopde" data-orderid="" data-odstate="" data-odprice="">无操作<i class="fa fa-angle-right"></i></a>
                                 </div>
                                 <div id="Recharge" class="cuk-tab-pane">
@@ -295,34 +373,58 @@
                                     <a id="CZ" class="ps-btn ps-btn--xs">充值<i class="fa fa-angle-right"></i></a>
                                 </div>
                                 <div class="cuk-tab-pane">
-                                </div>
-                                <div id="UpCus" class="cuk-tab-pane">                                   
-                                      <asp:Repeater ID="rptUpcus" runat="server">
+                                    <div class="ps-cart__total TopbgRed">
+                                        <p><span>TA的收藏</span></p>
+                                    </div>
+                                    <div class="ps-coll__content">
+                                        <asp:Repeater ID="rptCollection" runat="server">
                                             <ItemTemplate>
-                                                <div class="zcbg zhuce">                                    
-                                        用户名称：<input type="text" id="cusName" name="cusName" value="<%#Eval("UserName") %>"/>
-                                        <br />                                      
-                                        用户年龄：<input type="text" id="Age" name="Age" value="<%#Eval("Age") %>"/>
-                                        <br />
-                                        联系电话：<input type="text" id="TelNo" name="TelNo" value="<%#Eval("TelNo") %>"/>
-                                        <br />
-                                        联系地址：<input type="text" id="Address" name="Address" value="<%#Eval("Address") %>"/>
-                                        <br />
-                                        修改密码：<input type="text" id="newPwd" name="newPwd"  placeholder="如需修改密码，则在此输入新密码"/>
-                                        <br />
-                                        输原密码：<input type="text" id="oldPwd" name="oldPwd" />
-                                        <br />
-                                     </div>  
-                                      <div class='login_fields__submit zcsub'>
- <%--                                             <a id="UpdateCus" class="ps-btn ps-btn--xs" href="#">修改个人信息<i class="fa fa-angle-right"></i></a>--%>
-                                            <input id="UpdateUser"  class="ps-btn ps-btn--xs"  type="button" value="修改" />
-                                        </div>
-                            </div>
-                            </ItemTemplate>
+                                                <div class="ps-cart-item ps-coll-item">
+                                                    <a href="#" class="ps-cart-item_xin ps_xin_active" title="love" data-tooltip="Add to wishlist" data-collid="<%#Eval("Id") %>">
+                                                        <i class="ps-icon--heart"></i>
+                                                    </a>
+                                                    <div class="ps-cart-item__thumbnail">
+                                                        <a href="product-detail.aspx"></a>
+                                                        <img src="<%#Eval("ImgPath") %>" alt="">
+                                                    </div>
+                                                    <div class="ps-cart-item__content">
+                                                        <p>
+                                                            <span><a class="" href="product-detail.aspx?id=<%#Eval("Id") %>"><%#Eval("Name") %></a></span>
+                                                            <span>Price:<i>$<%#Eval("NewPrice") %></i></span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </ItemTemplate>
                                         </asp:Repeater>
+                                    </div>
+                                </div>
+                                <div id="UpCus" class="cuk-tab-pane">
+                                    <asp:Repeater ID="rptUpcus" runat="server">
+                                        <ItemTemplate>
+                                            <div class="zcbg zhuce">
+                                                用户名称：<input type="text" id="cusName" name="cusName" value="<%#Eval("UserName") %>" />
+                                                <br />
+                                                用户年龄：<input type="text" id="Age" name="Age" value="<%#Eval("Age") %>" />
+                                                <br />
+                                                联系电话：<input type="text" id="TelNo" name="TelNo" value="<%#Eval("TelNo") %>" />
+                                                <br />
+                                                联系地址：<input type="text" id="Address" name="Address" value="<%#Eval("Address") %>" />
+                                                <br />
+                                                修改密码：<input type="text" id="newPwd" name="newPwd" placeholder="如需修改密码，则在此输入新密码" />
+                                                <br />
+                                                输原密码：<input type="text" id="oldPwd" name="oldPwd" />
+                                                <br />
+                                            </div>
+                                            <div class='login_fields__submit zcsub'>
+                                                <%--                                             <a id="UpdateCus" class="ps-btn ps-btn--xs" href="#">修改个人信息<i class="fa fa-angle-right"></i></a>--%>
+                                                <input id="UpdateUser" class="ps-btn ps-btn--xs" type="button" value="修改" />
+                                            </div>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </div>
+                            </div>
                         </div>
-                        </div>
-                    </div>
                 </aside>
             </div>
         </div>

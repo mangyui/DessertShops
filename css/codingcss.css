@@ -177,12 +177,12 @@ ul {
 #OrderContent
 {
     margin :-20px auto 20px;
-    width:70%;
+    width:80%;
     
 }
 #OrderContent .ps-cart__content
 {
-    height :240px;
+    height :280px;
     border:1px solid #d8dde4;
     border-bottom:none;
 }
@@ -244,4 +244,66 @@ ul {
     padding:6px 20px;
     width:100px;
     background-image:linear-gradient(#202d40,#202d40);
+}
+.ps-coll__content
+{
+    padding-top: 20px;
+    height: 360px;
+}
+.ps-coll__content .ps-coll-item .ps-cart-item__content
+{
+    margin:3% auto 0;
+}
+.ps-coll__content .ps-coll-item p span
+{
+    margin:0 10%;
+}
+.divPing
+{
+    width:60%;
+    margin:0 auto;
+}
+.h3pingjia{
+    padding:15px;
+    border-bottom:1px solid #d8dde4;
+}
+.ulpingjia li
+{
+    margin:20px 0;
+}
+.ulpingjia li i::after
+{
+   content:"\e9d7"
+}
+.ulpingjia li .iactive::after
+{
+   content:"\e9d9"
+}
+.ulpingjia li span
+{
+    font-weight:bold;
+    font-size:19px;
+    margin:0 20px;
+}
+.ulnum li
+{
+    list-style:circle;
+    clear:both;
+    width:100%;
+}
+.ulnum li textarea
+{
+    float:left;
+    width:100%;
+    margin:10px 0;
+    font-size:16px;
+    padding:5px;
+}
+.ulnum li h5
+{
+    float:left;
+}
+.divclear
+{
+    clear:both;
 }

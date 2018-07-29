@@ -17,6 +17,10 @@ public partial class user2 : System.Web.UI.Page
             List<OrderDetails> list = DBHelper.GetODList(id);
             rptOrderC.DataSource = list;
             rptOrderC.DataBind();
+
+            rptiItemPing.DataSource = list;
+            rptiItemPing.DataBind();
+
             Order order = DBHelper.GetOrder(int.Parse(id));
             SpanOId.InnerText = order.Id.ToString();
             OrderSum.InnerText = order.Price.ToString();
@@ -37,7 +41,10 @@ public partial class user2 : System.Web.UI.Page
             rptDingDan.DataSource = DDlist;
             rptDingDan.DataBind();
 
+            List<Product> collist = DBHelper.GetColltionList(cus.UserId);
 
+            rptCollection.DataSource = collist;
+            rptCollection.DataBind();
         }
     }
 }
