@@ -35,6 +35,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
         CCNum.InnerText = Slist.TotalQuantity.ToString();
         MinNum.InnerText = Slist.TotalQuantity.ToString();
-        MinTotal.InnerText = "£" + Slist.TotalSum.ToString();
+        MinTotal.InnerText = "$" + Slist.TotalSum.ToString();
     }
 }

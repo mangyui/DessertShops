@@ -117,7 +117,7 @@
                                                         <a class="ps-cart-item__title" href="product-detail.aspx?id=<%#Eval("Id") %>"><%#Eval("Name") %></a>
                                                         <p>
                                                             <span>Quantity:<i><%#Eval("Quantity") %></i></span><br />
-                                                            <span>Total:<i>£<%#Convert.ToDecimal(Eval("Price"))*Convert.ToDecimal(Eval("Quantity")) %></i></span>
+                                                            <span>Total:<i>$<%#Convert.ToDecimal(Eval("Price"))*Convert.ToDecimal(Eval("Quantity")) %></i></span>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -126,7 +126,7 @@
                                     </div>
                                     <div class="ps-cart__total bgRed">
                                         <p>Number of items:<span id="MinNum" runat="server">36</span></p>
-                                        <p>Item Total:<span id="MinTotal" runat="server">£528.00</span></p>
+                                        <p>Item Total:<span id="MinTotal" runat="server">$528.00</span></p>
                                     </div>
                                 </div>
                             </div>

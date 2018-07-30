@@ -24,15 +24,7 @@
                 $(".cuk-tab-panes .cuk-tab-pane").eq($(this).index()).show();
                 return false;
             })
-
-            //$("#zhuye").click(function () {
-            //    $(".cuk-tab-bar").removeClass("cuk-tab-bar-active");
-            //    $("#zhuye").addClass("cuk-tab-bar-active");
-            //    $("#Recharge").hide();
-            //    $("#dingdan").show();
-            //    return false;
-            //})
-            //$("#Recharge").hide();
+          
             $.getUrlParam = function (name) {
                 var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
                 var r = window.location.search.substr(1).match(reg);
@@ -45,8 +37,12 @@
                     if ($("#ContentPlaceHolder1_OrderState").text() == "待付款") {
                         var $anew = $("<a class='ps-btn ps-btn--xs aorder' id='deleOrder' data-orderid='" + $("#ContentPlaceHolder1_SpanOId").text() + "' data-odstate='" + $("#ContentPlaceHolder1_OrderState").text() + "' data-odprice='" + $("#ContentPlaceHolder1_OrderSum").text() + "'>取消订单<i class='fa fa-angle-right'></i></a>")
                         $anew.insertAfter("#Aopde");
-                    }
+                    }               
                 }
+                if ($("#ContentPlaceHolder1_OrderState").text() == "待评价") {
+                        $("#divEvaluate").show();
+                    }
+                    else $("#divEvaluate").hide();
             }
             aa();
             $("#deleOrder").click(function () {
@@ -89,7 +85,7 @@
                 else if ($(this).data("odstate") == "待评价") {
                     var odid = $(this).data("orderid");
                     var odpr = $(this).data("odprice");
-                    $(this).text("评价").css("background-image", "linear-gradient(90deg,#6f60aa, #585eaa)").attr("onclick", "Showbo.Msg.toping(" + odid + "," + odpr + ")");
+                    $(this).text("评价").css("background-image", "linear-gradient(90deg,#6f60aa, #585eaa)").attr("href", "user.aspx?id=" + odid);
                 }
                 else if ($(this).data("odstate") == "交易完成") {
                     $(this).text("交易完成").css("background-image", "linear-gradient(90deg,#1abc9c, #1abc9c)");
@@ -155,45 +151,52 @@
                 }
                 return false;
             })
-            $(".spanStar i").click(function () {
+            $(".spanStar i").hover(function () {
                 $(this).parent().find("i").addClass("iactive");
-                $(this).parent().find("i:gt(" + $(this).index()+ ")").removeClass("iactive");
+                $(this).parent().find("i:gt(" + $(this).index() + ")").removeClass("iactive");
             })
-            //var ke=function kkk() {
-            //  var $th = $(this); alert("132");         
-            //    var orderid = $(this).parents("#dvMsgBox").find("dvMsgCT").find("span").eq(1).text();
+            function endping() {
+                if ($("#Aopde").text() == "评价") {
+                    $("#Aopde").removeAttr("href");
+                    $("#Aopde").click(function (e) {
+                        var orderid = $(this).data("orderid");
+                        var lih5 = $(".liEvaluate h5");
+                        var litea = $(".liEvaluate textarea");
+                        var i = 0;
+                        var f = true;
+                        for (; i < lih5.length; i++) {
+                            var tea = $(litea[i]).val();
+                            if (tea == "")
+                                tea = "此用户没有填写评价！"
+                            $.post("Handlers/Evaluate.ashx", { orderid: orderid, id: $(lih5[i]).data("pingid"), evaluate: tea }, function (data) {
+                                if (data != "ok") {
+                                    message("error", "评价失败！", 2000,e);
+                                    f = false;
+                                }
+                            })
+                        }
+                        if (f == true) {
+                            $.post("/Handlers/Oporder.ashx", { type: "pingjia", orderid: orderid }, function (data) {
+                                if (data == "ok") {
+                                    message("success", "评论成功", 2000, e);
+                                    setTimeout(function(){
+                                    window.location.reload();
+                                    },2000) 
+                                }
+                                else if (data == "errorcustomer")
+                                    message("error", "请先登录", 2000,e);
+                                else
+                                    message("error", "评价失败！", 3000,e);
+                            })
 
-            //    $.post("Handlers/ChangeMoney.ashx", { type: "-", orderid: orderid }, function (data) {
-            //        if (data == "ok") {
-            //            message("success", "付款成功！", 2000, e);
-            //            setTimeout(function () {
-            //                window.location.href = "user.aspx";
-            //            }, 2000);
-            //        }
-            //        else if (data == "errormoney")
-            //            message("error", "余额不足", 2000, e);
-            //        else if (data == "errorcustomer")
-            //            message("error", "请先登录", 2000, e);
-            //        else
-            //            message("error", "付款失败！", 2000, e);
-            //    })
-            //}
-            //$("#YesBtn").click(function(e){
+                        }
+                        return false;
+                    })
 
-            //})
-
-            //$(".dingdanremove").click(function (e) {
-            //    var did = $(this).data("did");
-            //    var $th = $(this).parent();
-            //    $.post("Handlers/RemoveDingDan.ashx", {did:did},function(data){
-            //        if (data == "ok") {
-            //            message("success", "成功删除该订单", 2000,e);
-            //            $th.fadeOut(1000, function () {
-            //                $th.remove();
-            //            })
-            //        }
-            //    })
-            //})
+                }
+            }
+            endping();    
+          
         })
 
     </script>
@@ -314,51 +317,52 @@
                                             <p>Order State:<span id="OrderState" runat="server">无</span></p>
                                         </div>
                                     </div>
-                                    <div>
-                                        <h3 class="activity-title-1mK h3pingjia"><b>下滑评价</b><i class="admin-icon">&#xea36;</i></h3>
+                                    <div id="divEvaluate">
+                                        <h3 class="activity-title-1mK h3pingjia"><b>下滑评价</b><i class="admin-icon" id="iDowm">&#xea36;</i></h3>
                                         <div class="divPing">
-                                        <ul class="ulpingjia">
-                                            <li>
-                                                <span>物流评价</span>
-                                                <span class="spanStar">
-                                                    <i class="admin-icon"></i>
-                                                    <i class="admin-icon"></i>
-                                                    <i class="admin-icon"></i>
-                                                    <i class="admin-icon"></i>
-                                                    <i class="admin-icon"></i>
-                                                </span>
-                                            </li>  
-                                            <li>
-                                                <span>服务态度</span>
-                                                <span class="spanStar">
-                                                    <i class="admin-icon"></i>
-                                                    <i class="admin-icon"></i>
-                                                    <i class="admin-icon"></i>
-                                                    <i class="admin-icon"></i>
-                                                    <i class="admin-icon"></i>
-                                                </span>
-                                            </li> 
-                                            <li>
-                                                <span>购物体验</span>
-                                                <span class="spanStar">
-                                                    <i class="admin-icon"></i>
-                                                    <i class="admin-icon"></i>
-                                                    <i class="admin-icon"></i>
-                                                    <i class="admin-icon"></i>
-                                                    <i class="admin-icon"></i>
-                                                </span>
-                                            </li>
-                                        </ul>
-                                        <ul class="ulnum">
-                                            <asp:Repeater ID="rptiItemPing" runat="server">
-                                                <ItemTemplate>
-                                                    <li><h5><%#Eval("Name") %></h5>
-                                                        <textarea></textarea>
-                                                    </li>
-                                                </ItemTemplate>
-                                            </asp:Repeater>
-                                        </ul>
-                                       </div>
+                                            <ul class="ulpingjia">
+                                                <li>
+                                                    <span>物流评价</span>
+                                                    <span class="spanStar">
+                                                        <i class="admin-icon"></i>
+                                                        <i class="admin-icon"></i>
+                                                        <i class="admin-icon"></i>
+                                                        <i class="admin-icon"></i>
+                                                        <i class="admin-icon"></i>
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <span>服务态度</span>
+                                                    <span class="spanStar">
+                                                        <i class="admin-icon"></i>
+                                                        <i class="admin-icon"></i>
+                                                        <i class="admin-icon"></i>
+                                                        <i class="admin-icon"></i>
+                                                        <i class="admin-icon"></i>
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <span>购物体验</span>
+                                                    <span class="spanStar">
+                                                        <i class="admin-icon"></i>
+                                                        <i class="admin-icon"></i>
+                                                        <i class="admin-icon"></i>
+                                                        <i class="admin-icon"></i>
+                                                        <i class="admin-icon"></i>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                            <ul class="ulnum">
+                                                <asp:Repeater ID="rptiItemPing" runat="server">
+                                                    <ItemTemplate>
+                                                        <li class="liEvaluate">
+                                                            <h5 data-pingid="<%#Eval("Peoductid") %>"><%#Eval("Name") %></h5>
+                                                            <textarea></textarea>
+                                                        </li>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
+                                            </ul>
+                                        </div>
                                     </div>
                                     <div class="divclear"></div>
                                     <a class="ps-btn ps-btn--xs aorder PayA" id="Aopde" data-orderid="" data-odstate="" data-odprice="">无操作<i class="fa fa-angle-right"></i></a>

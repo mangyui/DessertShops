@@ -18,10 +18,26 @@
             font-size: 16px;
         }
 
-        .Topicon {
-            font-size: 24px;
-            color: #000;
+        .Topicon {         
+            color: #000;  
+            line-height:40px;  
         }
+        #iOne
+        { 
+            font-size: 40px;
+            float:left;
+            animation: Myring 3.1s infinite linear;
+        }
+        @keyframes Myring {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
 
         table {
             margin: 0 auto;
@@ -32,17 +48,20 @@
             background-color: #ee7560;
             text-align: left;
             font-weight: bold;
-            padding: 10px 20px;
+            padding: 10px 20px 0;
             font-size: 20px;
             color: #fff;
-        }  
-          .Toptd  #IconLogin
-          {
-               float: right;
-               font-size:24px;
-               padding:4px 5px 0 5px;
-               color:#fff;
-          }
+            line-height:40px;
+            
+        }
+
+            .Toptd #IconLogin {
+                float: right;
+                font-size: 24px;
+                padding: 4px 5px 0 5px;
+                color: #fff;
+            }
+
             .Toptd #aLogin {
                 float: right;
                 text-decoration: none;
@@ -97,15 +116,16 @@
             text-align: center;
             background-color: rgba(128, 128, 128, 0.12);
         }
-        .tdMo .PEtable
-        {
-            width:80%;
-        }
-        .tdMo input
-        {
-            font-size:16px;
-            padding:5px;
-        }
+
+            .tdMo .PEtable {
+                width: 80%;
+            }
+
+            .tdMo input {
+                font-size: 16px;
+                padding: 5px;
+            }
+
             .tdMo #ContentPlaceHolder1_txtKey {
                 margin: 10px;
                 background-color: transparent;
@@ -191,7 +211,7 @@
             <table width="100%">
                 <tr>
                     <td colspan="2" class="Toptd">
-                        <i class="admin-icon Topicon">&#xe994;</i>
+                        <i class="admin-icon Topicon" id="iOne">&#xe994;</i>
                         后台管理<i class="admin-icon Topicon" id="IconLogin">&#xea13;</i><a href="/login.html" id="aLogin" runat="server">登出</a></td>
                 </tr>
                 <tr>

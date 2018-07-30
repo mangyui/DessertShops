@@ -625,4 +625,65 @@ public static List<Product> GetProductsList2(int typeid)
             return false;
         }
     }
+    public static bool AddEvaluate(Customer c, Product p,string orderid,string evaluate)
+    {
+        string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection connection = new SqlConnection(connectionString);
+
+        String insertcmd = "insert into [Evaluate](订单号,用户号,用户名,商品号,商品名,评价) values(@orderid,@UserID,@UserName,@ProId,@ProName,@evaluate)";
+        SqlCommand mycmd = new SqlCommand(insertcmd, connection);
+        mycmd.Parameters.AddWithValue("@orderid", orderid);
+        mycmd.Parameters.AddWithValue("@UserID", c.UserId);
+        mycmd.Parameters.AddWithValue("@UserName", c.UserName);
+        mycmd.Parameters.AddWithValue("@ProId", p.Id);
+        mycmd.Parameters.AddWithValue("@ProName", p.Name);
+        mycmd.Parameters.AddWithValue("@evaluate", evaluate);
+        mycmd.Connection.Open();
+        int iResult = 0;
+        try
+        {
+            iResult = mycmd.ExecuteNonQuery();
+        }
+        catch (Exception ee)
+        {
+            //Label1.Text = ee.Message;
+            return false;
+        }
+        finally
+        {
+            mycmd.Connection.Close();
+        }
+        if (iResult > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false ;
+        }
+    }
+    public static List<Evaluate> GetEvaList(string proid)
+    {
+        List<Evaluate> list = new List<Evaluate>();
+
+        string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        SqlConnection connection = new SqlConnection(connectionString);
+
+        string queryString = "SELECT * FROM [Evaluate] where 商品号=@id order by 评价时间 desc";
+        SqlCommand command = new SqlCommand(queryString, connection);
+        command.Parameters.AddWithValue("@id", proid);
+        connection.Open();
+        SqlDataReader reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            Evaluate eva = new Evaluate();
+            eva.UserName = reader["用户名"].ToString();
+            eva.Eva = reader["评价"].ToString();
+            eva.ProductName = reader["商品名"].ToString();
+            eva.InDate =DateTime.Parse(reader["评价时间"].ToString());
+            list.Add(eva);
+        }
+        connection.Close();
+        return list;
+    }
 }

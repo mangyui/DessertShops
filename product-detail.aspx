@@ -198,6 +198,20 @@
                         </div>
                         <div class="tab-content mb-60">
                             <div class="tab-pane active" role="tabpanel" id="tab_01">
+                               <ul>
+                                   <asp:Repeater ID="rptcCusEva" runat="server">
+                                       <ItemTemplate>
+                                   <li class="liCus">
+                                       <span class="userPing"></span><b class="pingName"><%#Eval("UserName") %></b>
+                                       <p><i><%#Eval("InDate") %></i></p>
+                                       <p><%#Eval("Eva") %></p>
+                                   </li>
+                                       </ItemTemplate>
+                                   </asp:Repeater>
+                               </ul>
+                            </div>
+                            <div class="tab-pane" role="tabpanel" id="tab_02">
+                                <p>1 review for Cupcakes Red Flowers</p>
                                 <p>
                                     Caramels tootsie roll carrot cake sugar plum. Sweet roll jelly bear claw liquorice. Gingerbread lollipop dragée cake.
 								Pie topping jelly-o. Fruitcake dragée candy canes tootsie roll. Pastry jelly-o cupcake. Bonbon brownie soufflé muffin.
@@ -207,10 +221,6 @@
 								pie. Fruitcake tootsie roll chocolate cake Carrot cake cake bear claw jujubes topping cake apple pie. Jujubes gummi
 								bears soufflé candy canes topping gummi bears cake soufflé cake. Cotton candy soufflé sugar plum pastry sweet roll..
                                 </p>
-                            </div>
-                            <div class="tab-pane" role="tabpanel" id="tab_02">
-                                <p>1 review for Cupcakes Red Flowers</p>
-
                             </div>
                             <div class="tab-pane" role="tabpanel" id="tab_03">
                                 <p>

@@ -14,7 +14,7 @@ public class CheckCode : IHttpHandler, IRequiresSessionState
         //context.Response.Write("Hello World");
         // 创建一个包含随机内容的验证码文本 
         System.Random rand = new Random();
-        int len = rand.Next(4, 6);
+        int len = rand.Next(4, 4);
         char[] chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
         System.Text.StringBuilder myStr = new System.Text.StringBuilder();
         for (int iCount = 0; iCount < len; iCount++)

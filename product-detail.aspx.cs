@@ -20,6 +20,9 @@ public partial class product_detail2 : System.Web.UI.Page
         rptProduct3.DataSource = list3;
         rptProduct3.DataBind();
 
+        List<Evaluate> evalist = DBHelper.GetEvaList(id);
+        rptcCusEva.DataSource = evalist;
+        rptcCusEva.DataBind();
 
 
         Product prodect = ProductFactory.GetProductById(int.Parse(id));

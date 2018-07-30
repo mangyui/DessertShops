@@ -307,3 +307,26 @@ ul {
 {
     clear:both;
 }
+#iDowm{
+    position:absolute;
+    margin-left:10px;
+ animation: Mydown 0.8s infinite linear alternate; 
+
+}
+@keyframes Mydown {
+    from {
+        transform:translateY(-5px);
+    }
+
+    to {
+        transform:translateY(10px);
+    }
+}
+.cuk-avatar
+{
+    transition:all 0.4s ease-in-out;
+}
+.cuk-avatar:hover
+{
+    box-shadow:0 0 10px #202d40;
+}
