@@ -7,6 +7,9 @@
             border-left:4px solid #414141;
             background-color:#ffffff;color:#000;
         }
+        .tableEdit tr td {
+                padding: 10px 30px;
+            }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -84,7 +87,7 @@
     
     
     </asp:ListView>
-    <asp:DataPager ID="DataPager1" runat="server" PageSize="2" PagedControlID="ListView1">
+    <asp:DataPager ID="DataPager1" runat="server" PageSize="3" PagedControlID="ListView1">
         <Fields>
           <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
            <asp:NumericPagerField />

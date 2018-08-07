@@ -151,9 +151,9 @@
                 }
                 return false;
             })
-            $(".spanStar i").hover(function () {
-                $(this).parent().find("i").addClass("iactive");
-                $(this).parent().find("i:gt(" + $(this).index() + ")").removeClass("iactive");
+            $(".spanStar i").click(function () {
+                $(this).parent().find("i").removeClass("iactive");
+                $(this).addClass("iactive");
             })
             function endping() {
                 if ($("#Aopde").text() == "评价") {

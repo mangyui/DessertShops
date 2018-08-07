@@ -267,17 +267,55 @@ ul {
     padding:15px;
     border-bottom:1px solid #d8dde4;
 }
+.ulpingjia li .spanStar
+{
+     font-size: 0;
+}
 .ulpingjia li
 {
     margin:20px 0;
+    height:30px;
+    text-align:center;
+    vertical-align:middle;
 }
 .ulpingjia li i::after
 {
-   content:"\e9d7"
+    padding:0 20px;
+    cursor:pointer;
+    display:inline-block;
+      vertical-align: top;
+    width:30px;
+    height:30px;
+    font-size:24px;
+      -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }
-.ulpingjia li .iactive::after
+.ulpingjia li .iactive~i::after
 {
-   content:"\e9d9"
+   content:"\e9d7";
+}
+.ulpingjia li i::after
+{
+   content:"\e9d9" ;
+    color:red;
+}
+.ulpingjia li:hover i::after
+{
+   content:"\e9d9" ;
+    color:red;
+}
+.ulpingjia li:hover i:hover~i::after
+{
+   content:"\e9d7";
+}
+
+.ulpingjia li i:hover::after
+{
+   font-size:30px;
+   color:#ff5858;
+   text-shadow:0 0 5px red;
 }
 .ulpingjia li span
 {

@@ -24,9 +24,13 @@
         }
         #iOne
         { 
+            cursor:pointer;
             font-size: 40px;
             float:left;
             animation: Myring 3.1s infinite linear;
+        }
+        #iOne:hover{
+            animation: Myring 0.1s infinite linear;
         }
         @keyframes Myring {
             from {
