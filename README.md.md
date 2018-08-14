@@ -4,11 +4,11 @@ DessertShop
 
 一个实现了用户注册、登录、修改个人信息、充值余额、浏览商品、添加商品至购物车、购物车内商品的操作、生成订单、付款、收货、评价、收藏喜欢的商品等基本的用户网购流程功能的动态网站。
 
-<img src="http://mangyu.coding.me/test/images/work/usercenter.png" />
+<img src="http://mangyu.coding.me/DessertShop/images/work/usercenter.png" />
 
 网站还专门针对商家管理员的管理操作，实现了管理员登录，以及产品销量统计（可下载）、用户查询、对商品的增删改查操作、对订单的不接单（删除）以及发货功能、和上传图片功能。
 
-<img src="http://mangyu.coding.me/test/images/work/admincenter.png" />
+<img src="http://mangyu.coding.me/DessertShop/images/work/admincenter.png" />
 
 
 开发技能
