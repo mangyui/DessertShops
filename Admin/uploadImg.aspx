@@ -1,49 +1,98 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeFile="uploadImg.aspx.cs" Inherits="Admin_uploadImg" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style>
         .tdCont a:nth-child(8) {
-            border-right:none;
-            border-left:4px solid #414141;
-            background-color:#ffffff;
-             color:#000;
+            border-right: none;
+            border-left: 4px solid #414141;
+            background-color: #ffffff;
+            color: #000;
         }
 
+        .lefttable {
+            float: left;
+        }
+
+        .righttable {
+            float: right;
+        }
+
+        .tdMo {
+            vertical-align: middle;
+        }
+        .tdMo .PEtable{
+            width:80%;
+        }
+        .PEtable th {
+            background: #202d40;
+            padding: 20px 10px;
+            color: #fff;
+        }
+        .addtable{
+            width:100%;
+            border-collapse:collapse;
+        }
+        .addtable td{
+            border-top:1px solid #fff;
+        }
+        .vtoptd{
+            vertical-align:top;
+        }
+        .abtn{
+            margin:5px;
+        }
+        .addtable td.bgwrite{
+            text-align:center;
+            height:112px;
+            background-color:#fff;
+        }
     </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div style="margin-bottom: 20px; font-size: 20px; text-align: center; color: blue;">
-        <b>商品图片上传</b></div>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div>
-        <table style="margin: 0 auto; text-align: center" class="addtable">
+        <table class="PEtable">
             <tr>
-                <td>
-                    服务器已存在的图片</td><td>
-                    <asp:DropDownList ID="ddlImgName" runat="server" Height="27px" Width="317px" AutoPostBack="True"
-                        OnSelectedIndexChanged="ddlImgName_SelectedIndexChanged">
-                    </asp:DropDownList>
-                </td>
+                <th>上传图片</th>
+                <th>服务器图片</th>
             </tr>
             <tr>
-                <td>
-                    显示选中的图片</td><td><asp:Image ID="Image1" runat="server" Height="200px" Width="200px" />
+                <td class="vtoptd">
+                    <table class="addtable">
+                        <tr>
+                            <td>
+                                <asp:FileUpload ID="FileUpload1" class="abtn" runat="server" Width="317px" />
+                            </td>
+
+                        </tr>
+                        <tr>
+                             <td>
+                                <asp:TextBox ID="txtNewName" class="myinput" runat="server" Width="317px" placeholder="修改图片名称"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="bgwrite">
+                                <asp:Label ID="Upload_info" runat="server" ForeColor="Red"></asp:Label><br />
+                                <asp:Button ID="Button1" runat="server" Text="上传图片" OnClick="Button1_Click" />
+                            </td>
+                        </tr>
+                    </table>
                 </td>
-            </tr>
-            <tr>
                 <td>
-                    上传到服务器后的图片的名称</td><td><asp:TextBox ID="txtNewName" runat="server" Width="317px"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    本地要上传的图片的路径</td><td>
-                    <asp:FileUpload ID="FileUpload1" runat="server" Width="317px" />
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <asp:Label ID="Upload_info" runat="server" ForeColor="Red"></asp:Label><br />
-                    <asp:Button ID="Button1" runat="server" Text="上传图片" OnClick="Button1_Click" />
+                    <table class="addtable">
+                        <tr>
+                            <td>
+                                <asp:DropDownList ID="ddlImgName" class="myinput" runat="server" Height="30px" Width="317px" AutoPostBack="True"
+                                    OnSelectedIndexChanged="ddlImgName_SelectedIndexChanged">
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="bgwrite">
+                                <asp:Image ID="Image1" runat="server" Height="200px" Width="200px" />
+                            </td>
+                        </tr>
+
+                    </table>
                 </td>
             </tr>
         </table>

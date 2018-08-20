@@ -9,13 +9,16 @@
         }
         #ContentPlaceHolder1_Button1
         {
-            margin-left:11%;
+            float:right ;
+            color: #fff;
+    background-color: #449d44;
+    border-color: #398439;
         }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
        
-     关键字：<asp:TextBox ID="txtKey" runat="server"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="查询" OnClick="btnSearch_Click" />
+    <asp:TextBox ID="txtKey" runat="server"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="查询" OnClick="btnSearch_Click" />
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [SaleProdect] ORDER BY [销量] DESC, [收入总额] DESC"></asp:SqlDataSource>
  <asp:Button ID="Button1" runat="server" Text="下载此页数据" OnClick="Button1_Click" />
     <asp:ListView ID="ListView1" runat="server" DataKeyNames="商品ID" DataSourceID="SqlDataSource1" OnPagePropertiesChanging="ListView1_PagePropertiesChanging" >

@@ -12,26 +12,30 @@
             margin: 0 0;
             padding: 0 0;
         }
-
+        #bigtable{
+            width:100%;
+        }
         .admin-icon {
             margin-right: 10px;
             font-size: 16px;
         }
 
-        .Topicon {         
-            color: #000;  
-            line-height:40px;  
+        .Topicon {
+            color: #000;
+            line-height: 40px;
         }
-        #iOne
-        { 
-            cursor:pointer;
+
+        #iOne {
+            cursor: pointer;
             font-size: 40px;
-            float:left;
+            float: left;
             animation: Myring 3.1s infinite linear;
         }
-        #iOne:hover{
-            animation: Myring 0.1s infinite linear;
-        }
+
+            #iOne:hover {
+                animation: Myring 0.1s infinite linear;
+            }
+
         @keyframes Myring {
             from {
                 transform: rotate(0deg);
@@ -55,8 +59,7 @@
             padding: 10px 20px 0;
             font-size: 20px;
             color: #fff;
-            line-height:40px;
-            
+            line-height: 40px;
         }
 
             .Toptd #IconLogin {
@@ -113,31 +116,33 @@
                 }
 
             .tdCont .bottomP {
-                margin-bottom: 50px;
+                margin-bottom: 120px;
             }
 
         .tdMo {
             text-align: center;
+            vertical-align: top;
+            padding: 20px;
             background-color: rgba(128, 128, 128, 0.12);
         }
 
             .tdMo .PEtable {
-                width: 80%;
+                width: 100%;
             }
 
             .tdMo input {
                 font-size: 16px;
-                padding: 5px;
             }
 
-            .tdMo #ContentPlaceHolder1_txtKey {
+            .tdMo #ContentPlaceHolder1_txtKey,.myinput {
                 margin: 10px;
-                background-color: transparent;
-                border: none;
-                padding: 0 10px 5px 10px;
-                font-size: 13px;
-                border-bottom: 1px solid #000;
-                outline: none;
+                /* background-color: transparent; */
+                padding: 5px 10px;
+                border-radius: 20px;
+                border: 1px solid #aaa;
+            }
+            .tdMo #ContentPlaceHolder1_txtKey:focus{
+                border-radius: 20px;
             }
 
         #divLogo {
@@ -166,7 +171,7 @@
 
         .tableEdit {
             border-collapse: collapse;
-            margin: 20px auto;
+            margin: 0 auto 40px;
         }
 
             .tableEdit tr {
@@ -174,7 +179,7 @@
             }
 
             .tableEdit tbody tr:hover {
-                background: rgba(32, 45, 64, 0.14);
+                background: rgba(32, 45, 64, 0.05);
             }
 
             .tableEdit th {
@@ -194,16 +199,59 @@
             .opTd a:hover {
                 color: #ee7560;
             }
-
-        #ContentPlaceHolder1_DataPager1 a {
-            margin-left: 10px;
+        #ContentPlaceHolder1_DataPager1{
+            vertical-align:top;
         }
-
+        #ContentPlaceHolder1_DataPager1 a,#ContentPlaceHolder1_DataPager1 span {
+            font-size:14px;
+            margin:0 5px;
+           /* background-color: transparent; */
+            padding: 6px 12px;
+            border-radius: 2px;
+            border: 1px solid #aaa;
+            color:#5A5A5A;
+            text-decoration:none;
+            background-color:#fff;
+        }
+        #ContentPlaceHolder1_DataPager1 span{
+            background-color:#ccc;
+        }
+        #ContentPlaceHolder1_DataPager1 input{
+            margin:0 10px;
+        }
         .addtable td:nth-child(2n+1) {
             background-color: #202d40;
             color: #fff;
             padding: 20px;
         }
+
+        input[type="submit"], .abtn {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 0;
+            color: #202d40;
+            font-size: 14px;
+            line-height: 1.4;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            user-select: none;
+            background: #fff;
+            cursor: pointer;
+        }
+
+            input[type="submit"]:hover, .abtn:hover {
+                color: #333;
+                background-color: #e6e6e6;
+                border-color: #adadad;
+            }
+            .bgred{
+                background:#ee7560;
+                color:#fff;
+                border:1px solid #c34630;
+            }
     </style>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -212,7 +260,7 @@
     <form id="form1" runat="server">
         <div>
 
-            <table width="100%">
+            <table id="bigtable">
                 <tr>
                     <td colspan="2" class="Toptd">
                         <i class="admin-icon Topicon" id="iOne">&#xe994;</i>
@@ -233,9 +281,9 @@
                         <a class="aa" href="productsEdit.aspx"><i class="admin-icon">&#xeaae;</i>管理商品</a>
                         <a class="aa" href="OrdersEdit.aspx"><i class="admin-icon">&#xe94b;</i>订单管理</a>
                         <a class="aa" href="uploadImg.aspx"><i class="admin-icon">&#xe9c6;</i>上传图片</a>
-                        <a class="bottomP aa" href="/index.aspx" target="_blank"><i class="admin-icon">&#xe900;</i>转到主页</a>
+                        <a class="bottomP aa" href="/index.aspx" target="_blank"><i class="admin-icon">&#xe900;</i>前往主页</a>
                     </td>
-                    <td width="85%" class="tdMo">
+                    <td class="tdMo">
                         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                         </asp:ContentPlaceHolder>
 

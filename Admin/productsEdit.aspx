@@ -8,12 +8,12 @@
             background-color:#ffffff;color:#000;
         }
         .tableEdit tr td {
-                padding: 10px 30px;
+                padding: 5px 30px;
             }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-     关键字：<asp:TextBox ID="txtKey" runat="server"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="查询" OnClick="btnSearch_Click" />
+    <asp:TextBox ID="txtKey" runat="server"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="查询" OnClick="btnSearch_Click" />
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [商品ID], [商品名], [现价], [图片], [商品类别], [日期], [销量] FROM [Product]"></asp:SqlDataSource>
 
     <asp:ListView ID="ListView1" runat="server" DataKeyNames="商品ID" DataSourceID="SqlDataSource1" OnPagePropertiesChanging="ListView1_PagePropertiesChanging" >
@@ -53,17 +53,17 @@
                     <asp:Label ID="销量Label" runat="server" Text='<%# Eval("销量") %>' />
                 </td>
                  <td class="opTd">
-                    <asp:LinkButton ID="LinkButtonDelete" runat="server" CommandArgument='<%# Eval("商品ID") %>' OnClientClick="return confirm('确定删除此记录吗？');" OnClick="LinkButtonDelete_Click" >删除</asp:LinkButton>
-                    ｜<a href="updateProduct.aspx?id=<%# Eval("商品ID") %>">修改</a>
+                    <asp:LinkButton ID="LinkButtonDelete" CssClass="abtn  bgred" runat="server" CommandArgument='<%# Eval("商品ID") %>' OnClientClick="return confirm('确定删除此记录吗？');" OnClick="LinkButtonDelete_Click" >删除</asp:LinkButton>
+                    ｜<a class="abtn" href="updateProduct.aspx?id=<%# Eval("商品ID") %>">修改</a>
                 </td>
 
             </tr>
         </ItemTemplate>
         <LayoutTemplate>
-            <table runat="server" >
+            <table runat="server"  class="PEtable" >
                 <tr runat="server">
-                    <td runat="server" width="80%" >
-                        <table id="itemPlaceholderContainer" runat="server" class="tableEdit"  style=""  border="0">
+                    <td runat="server" >
+                        <table id="itemPlaceholderContainer" runat="server" class="tableEdit PEtable"  style=""  border="0">
                             <tr runat="server" style="" >
                                 <th runat="server">商品ID</th>
                                 <th runat="server">商品名</th>
@@ -87,7 +87,7 @@
     
     
     </asp:ListView>
-    <asp:DataPager ID="DataPager1" runat="server" PageSize="3" PagedControlID="ListView1">
+    <asp:DataPager ID="DataPager1" runat="server" PageSize="4" PagedControlID="ListView1">
         <Fields>
           <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
            <asp:NumericPagerField />

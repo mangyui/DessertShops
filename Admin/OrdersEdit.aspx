@@ -7,10 +7,13 @@
             border-left:4px solid #414141;
             background-color:#ffffff;  color:#000;
         }
+        .tableEdit tr td{
+            padding:28px 30px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-     关键字：<asp:TextBox ID="txtKey" runat="server"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="查询" OnClick="btnSearch_Click" />
+    <asp:TextBox ID="txtKey" runat="server"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="查询" OnClick="btnSearch_Click" />
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [orders] order by 订单号 desc"></asp:SqlDataSource>
 
     <asp:ListView ID="ListView1" runat="server" DataKeyNames="订单号" DataSourceID="SqlDataSource1" OnPagePropertiesChanging="ListView1_PagePropertiesChanging" >
@@ -43,8 +46,8 @@
                     <asp:Label ID="订单状态Label" runat="server" Text='<%# Eval("订单状态") %>' />
                 </td>
                 <td class="opTd" >
-                    <asp:LinkButton ID="LinkButtonDelete" runat="server" CommandArgument='<%# Eval("订单号") %>' OnClientClick="return confirm('确定删除此记录吗？');" OnClick="LinkButtonDelete_Click" >删除</asp:LinkButton>
-                    ｜<asp:LinkButton ID="LinkButtonfh" runat="server" CommandArgument='<%# Eval("订单号") %>' OnClientClick="return confirm('确定确定发货么？');" OnClick="LinkButtonfh_Click" >发货</asp:LinkButton>
+                    <asp:LinkButton ID="LinkButtonDelete" CssClass="abtn bgred" runat="server" CommandArgument='<%# Eval("订单号") %>' OnClientClick="return confirm('确定删除此记录吗？');" OnClick="LinkButtonDelete_Click" >删除</asp:LinkButton>
+                    ｜<asp:LinkButton ID="LinkButtonfh" CssClass="abtn" runat="server" CommandArgument='<%# Eval("订单号") %>' OnClientClick="return confirm('确定确定发货么？');" OnClick="LinkButtonfh_Click" >发货</asp:LinkButton>
                 </td>
 
             </tr>
